@@ -5,7 +5,7 @@ interface ISEO {
   title?: string;
 }
 
-const SEO: FC<ISEO> = ({ title = "Software Developer" }) => (
+const SEO: FC<ISEO> = ({ title = "Software Engineer" }) => (
   <Head>
     <title>Pedro Filho - {title}</title>
   </Head>

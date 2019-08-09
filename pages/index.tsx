@@ -5,6 +5,7 @@ import SEO from "../components/SEO";
 
 const Container = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -16,6 +17,11 @@ const Title = styled.h1`
   font-size: 2em;
 `;
 
+const SubTitle = styled.h4`
+  font-weight: lighter;
+  font-size: 1em;
+`;
+
 const Name = styled.span`
   font-weight: normal;
 `;
@@ -25,8 +31,10 @@ const Index = () => (
     <Container>
       <SEO />
       <Title>
-        Hey 👋, I'm <Name>Pedro</Name>
+        Hey 👋, my name is <Name>Pedro</Name>
       </Title>
+      <br />
+      <SubTitle>I'm a Software Engineer</SubTitle>
       <Navigation />
     </Container>
   </Layout>
