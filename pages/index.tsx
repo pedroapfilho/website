@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import Navigation from "../components/Navigation";
 import SEO from "../components/SEO";
+import ProfileImage from "../components/ProfileImage";
 
 const Container = styled.section`
   display: flex;
@@ -30,6 +31,7 @@ const Index = () => (
   <Layout>
     <Container>
       <SEO />
+      <ProfileImage />
       <Title>
         Hey 👋, my name is <Name>Pedro</Name>
       </Title>
