@@ -18,7 +18,7 @@ const Title = styled.h1`
   font-size: 2em;
 `;
 
-const SubTitle = styled.h4`
+const SubTitle = styled.h2`
   font-weight: lighter;
   font-size: 1em;
 `;

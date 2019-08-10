@@ -1,11 +1,9 @@
 import { FC } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 
 interface ICustomLink {
   title: string;
   link: string;
-  fetch?: boolean;
 }
 
 const StyledLink = styled.a`
@@ -18,10 +16,8 @@ const StyledLink = styled.a`
   }
 `;
 
-const CustomLink: FC<ICustomLink> = ({ title, link, fetch = false }) => (
-  <Link prefetch={fetch} href={link} passHref>
-    <StyledLink>{title}</StyledLink>
-  </Link>
+const CustomLink: FC<ICustomLink> = ({ title, link }) => (
+  <StyledLink href={link}>{title}</StyledLink>
 );
 
 export default CustomLink;
