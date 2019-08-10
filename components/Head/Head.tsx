@@ -8,6 +8,8 @@ interface ISEO {
 const SEO: FC<ISEO> = ({ title = "Software Engineer" }) => (
   <Head>
     <title>Pedro Filho - {title}</title>
+
+    <link rel="icon" href="../static/favicon.ico" />
   </Head>
 );
 

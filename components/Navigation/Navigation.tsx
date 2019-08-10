@@ -34,7 +34,7 @@ const Navigation: FC = () => (
         <CustomLink title="Blog" link="https://dev.to/pedroapfilho" />
       </ListItem>
       <ListItem>
-        <CustomLink title="Resume" link="resume" fetch />
+        <CustomLink title="Resume" link="/resume" fetch />
       </ListItem>
       <ListItem>
         <CustomLink title="Contact" link="mailto:pedro@filho.me" />

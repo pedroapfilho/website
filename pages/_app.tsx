@@ -17,7 +17,8 @@ const theme = {
   color: {
     primary: "#040402",
     secondary: "#efefef"
-  }
+  },
+  borderRadius: "6px"
 };
 
 class CustomApp extends App {

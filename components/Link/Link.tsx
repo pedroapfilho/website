@@ -11,7 +11,7 @@ interface ICustomLink {
 const StyledLink = styled.a`
   text-decoration: none;
   color: inherit;
-  border-radius: 6px;
+  border-radius: 0.5em;
   transition: all 0.2s;
   &:hover {
     background-color: ${props => props.theme.color.secondary};

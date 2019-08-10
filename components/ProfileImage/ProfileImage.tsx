@@ -5,7 +5,7 @@ const StyledImage = styled.img`
   width: 150px;
   height: 150px;
   margin: 1em;
-  border-radius: 6px;
+  border-radius: 0.5em;
 `;
 
 const ProfileImage: FC = () => <StyledImage src="/static/profile-image.jpg" />;
