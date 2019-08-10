@@ -15,12 +15,10 @@ const Container = styled.section`
 
 const Title = styled.h1`
   font-weight: lighter;
-  font-size: 2em;
 `;
 
-const SubTitle = styled.h2`
+const SubTitle = styled.h4`
   font-weight: lighter;
-  font-size: 1em;
 `;
 
 const Name = styled.span`
