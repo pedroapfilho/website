@@ -11,8 +11,9 @@ const StyledLink = styled.a`
   color: inherit;
   border-radius: 0.5em;
   transition: all 0.2s;
+
   &:hover {
-    background-color: ${props => props.theme.color.secondary};
+    background-color: ${props => props.theme.colors.secondary};
   }
 `;
 

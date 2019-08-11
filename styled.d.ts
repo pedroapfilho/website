@@ -1,12 +1,16 @@
 import "styled-components";
 
-// and extend them!
 declare module "styled-components" {
   export interface DefaultTheme {
-    color: {
+    colors: {
       primary: string;
       secondary: string;
     };
     borderRadius: string;
+    breakpoints: {
+      xs: string;
+      md: string;
+      lg: string;
+    };
   }
 }

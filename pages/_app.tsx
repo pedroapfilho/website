@@ -9,16 +9,21 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-    color: ${props => props.theme.color.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
 const theme = {
-  color: {
+  colors: {
     primary: "#040402",
     secondary: "#efefef"
   },
-  borderRadius: "6px"
+  borderRadius: "6px",
+  breakpoints: {
+    xs: "567px",
+    md: "768px",
+    lg: "1200px"
+  }
 };
 
 class CustomApp extends App {

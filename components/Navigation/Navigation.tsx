@@ -13,6 +13,11 @@ const Nav = styled.nav`
 
 const List = styled.ul`
   list-style: none;
+
+  @media screen and (max-width: ${props => props.theme.breakpoints.xs}) {
+    display: flex;
+    justify-content: space-around;
+  }
 `;
 
 const ListItem = styled.li`
@@ -21,6 +26,10 @@ const ListItem = styled.li`
   & > a {
     padding: 0.5em;
     margin: 0.5em;
+
+    @media screen and (max-width: ${props => props.theme.breakpoints.xs}) {
+      margin: 0.25em;
+    }
   }
 `;
 
@@ -32,6 +41,9 @@ const Navigation: FC = () => (
       </ListItem>
       <ListItem>
         <CustomLink title="Blog" link="https://dev.to/pedroapfilho" />
+      </ListItem>
+      <ListItem>
+        <CustomLink title="Thoughts" link="https://twitter.com/pedrofilhome" />
       </ListItem>
       <ListItem>
         <CustomLink title="Contact" link="mailto:pedro@filho.me" />
