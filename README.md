@@ -1,13 +1,16 @@
-<h1 align="center">Welcome to Personal Website 👋</h1>
-<p>
+<h1 align="center">Welcome to my personal website 👋</h1>
+<p align="center">
   <a href="https://github.com/pedroapfilho/website/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
+  <a href="https://github.com/styled-components/styled-components">
+    <img alt="styled-components" src="https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e" target="_blank" />
+  </a>
 </p>
 
-> Just a channel to find me on the WWW
+> Just a way to find me on the WWW, built with Next.js and styled-components
 
-### 🏠 [Homepage](pedroapfilho.com)
+### 🏠 [Website](https://pedroapfilho.com)
 
 ## Install
 
@@ -25,6 +28,12 @@ yarn dev
 
 ```sh
 yarn test
+```
+
+## Build
+
+```sh
+yarn start
 ```
 
 ## Author
