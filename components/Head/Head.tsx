@@ -1,11 +1,11 @@
 import { FC } from "react";
 import Head from "next/head";
 
-interface ISEO {
+interface SEO {
   title?: string;
 }
 
-const SEO: FC<ISEO> = ({ title = "Software Engineer" }) => (
+const SEO: FC<SEO> = ({ title = "Software Engineer" }) => (
   <Head>
     <title>Pedro Filho - {title}</title>
 

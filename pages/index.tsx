@@ -34,7 +34,9 @@ const Index = () => (
         Hey 👋, my name is <Name>Pedro</Name>
       </Title>
       <br />
-      <SubTitle>I'm a Software Engineer</SubTitle>
+      <SubTitle>I&apos;m a Software Engineer</SubTitle>
+      <br />
+      <span>🇧🇷 🇵🇹 🇳🇱 🇬🇧</span>
       <Navigation />
     </Container>
   </Layout>

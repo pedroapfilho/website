@@ -8,8 +8,6 @@ const StyledImage = styled.img`
   border-radius: 0.5em;
 `;
 
-const ProfileImage: FC = () => (
-  <StyledImage src="/static/profile-image.jpg" alt="Profile Image" />
-);
+const ProfileImage: FC = () => <StyledImage src="/static/profile-image.jpg" alt="Profile Image" />;
 
 export default ProfileImage;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-interface ICustomLink {
+interface CustomLink {
   title: string;
   link: string;
 }
@@ -17,8 +17,6 @@ const StyledLink = styled.a`
   }
 `;
 
-const CustomLink: FC<ICustomLink> = ({ title, link }) => (
-  <StyledLink href={link}>{title}</StyledLink>
-);
+const CustomLink: FC<CustomLink> = ({ title, link }) => <StyledLink href={link}>{title}</StyledLink>;
 
 export default CustomLink;
