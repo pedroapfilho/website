@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: "#040402",
+    primary: "#1a1a1a",
     secondary: "#efefef"
   },
   borderRadius: "6px",
