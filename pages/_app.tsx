@@ -1,5 +1,5 @@
 import React from "react";
-import App, { Container } from "next/app";
+import App from "next/app";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -9,14 +9,13 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-    color: ${props => props.theme.colors.primary};
   }
 `;
 
 const theme = {
   colors: {
     primary: "#1a1a1a",
-    secondary: "#efefef"
+    secondary: "#ffffff"
   },
   borderRadius: "6px",
   breakpoints: {
@@ -30,14 +29,12 @@ class CustomApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <ThemeProvider theme={theme}>
-          <>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </>
-        </ThemeProvider>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </>
+      </ThemeProvider>
     );
   }
 }
