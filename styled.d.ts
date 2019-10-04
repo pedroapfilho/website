@@ -5,6 +5,7 @@ declare module "styled-components" {
     colors: {
       primary: string;
       secondary: string;
+      accent: string;
     };
     borderRadius: string;
     breakpoints: {
