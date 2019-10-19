@@ -14,6 +14,7 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
           siteMetadata {
             title
             description
+            siteUrl
           }
         }
         file(relativePath: { eq: "profile-image.jpg" }) {
@@ -53,7 +54,7 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         },
         {
           property: `og:image`,
-          content: file.childImageSharp.fixed.src
+          content: `${site.siteMetadata.siteUrl}${file.childImageSharp.fixed.src}`
         }
       ]}
     />

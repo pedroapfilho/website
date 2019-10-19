@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Pedro Filho`,
+    siteUrl: `https://pedroapfilho.com`,
     description: `Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast.`
   },
   plugins: [
