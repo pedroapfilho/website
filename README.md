@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> Just a way to find me on the WWW, built with Next.js and styled-components
+> Just a way to find me on the WWW, built with Gatsby and styled-components
 
 ### 🏠 [Website](https://pedroapfilho.com)
 

@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Navigation from "../components/Navigation";
@@ -25,7 +26,7 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
-const Index = () => (
+const Index: FC<{ data: any }> = ({ data }) => (
   <Layout>
     <Container>
       <Head />

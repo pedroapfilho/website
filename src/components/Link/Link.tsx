@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
 interface CustomLink {
@@ -17,6 +17,10 @@ const StyledLink = styled.a`
   }
 `;
 
-const CustomLink: FC<CustomLink> = ({ title, link }) => <StyledLink href={link}>{title}</StyledLink>;
+const CustomLink: FC<CustomLink> = ({ title, link }) => (
+  <StyledLink href={link} target="_blank" rel="noopener noreferrer">
+    {title}
+  </StyledLink>
+);
 
 export default CustomLink;

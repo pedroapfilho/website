@@ -1,5 +1,5 @@
-import React from "react";
-import App from "next/app";
+import React, { FC } from "react";
+import styled from "styled-components";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -26,18 +26,23 @@ const theme = {
   }
 };
 
-class CustomApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <ThemeProvider theme={theme}>
-        <>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </>
-      </ThemeProvider>
-    );
-  }
-}
+const Container = styled.main`
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 2em;
+  color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.secondary};
+`;
 
-export default CustomApp;
+const Layout: FC = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <Container>
+      <>
+        <GlobalStyle />
+        {children}
+      </>
+    </Container>
+  </ThemeProvider>
+);
+
+export default Layout;

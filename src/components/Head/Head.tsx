@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Head from "next/head";
+import React, { FC } from "react";
+import Helmet from "react-helmet";
 
 interface SEO {
   title?: string;
 }
 
 const SEO: FC<SEO> = ({ title = "Software Engineer" }) => (
-  <Head>
+  <Helmet>
     <title>Pedro Filho - {title}</title>
 
     <meta name="title" content="Pedro Filho - Software Engineer" />
@@ -15,9 +15,7 @@ const SEO: FC<SEO> = ({ title = "Software Engineer" }) => (
       name="description"
       content="Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast."
     />
-
-    <link rel="icon" href="../static/favicon.ico" />
-  </Head>
+  </Helmet>
 );
 
 export default SEO;

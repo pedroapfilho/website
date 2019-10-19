@@ -7,29 +7,20 @@
   "author": "Pedro Filho <pedro@filho.me>",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "^9.0.7",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0"
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "clean": "gatsby clean",
+    "test": "xo"
   },
   "devDependencies": {
-    "@types/node": "^12.7.11",
-    "@types/react": "^16.9.5",
-    "@types/react-dom": "^16.9.1",
-    "@types/styled-components": "^4.1.19",
-    "@typescript-eslint/eslint-plugin": "^2.3.2",
-    "@typescript-eslint/parser": "^2.3.2",
-    "babel-plugin-styled-components": "^1.10.6",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.15.1",
-    "prettier": "^1.18.2",
-    "typescript": "^3.6.3"
+    "xo": "^0.25.3"
+  },
+  "dependencies": {
+    "gatsby": "^2.16.5",
+    "gatsby-plugin-manifest": "^2.2.23",
+    "gatsby-source-filesystem": "^2.1.33",
+    "gatsby-theme-awesomeness": "^0.0.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }
