@@ -55,6 +55,10 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         {
           property: `og:image`,
           content: `${site.siteMetadata.siteUrl}${file.childImageSharp.fixed.src}`
+        },
+        {
+          property: `og:url`,
+          content: `${site.siteMetadata.siteUrl}`
         }
       ]}
     />
