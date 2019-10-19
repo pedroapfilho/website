@@ -7,13 +7,20 @@ interface Head {
 }
 
 const Head: FC<Head> = ({ title = "Software Engineer" }) => {
-  const { site } = useStaticQuery(
+  const { site, file } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
             description
+          }
+        }
+        file(relativePath: { eq: "profile-image.jpg" }) {
+          childImageSharp {
+            fixed {
+              src
+            }
           }
         }
       }
@@ -43,6 +50,10 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         {
           property: `og:type`,
           content: `website`
+        },
+        {
+          property: `og:image`,
+          content: file.childImageSharp.fixed.src
         }
       ]}
     />
