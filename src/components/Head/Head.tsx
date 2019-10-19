@@ -1,21 +1,52 @@
 import React, { FC } from "react";
 import Helmet from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
-interface SEO {
+interface Head {
   title?: string;
 }
 
-const SEO: FC<SEO> = ({ title = "Software Engineer" }) => (
-  <Helmet>
-    <title>Pedro Filho - {title}</title>
+const Head: FC<Head> = ({ title = "Software Engineer" }) => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+          }
+        }
+      }
+    `
+  );
 
-    <meta name="title" content="Pedro Filho - Software Engineer" />
-
-    <meta
-      name="description"
-      content="Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast."
+  return (
+    <Helmet
+      htmlAttributes={{
+        lang: "en"
+      }}
+      title={title}
+      titleTemplate={`${site.siteMetadata.title} - %s`}
+      meta={[
+        {
+          name: `description`,
+          content: site.siteMetadata.description
+        },
+        {
+          property: `og:title`,
+          content: site.siteMetadata.title
+        },
+        {
+          property: `og:description`,
+          content: site.siteMetadata.description
+        },
+        {
+          property: `og:type`,
+          content: `website`
+        }
+      ]}
     />
-  </Helmet>
-);
+  );
+};
 
-export default SEO;
+export default Head;

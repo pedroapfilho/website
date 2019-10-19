@@ -1,4 +1,8 @@
 module.exports = {
+  siteMetadata: {
+    title: `Pedro Filho`,
+    description: `Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast.`
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
