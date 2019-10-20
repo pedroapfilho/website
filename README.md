@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to my personal website 👋</h1>
+<h1 align="center">This is my personal website</h1>
 <p align="center">
   <a href="https://github.com/pedroapfilho/website/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
@@ -10,8 +10,6 @@
 
 > Just a way to find me on the WWW, built with Gatsby and styled-components
 
-### 🏠 [Website](https://pedroapfilho.com)
-
 ## Install
 
 ```sh
@@ -21,7 +19,7 @@ yarn
 ## Usage
 
 ```sh
-yarn dev
+yarn develop
 ```
 
 ## Run tests
