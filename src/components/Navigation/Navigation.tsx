@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import CustomLink from "../Link";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Nav = styled.nav`
   text-align: center;
@@ -33,23 +34,43 @@ const ListItem = styled.li`
   }
 `;
 
-const Navigation: FC = () => (
-  <Nav>
-    <List>
-      <ListItem>
-        <CustomLink title="Code" link="https://github.com/pedroapfilho" />
-      </ListItem>
-      <ListItem>
-        <CustomLink title="Blog" link="https://dev.to/pedroapfilho" />
-      </ListItem>
-      <ListItem>
-        <CustomLink title="Thoughts" link="https://twitter.com/pedrofilhome" />
-      </ListItem>
-      <ListItem>
-        <CustomLink title="Contact" link="mailto:pedro@filho.me" />
-      </ListItem>
-    </List>
-  </Nav>
-);
+const Navigation: FC = () => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            github
+            blog
+            twitter
+            email
+          }
+        }
+      }
+    `
+  );
+
+  return (
+    <Nav>
+      <List>
+        <ListItem>
+          <CustomLink title="Code" link={site.siteMetadata.github} />
+        </ListItem>
+        <ListItem>
+          <CustomLink title="Thoughts" link={site.siteMetadata.twitter} />
+        </ListItem>
+        <ListItem>
+          <CustomLink title="Blog" link={site.siteMetadata.blog} />
+        </ListItem>
+        <ListItem>
+          <CustomLink
+            title="Contact"
+            link={`mailto:${site.siteMetadata.email}`}
+          />
+        </ListItem>
+      </List>
+    </Nav>
+  );
+};
 
 export default Navigation;
