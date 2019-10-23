@@ -4,8 +4,8 @@ module.exports = {
     siteUrl: `https://pedroapfilho.com`,
     description: `Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast.`,
     email: `pedro@filho.me`,
-    twitter: `https://twitter.com/pedrofilhome`,
-    github: `https://github.com/pedroapfilho`,
+    twitter: `pedrofilhome`,
+    github: `pedroapfilho`,
     blog: `https://dev.to/pedroapfilho`
   },
   plugins: [

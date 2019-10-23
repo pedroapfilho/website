@@ -15,6 +15,7 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
             title
             description
             siteUrl
+            twitter
           }
         }
         file(relativePath: { eq: "profile-image.jpg" }) {
@@ -42,7 +43,7 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         },
         {
           property: `og:title`,
-          content: site.siteMetadata.title
+          content: title
         },
         {
           property: `og:description`,
@@ -58,7 +59,31 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         },
         {
           property: `og:url`,
-          content: `${site.siteMetadata.siteUrl}`
+          content: site.siteMetadata.siteUrl
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`
+        },
+        {
+          property: `twitter:image`,
+          content: `${site.siteMetadata.siteUrl}${file.childImageSharp.fixed.src}`
+        },
+        {
+          name: `twitter:creator`,
+          content: `@${site.siteMetadata.twitter}`
+        },
+        {
+          name: `twitter:title`,
+          content: `${site.siteMetadata.title} - ${title}`
+        },
+        {
+          name: `twitter:description`,
+          content: site.siteMetadata.description
+        },
+        {
+          name: `twitter:site`,
+          content: site.siteMetadata.siteUrl
         }
       ]}
     />

@@ -54,10 +54,16 @@ const Navigation: FC = () => {
     <Nav>
       <List>
         <ListItem>
-          <CustomLink title="Code" link={site.siteMetadata.github} />
+          <CustomLink
+            title="Code"
+            link={`https://github.com/${site.siteMetadata.github}`}
+          />
         </ListItem>
         <ListItem>
-          <CustomLink title="Thoughts" link={site.siteMetadata.twitter} />
+          <CustomLink
+            title="Thoughts"
+            link={`https://twitter.com/${site.siteMetadata.twitter}`}
+          />
         </ListItem>
         <ListItem>
           <CustomLink title="Blog" link={site.siteMetadata.blog} />
