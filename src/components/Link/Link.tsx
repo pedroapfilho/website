@@ -13,6 +13,7 @@ const StyledLink = styled.a`
   transition: all 0.2s;
 
   &:hover {
+    color: ${props => props.theme.colors.primary};
     background-color: ${props => props.theme.colors.accent};
   }
 `;
