@@ -26,7 +26,7 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
-const Index: FC<{ data: any }> = ({ data }) => (
+const Index: FC = () => (
   <Layout>
     <Container>
       <Head />

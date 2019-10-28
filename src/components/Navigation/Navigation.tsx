@@ -40,9 +40,9 @@ const Navigation: FC = () => {
       query {
         site {
           siteMetadata {
-            github
+            code
             blog
-            twitter
+            thoughts
             email
           }
         }
@@ -56,13 +56,13 @@ const Navigation: FC = () => {
         <ListItem>
           <CustomLink
             title="Code"
-            link={`https://github.com/${site.siteMetadata.github}`}
+            link={`${site.siteMetadata.code}`}
           />
         </ListItem>
         <ListItem>
           <CustomLink
             title="Thoughts"
-            link={`https://twitter.com/${site.siteMetadata.twitter}`}
+            link={`${site.siteMetadata.thoughts}`}
           />
         </ListItem>
         <ListItem>

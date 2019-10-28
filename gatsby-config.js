@@ -1,33 +1,34 @@
 module.exports = {
   siteMetadata: {
-    title: `Pedro Filho`,
-    siteUrl: `https://pedroapfilho.com`,
-    description: `Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast.`,
-    email: `pedro@filho.me`,
-    twitter: `pedrofilhome`,
-    github: `pedroapfilho`,
-    blog: `https://dev.to/pedroapfilho`
+    title: "Pedro Filho",
+    siteUrl: "https://pedroapfilho.com",
+    description:
+      "Curious by nature, entrepreneur, developer practitioner of agile philosophy and JavaScript enthusiast.",
+    email: "pedro@filho.me",
+    thoughts: "https://twitter.com/pedrofilhome",
+    code: "https://github.com/pedroapfilho",
+    blog: "https://dev.to/pedroapfilho"
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Pedro Filho`,
-        short_name: `Pedro Filho`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#1a1a1a`,
-        display: `standalone`,
-        icon: `src/assets/favicon.png`
+        name: "Pedro Filho",
+        short_name: "Pedro Filho",
+        start_url: "/",
+        background_color: "#ffffff",
+        theme_color: "#1a1a1a",
+        display: "standalone",
+        icon: "src/assets/favicon.png"
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `images`,
+        name: "images",
         path: `${__dirname}/src/images/`
       }
     },
-    `gatsby-theme-awesomeness`
+    "gatsby-theme-awesomeness"
   ]
 };

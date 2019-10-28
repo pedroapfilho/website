@@ -15,7 +15,6 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
             title
             description
             siteUrl
-            twitter
           }
         }
         file(relativePath: { eq: "profile-image.jpg" }) {
@@ -68,10 +67,6 @@ const Head: FC<Head> = ({ title = "Software Engineer" }) => {
         {
           property: `twitter:image`,
           content: `${site.siteMetadata.siteUrl}${file.childImageSharp.fixed.src}`
-        },
-        {
-          name: `twitter:creator`,
-          content: `@${site.siteMetadata.twitter}`
         },
         {
           name: `twitter:title`,
