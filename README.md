@@ -6,6 +6,9 @@
   <a href="https://github.com/styled-components/styled-components">
     <img alt="styled-components" src="https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e" target="_blank" />
   </a>
+    <a href="https://github.com/xojs/xo">
+    <img alt="XO code style" src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" target="_blank" />
+  </a>
 </p>
 
 > Just a way to find me on the WWW, built with Gatsby and styled-components
