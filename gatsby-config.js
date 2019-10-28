@@ -7,7 +7,8 @@ module.exports = {
     email: "pedro@filho.me",
     thoughts: "https://twitter.com/pedrofilhome",
     code: "https://github.com/pedroapfilho",
-    blog: "https://dev.to/pedroapfilho"
+    blog: "https://dev.to/pedroapfilho",
+    work: "Game Analytics"
   },
   plugins: [
     {

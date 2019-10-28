@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import Navigation from "../components/Navigation";
 import Head from "../components/Head";
 import ProfileImage from "../components/ProfileImage";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Container = styled.section`
   display: flex;
@@ -26,21 +27,37 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
-const Index: FC = () => (
-  <Layout>
-    <Container>
-      <Head />
-      <ProfileImage />
-      <Title>
-        Hey 👋, my name is <Name>Pedro</Name>
-      </Title>
-      <br />
-      <SubTitle>I&apos;m a Software Engineer</SubTitle>
-      <br />
-      <span>🇧🇷 🇵🇹 🇳🇱 🇬🇧</span>
-      <Navigation />
-    </Container>
-  </Layout>
-);
+const Index: FC = () => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            work
+          }
+        }
+      }
+    `
+  );
+
+  return (
+    <Layout>
+      <Container>
+        <Head />
+        <ProfileImage />
+        <Title>
+          Hey 👋, my name is <Name>Pedro</Name>
+        </Title>
+        <br />
+        <SubTitle>
+          I&apos;m a Software Engineer at {site.siteMetadata.work}
+        </SubTitle>
+        <br />
+        <span>🇧🇷 🇵🇹 🇳🇱 🇬🇧</span>
+        <Navigation />
+      </Container>
+    </Layout>
+  );
+};
 
 export default Index;
