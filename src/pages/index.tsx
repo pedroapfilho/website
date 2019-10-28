@@ -33,7 +33,8 @@ const Index: FC = () => {
       query {
         site {
           siteMetadata {
-            work
+            job
+            organization
           }
         }
       }
@@ -50,7 +51,7 @@ const Index: FC = () => {
         </Title>
         <br />
         <SubTitle>
-          I&apos;m a Software Engineer at {site.siteMetadata.work}
+          I'm a {site.siteMetadata.job} at {site.siteMetadata.organization}
         </SubTitle>
         <br />
         <span>🇧🇷 🇵🇹 🇳🇱 🇬🇧</span>

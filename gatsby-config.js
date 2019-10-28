@@ -7,7 +7,8 @@ module.exports = {
     thoughts: "https://twitter.com/pedrofilhome",
     code: "https://github.com/pedroapfilho",
     blog: "https://dev.to/pedroapfilho",
-    work: "Game Analytics"
+    job: "Software Engineer",
+    organization: "Game Analytics"
   },
   plugins: [
     {
