@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import CustomLink from "../Link";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, withPrefix } from "gatsby";
 
 const Nav = styled.nav`
   text-align: center;
@@ -54,19 +54,16 @@ const Navigation: FC = () => {
     <Nav>
       <List>
         <ListItem>
-          <CustomLink
-            title="Code"
-            link={`${site.siteMetadata.code}`}
-          />
+          <CustomLink title="Code" link={`${site.siteMetadata.code}`} />
         </ListItem>
         <ListItem>
-          <CustomLink
-            title="Thoughts"
-            link={`${site.siteMetadata.thoughts}`}
-          />
+          <CustomLink title="Thoughts" link={`${site.siteMetadata.thoughts}`} />
         </ListItem>
         <ListItem>
           <CustomLink title="Blog" link={site.siteMetadata.blog} />
+        </ListItem>
+        <ListItem>
+          <CustomLink title="CV" link={withPrefix("/resume.pdf")} />
         </ListItem>
         <ListItem>
           <CustomLink
