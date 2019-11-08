@@ -21,7 +21,9 @@ const ProfileImage: FC = () => {
     }
   `);
 
-  return <StyledImage fixed={data.file.childImageSharp.fixed} />;
+  return (
+    <StyledImage fixed={data.file.childImageSharp.fixed} alt="profile-image" />
+  );
 };
 
 export default ProfileImage;
