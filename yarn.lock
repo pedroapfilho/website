@@ -753,6 +753,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.5.1":
+  version "7.7.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.2.tgz#111a78002a5c25fc8e3361bedc9529c696b85a6a"
+  integrity sha512-JONRbXbTXc9WQE2mAZd1p0Z3DZ/6vaQIkgYMSTP3KjRCyd7rCZCcfhCyX+YjwcKxcZ82UrxbRD358bpExNgrjw==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.4", "@babel/template@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.6.0.tgz#7f0159c7f5012230dad64cca42ec9bdb5c9536e6"
@@ -3316,7 +3323,7 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-cosmiconfig@^5.0.0, cosmiconfig@^5.2.0:
+cosmiconfig@^5.0.0, cosmiconfig@^5.2.0, cosmiconfig@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.2.1.tgz#040f726809c591e77a17c0a3626ca45b4f168b1a"
   integrity sha512-H65gsXo1SKjf8zmrJ67eJk8aIRKV5ff2D4uKZIBZShbhGSpEmsQOPW/SKMKYhSTrqR7ufy6RP69rPogdaPh/kA==
@@ -5716,6 +5723,14 @@ gatsby-plugin-react-helmet@^3.1.13:
   dependencies:
     "@babel/runtime" "^7.6.3"
 
+gatsby-plugin-robots-txt@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.5.0.tgz#3b7d04dd475da138d5613171c3a36f500568369e"
+  integrity sha512-gm59CjF0pUS0/U7JUX6988NQrE7CNljnb2CGFCl655iq1K6PF+bimuYNGrIy8N/19OEmK9kl/d1Xx+V+ooZN7Q==
+  dependencies:
+    "@babel/runtime" "^7.5.1"
+    generate-robotstxt "^7.1.0"
+
 gatsby-plugin-sharp@^2.2.36:
   version "2.2.36"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.2.36.tgz#860ab199fee7af1fb5bb3c5b5c3134fd84eca56a"
@@ -5810,15 +5825,16 @@ gatsby-telemetry@^1.1.35:
     stack-utils "1.0.2"
     uuid "3.3.3"
 
-gatsby-theme-awesomeness@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-awesomeness/-/gatsby-theme-awesomeness-0.0.6.tgz#276a1cb597b9a98967f2316fce179e7208051c58"
-  integrity sha512-Ud4E8OMevM+xuSF96q1GSfmsxBvCzsZ46GnozSZ8SQ3Xd5Khz0KFby65TNlCrAcLSZJopJxT71lLyHgGUniBLA==
+gatsby-theme-awesomeness@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-awesomeness/-/gatsby-theme-awesomeness-0.0.8.tgz#a8f935c6ac743cd984a8d12f45088f7a91a8eed6"
+  integrity sha512-KHScN54FJYFzJED6O1+R1Cus3hfc1liqSM3XkIxbIdEhynuE8dxS7kXKAN5PflxCs+amyPHhCKmgt5Om3H2brw==
   dependencies:
     babel-plugin-styled-components "^1.10.6"
     gatsby-image "^2.2.30"
     gatsby-plugin-offline "^3.0.18"
     gatsby-plugin-react-helmet "^3.1.13"
+    gatsby-plugin-robots-txt "^1.5.0"
     gatsby-plugin-sharp "^2.2.36"
     gatsby-plugin-styled-components "^3.1.11"
     gatsby-plugin-typescript "^2.1.15"
@@ -5990,6 +6006,18 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
+
+generate-robotstxt@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/generate-robotstxt/-/generate-robotstxt-7.1.0.tgz#3fe0d9b1ea284533d04a323a29e01bc6cc814f91"
+  integrity sha512-CA1cT9sX+Q0mDfZmQaigd34dSqzvhLGoiHdC1RnBGCVwpklYRAs/PeQbC5wfYxKhTdQDV0h0DXLA+jXExZe5SA==
+  dependencies:
+    cosmiconfig "^5.2.1"
+    fs-extra "^8.1.0"
+    ip-regex "^4.1.0"
+    is-absolute-url "^3.0.0"
+    meow "^5.0.0"
+    resolve-from "^5.0.0"
 
 get-caller-file@^1.0.1:
   version "1.0.3"
@@ -7043,6 +7071,11 @@ ip-regex@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-2.1.0.tgz#fa78bf5d2e6913c911ce9f819ee5146bb6d844e9"
   integrity sha1-+ni/XS5pE8kRzp+BnuUUa7bYROk=
+
+ip-regex@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-4.1.0.tgz#5ad62f685a14edb421abebc2fff8db94df67b455"
+  integrity sha512-pKnZpbgCTfH/1NLIlOduP/V+WRXzC2MOz3Qo8xmxk8C5GudJLgK5QyLVXOSWy3ParAH7Eemurl3xjv/WXYFvMA==
 
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
