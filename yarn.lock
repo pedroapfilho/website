@@ -5835,10 +5835,10 @@ gatsby-telemetry@^1.1.35:
     stack-utils "1.0.2"
     uuid "3.3.3"
 
-gatsby-theme-awesomeness@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-awesomeness/-/gatsby-theme-awesomeness-0.0.9.tgz#a0da49962d019146943ea54a38c196734dc36036"
-  integrity sha512-G5qzhaHdvbxrvjSKfLyD3TDaxIaJ7rqqogJV4IaNjnPcoD0lE04t/hxKU2HFRUOu3pNdpRljTPb3+8y7RWkX2A==
+gatsby-theme-awesomeness@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-awesomeness/-/gatsby-theme-awesomeness-0.0.10.tgz#1997c77fb64436efccc6e0af4f4216d3c51b6943"
+  integrity sha512-sydqmnf27znvu3pRQ5X7RonnEkUqK0uQHBPqlNv1FJIvDRd/9lrQDHzdsPfVpGYiwC8yERaMhniQ0Ony8I4Qkg==
   dependencies:
     babel-plugin-styled-components "^1.10.6"
     gatsby-image "^2.2.30"
