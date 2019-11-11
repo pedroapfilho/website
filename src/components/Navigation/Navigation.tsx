@@ -40,9 +40,11 @@ const Navigation: FC = () => {
       query {
         site {
           siteMetadata {
-            code
-            blog
-            thoughts
+            social {
+              github
+              blog
+              twitter
+            }
           }
         }
       }
@@ -53,13 +55,19 @@ const Navigation: FC = () => {
     <Nav>
       <List>
         <ListItem>
-          <CustomLink title="Code" link={`${site.siteMetadata.code}`} />
+          <CustomLink
+            title="Code"
+            link={`${site.siteMetadata.social.github}`}
+          />
         </ListItem>
         <ListItem>
-          <CustomLink title="Thoughts" link={`${site.siteMetadata.thoughts}`} />
+          <CustomLink
+            title="Thoughts"
+            link={`${site.siteMetadata.social.twitter}`}
+          />
         </ListItem>
         <ListItem>
-          <CustomLink title="Blog" link={site.siteMetadata.blog} />
+          <CustomLink title="Blog" link={site.siteMetadata.social.blog} />
         </ListItem>
         <ListItem>
           <CustomLink title="Resume" link={withPrefix("/resume.pdf")} />
