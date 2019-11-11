@@ -43,7 +43,6 @@ const Navigation: FC = () => {
             code
             blog
             thoughts
-            email
           }
         }
       }
@@ -63,13 +62,7 @@ const Navigation: FC = () => {
           <CustomLink title="Blog" link={site.siteMetadata.blog} />
         </ListItem>
         <ListItem>
-          <CustomLink title="CV" link={withPrefix("/resume.pdf")} />
-        </ListItem>
-        <ListItem>
-          <CustomLink
-            title="Contact"
-            link={`mailto:${site.siteMetadata.email}`}
-          />
+          <CustomLink title="Resume" link={withPrefix("/resume.pdf")} />
         </ListItem>
       </List>
     </Nav>

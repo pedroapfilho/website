@@ -24,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   }
+
+  ::selection {
+    background: ${props => props.theme.colors.accent}
+  }
 `;
 
 const Container = styled.main`

@@ -33,8 +33,8 @@ const Index: FC = () => {
       query {
         site {
           siteMetadata {
-            job
-            organization
+            name
+            subtitles
           }
         }
       }
@@ -47,14 +47,14 @@ const Index: FC = () => {
         <Head />
         <ProfileImage />
         <Title>
-          Hey 👋, my name is <Name>Pedro</Name>
+          Hey 👋, my name is <Name>{site.siteMetadata.name}</Name>
         </Title>
-        <br />
-        <SubTitle>
-          I'm a {site.siteMetadata.job} at {site.siteMetadata.organization}
-        </SubTitle>
-        <br />
-        <span>🇧🇷 🇵🇹 🇳🇱 🇬🇧</span>
+        {site.siteMetadata.subtitles.map(subtitle => (
+          <>
+            <br />
+            <SubTitle>{subtitle}</SubTitle>
+          </>
+        ))}
         <Navigation />
       </Container>
     </Layout>

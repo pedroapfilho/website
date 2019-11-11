@@ -1,14 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: "Pedro Filho",
-    siteUrl: "https://pedroapfilho.com",
     description: "Curious by nature, entrepreneur and JavaScript enthusiast.",
-    email: "pedro@filho.me",
+    name: "Pedro",
+    subtitles: ["I'm a Software Engineer at Game Analytics", "🇧🇷 🇵🇹 🇳🇱 🇬🇧"],
+    siteUrl: "https://pedroapfilho.com",
     thoughts: "https://twitter.com/pedrofilhome",
     code: "https://github.com/pedroapfilho",
-    blog: "https://dev.to/pedroapfilho",
-    job: "Software Engineer",
-    organization: "Game Analytics"
+    blog: "https://dev.to/pedroapfilho"
   },
   plugins: [
     {
