@@ -26,6 +26,12 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
+const Company = styled.a`
+  color: inherit;
+  text-decoration: none;
+  font-weight: normal;
+`;
+
 const Index: FC = () => (
   <Layout>
     <Container>
@@ -35,7 +41,16 @@ const Index: FC = () => (
         Hey 👋, my name is <Name>Pedro</Name>
       </Title>
       <br />
-      <SubTitle>I'm a Software Engineer at Game Analytics</SubTitle>
+      <SubTitle>
+        I'm a Software Engineer at{" "}
+        <Company
+          href="https://gameanalytics.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Game Analytics
+        </Company>
+      </SubTitle>
       <br />
       <SubTitle>🇧🇷 🇵🇹 🇳🇱 🇬🇧</SubTitle>
       <Navigation />
