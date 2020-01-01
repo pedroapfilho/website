@@ -17,7 +17,7 @@
     "extends": "xo-react"
   },
   "devDependencies": {
-    "@types/node": "^13.1.1",
+    "@types/node": "^13.1.2",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "@types/react-helmet": "^5.0.14",
@@ -32,7 +32,7 @@
     "gatsby": "^2.18.17",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-source-filesystem": "^2.1.43",
-    "gatsby-theme-awesomeness": "^0.0.17",
+    "gatsby-theme-awesomeness": "^0.0.18",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
