@@ -14,7 +14,7 @@ const ProfileImage: FC = () => {
       file(relativePath: { eq: "profile-image.jpg" }) {
         childImageSharp {
           fixed(width: 150, height: 150, quality: 100) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_withWebp
           }
         }
       }
