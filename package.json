@@ -29,10 +29,10 @@
     "xo": "^0.27.2"
   },
   "dependencies": {
-    "gatsby": "^2.19.23",
+    "gatsby": "^2.19.26",
     "gatsby-plugin-manifest": "^2.2.40",
     "gatsby-source-filesystem": "^2.1.47",
-    "gatsby-theme-awesomeness": "^1.1.6",
+    "gatsby-theme-awesomeness": "^1.1.7",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   }

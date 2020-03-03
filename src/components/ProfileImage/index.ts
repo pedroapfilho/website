@@ -1,3 +1,3 @@
-import ProfileImage from "./ProfileImage";
+import ProfileImage from './ProfileImage';
 
 export default ProfileImage;

@@ -1,19 +1,18 @@
-import React, { FC } from "react";
-import styled from "styled-components";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import React, {FC} from 'react';
+import styled, {ThemeProvider, createGlobalStyle} from 'styled-components';
 
 const theme = {
-  colors: {
-    primary: "#1a1a1a",
-    secondary: "#ffffff",
-    accent: "#f7f7f7"
-  },
-  borderRadius: "6px",
-  breakpoints: {
-    xs: "567px",
-    md: "768px",
-    lg: "1200px"
-  }
+	colors: {
+		primary: '#1a1a1a',
+		secondary: '#ffffff',
+		accent: '#f7f7f7'
+	},
+	borderRadius: '6px',
+	breakpoints: {
+		xs: '567px',
+		md: '768px',
+		lg: '1200px'
+	}
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -31,30 +30,30 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.main`
-  height: 100vh;
-  box-sizing: border-box;
-  padding: 2em;
+	height: 100vh;
+	box-sizing: border-box;
+	padding: 2em;
 
-  @media (prefers-color-scheme: light) {
-    color: ${props => props.theme.colors.primary};
-    background-color: ${props => props.theme.colors.secondary};
-  }
+	@media (prefers-color-scheme: light) {
+		color: ${props => props.theme.colors.primary};
+		background-color: ${props => props.theme.colors.secondary};
+	}
 
-  @media (prefers-color-scheme: dark) {
-    color: ${props => props.theme.colors.secondary};
-    background-color: ${props => props.theme.colors.primary};
-  }
+	@media (prefers-color-scheme: dark) {
+		color: ${props => props.theme.colors.secondary};
+		background-color: ${props => props.theme.colors.primary};
+	}
 `;
 
-const Layout: FC = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <Container>
-      <>
-        <GlobalStyle />
-        {children}
-      </>
-    </Container>
-  </ThemeProvider>
+const Layout: FC = ({children}) => (
+	<ThemeProvider theme={theme}>
+		<Container>
+			<>
+				<GlobalStyle />
+				{children}
+			</>
+		</Container>
+	</ThemeProvider>
 );
 
 export default Layout;
