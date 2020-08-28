@@ -39,7 +39,13 @@ const Company = styled.a`
 const Index: FC = () => (
   <>
     <Head>
-      <title>Pedro Filho - Software Engineer</title>
+      <title key="title">Pedro Filho - Software Engineer</title>
+
+      <meta
+        name="description"
+        content="Curious by nature, entrepreneur and JavaScript enthusiast."
+        key="description"
+      />
 
       {/* Twitter */}
       <meta
