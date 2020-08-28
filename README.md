@@ -16,19 +16,19 @@
 yarn
 ```
 
-## Usage
+## Development Mode
 
 ```sh
-yarn develop
-```
-
-## Run tests
-
-```sh
-yarn test
+yarn dev
 ```
 
 ## Build
+
+```sh
+yarn build
+```
+
+## Production Mode
 
 ```sh
 yarn start
