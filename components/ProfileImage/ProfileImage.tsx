@@ -8,7 +8,15 @@ const StyledImage = styled.img`
 
 const ProfileImage: FC = () => {
   return (
-    <StyledImage src="/profile.jpg" width="150" height="150" alt="profile" />
+    <picture>
+      <source type="image/webp" srcSet="/profile.webp" />
+      <StyledImage
+        width="150"
+        height="150"
+        src="/profile.jpg"
+        alt="Profile Image"
+      />
+    </picture>
   );
 };
 
