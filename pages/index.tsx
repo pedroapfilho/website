@@ -55,7 +55,10 @@ const Index: FC = () => (
         name="twitter:description"
         content="Curious by nature, entrepreneur and JavaScript enthusiast."
       />
-      <meta name="twitter:image" content="/profile.jpg" />
+      <meta
+        name="twitter:image"
+        content="https://pedroapfilho.com/profile.jpg"
+      />
       <meta name="twitter:creator" content="@pedrofilhome" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Pedro Filho - Software Engineer" />
@@ -65,7 +68,10 @@ const Index: FC = () => (
       />
       <meta property="og:site_name" content="Pedro Filho - Software Engineer" />
       <meta property="og:url" content="https://pedroapfilho.com" />
-      <meta property="og:image" content="/profile.jpg" />
+      <meta
+        property="og:image"
+        content="https://pedroapfilho.com/profile.jpg"
+      />
     </Head>
     <Layout>
       <Container>
