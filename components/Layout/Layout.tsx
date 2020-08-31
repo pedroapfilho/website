@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
   }
+  
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   }
@@ -31,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.main`
   height: 100vh;
+
   box-sizing: border-box;
   padding: 2em;
 

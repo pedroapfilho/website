@@ -39,36 +39,33 @@ const Company = styled.a`
 const Index: FC = () => (
   <>
     <Head>
-      <title key="title">Pedro Filho - Software Engineer</title>
-
+      <title>Pedro Filho - Software Engineer</title>
       <meta
         name="description"
         content="Curious by nature, entrepreneur and JavaScript enthusiast."
-        key="description"
       />
-
-      {/* Twitter */}
       <meta
-        name="twitter:card"
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+      />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:url" content="https://pedroapfilho.com" />
+      <meta name="twitter:title" content="Pedro Filho - Software Engineer" />
+      <meta
+        name="twitter:description"
         content="Curious by nature, entrepreneur and JavaScript enthusiast."
-        key="twcard"
       />
-      <meta name="twitter:creator" content="@pedrofilhome" key="twhandle" />
-
-      {/* Open Graph */}
-      <meta property="og:url" content="https://pedroapfilho.com" key="ogurl" />
-      <meta property="og:image" content="/profile.jpg" key="ogimage" />
-      <meta
-        property="og:site_name"
-        content="Software Engineer"
-        key="ogsitename"
-      />
-      <meta property="og:title" content="Pedro Filho" key="ogtitle" />
+      <meta name="twitter:image" content="/profile.jpg" />
+      <meta name="twitter:creator" content="@pedrofilhome" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Pedro Filho - Software Engineer" />
       <meta
         property="og:description"
         content="Curious by nature, entrepreneur and JavaScript enthusiast."
-        key="ogdesc"
       />
+      <meta property="og:site_name" content="Pedro Filho - Software Engineer" />
+      <meta property="og:url" content="https://pedroapfilho.com" />
+      <meta property="og:image" content="/profile.jpg" />
     </Head>
     <Layout>
       <Container>
