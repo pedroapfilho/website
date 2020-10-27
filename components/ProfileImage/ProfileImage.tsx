@@ -1,22 +1,25 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
-const StyledImage = styled.img`
-  margin: 1em;
+const StyledImage = styled(Image)`
   border-radius: 0.5em;
+`;
+
+const ImageContainer = styled.div`
+  margin: 1em;
 `;
 
 const ProfileImage: FC = () => {
   return (
-    <picture>
-      <source type="image/webp" srcSet="/profile.webp" />
+    <ImageContainer>
       <StyledImage
-        width="150"
-        height="150"
+        width={150}
+        height={150}
         src="/profile.jpg"
         alt="Profile Image"
       />
-    </picture>
+    </ImageContainer>
   );
 };
 
