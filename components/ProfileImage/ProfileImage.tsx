@@ -18,6 +18,7 @@ const ProfileImage: FC = () => {
         height={150}
         src="/profile.jpg"
         alt="Profile Image"
+        priority
       />
     </ImageContainer>
   );
