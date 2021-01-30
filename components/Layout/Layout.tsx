@@ -1,19 +1,6 @@
 import React, { FC } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-
-const theme = {
-  colors: {
-    primary: "#1a1a1a",
-    secondary: "#ffffff",
-    accent: "#f7f7f7",
-  },
-  borderRadius: "6px",
-  breakpoints: {
-    xs: "567px",
-    md: "768px",
-    lg: "1200px",
-  },
-};
+import theme from "../../theme";
 
 const GlobalStyle = createGlobalStyle`
   * {
