@@ -30,6 +30,12 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
+const Company = styled.a`
+  color: inherit;
+  text-decoration: none;
+  font-weight: normal;
+`;
+
 const Home: FC = () => (
   <>
     <Head>
@@ -74,7 +80,16 @@ const Home: FC = () => (
           Hey 👋, my name is <Name>Pedro</Name>
         </Title>
         <br />
-        <SubTitle>I'm a Software Engineer</SubTitle>
+        <SubTitle>
+          I'm a Software Engineer at{" "}
+          <Company
+            href="https://blockchain.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Blockchain.com
+          </Company>
+        </SubTitle>
         <br />
         <Flags>🇧🇷 🇵🇹 🇳🇱 🇬🇧</Flags>
         <Navigation />
