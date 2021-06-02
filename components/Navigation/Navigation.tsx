@@ -41,7 +41,7 @@ const Navigation: FC = () => {
           <Link title="Code" link={"https://github.com/pedroapfilho"} />
         </ListItem>
         <ListItem>
-          <Link title="Thoughts" link={"https://twitter.com/pedrofilhome"} />
+          <Link title="Thoughts" link={"https://twitter.com/pedroapfilho"} />
         </ListItem>
         <ListItem>
           <Link title="Blog" link={"https://dev.to/pedroapfilho"} />
