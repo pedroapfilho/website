@@ -24,8 +24,6 @@ const SubTitle = styled.h2`
   font-weight: lighter;
 `;
 
-const Flags = styled.p``;
-
 const Name = styled.span`
   font-weight: normal;
 `;
@@ -90,8 +88,6 @@ const Home = () => (
             Blockchain.com
           </Company>
         </SubTitle>
-        <br />
-        <Flags>🇧🇷 🇵🇹 🇳🇱 🇬🇧</Flags>
         <Navigation />
       </Container>
     </Layout>
