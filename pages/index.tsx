@@ -36,7 +36,7 @@ const Company = styled.a`
   font-weight: normal;
 `;
 
-const Home: FC = () => (
+const Home = () => (
   <>
     <Head>
       <title>Pedro Filho - Software Engineer</title>
