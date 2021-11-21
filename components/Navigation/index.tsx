@@ -37,16 +37,16 @@ const Navigation = () => {
     <Nav>
       <List>
         <ListItem>
-          <Link title="Code" link={"https://github.com/pedroapfilho"} />
+          <Link title="Code" link="https://github.com/pedroapfilho" />
         </ListItem>
         <ListItem>
-          <Link title="Thoughts" link={"https://twitter.com/pedroapfilho"} />
-        </ListItem>
-        <ListItem>
-          <Link title="Blog" link={"https://dev.to/pedroapfilho"} />
+          <Link title="Thoughts" link="https://twitter.com/pedroapfilho" />
         </ListItem>
         <ListItem>
           <Link title="Resume" link="/resume.pdf" />
+        </ListItem>
+        <ListItem>
+          <Link title="Youtube" link="https://youtube.com/c/ohmyfunction" />
         </ListItem>
       </List>
     </Nav>

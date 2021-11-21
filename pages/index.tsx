@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Navigation from "../components/Navigation";
@@ -28,7 +28,7 @@ const Name = styled.span`
   font-weight: normal;
 `;
 
-const Company = styled.a`
+const ExternalLink = styled.a`
   color: inherit;
   text-decoration: none;
   font-weight: normal;
@@ -57,7 +57,7 @@ const Home = () => (
         name="twitter:image"
         content="https://pedroapfilho.com/profile.jpg"
       />
-      <meta name="twitter:creator" content="@pedrofilhome" />
+      <meta name="twitter:creator" content="@pedroapfilho" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Pedro Filho - Software Engineer" />
       <meta
@@ -79,14 +79,14 @@ const Home = () => (
         </Title>
         <br />
         <SubTitle>
-          I'm a Software Engineer at{" "}
-          <Company
+          Software Engineer at{" "}
+          <ExternalLink
             href="https://blockchain.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Blockchain.com
-          </Company>
+          </ExternalLink>
         </SubTitle>
         <Navigation />
       </Container>
