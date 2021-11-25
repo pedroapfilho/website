@@ -6,6 +6,7 @@ interface LinkProps {
 }
 
 const StyledLink = styled.a`
+  font-weight: normal;
   text-decoration: none;
   color: inherit;
   border-radius: 0.5em;

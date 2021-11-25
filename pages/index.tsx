@@ -16,22 +16,22 @@ const Container = styled.section`
 
 const Title = styled.h1`
   font-size: 1.5rem;
-  font-weight: lighter;
+  font-weight: normal;
 `;
 
 const SubTitle = styled.h2`
   font-size: 1rem;
-  font-weight: lighter;
+  font-weight: normal;
 `;
 
 const Name = styled.span`
-  font-weight: normal;
+  font-weight: bold;
 `;
 
 const ExternalLink = styled.a`
   color: inherit;
   text-decoration: none;
-  font-weight: normal;
+  font-weight: bold;
 `;
 
 const Home = () => (
@@ -75,7 +75,7 @@ const Home = () => (
       <Container>
         <ProfileImage />
         <Title>
-          Hey 👋, my name is <Name>Pedro</Name>
+          Hey 👋, I'm <Name>Pedro</Name>
         </Title>
         <br />
         <SubTitle>
