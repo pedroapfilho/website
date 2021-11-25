@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
