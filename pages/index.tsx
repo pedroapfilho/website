@@ -24,24 +24,11 @@ const SubTitle = styled.h2`
   font-weight: normal;
 `;
 
-const Name = styled.span`
-  font-weight: bold;
-`;
-
-const ExternalLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-  font-weight: bold;
-`;
-
 const Home = () => (
   <>
     <Head>
       <title>Pedro Filho - Software Engineer</title>
-      <meta
-        name="description"
-        content="Curious by nature, entrepreneur and JavaScript enthusiast."
-      />
+      <meta name="description" content="Likes to write code sometimes" />
       <meta
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
@@ -51,7 +38,7 @@ const Home = () => (
       <meta name="twitter:title" content="Pedro Filho - Software Engineer" />
       <meta
         name="twitter:description"
-        content="Curious by nature, entrepreneur and JavaScript enthusiast."
+        content="Likes to write code sometimes"
       />
       <meta
         name="twitter:image"
@@ -60,10 +47,7 @@ const Home = () => (
       <meta name="twitter:creator" content="@pedroapfilho" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Pedro Filho - Software Engineer" />
-      <meta
-        property="og:description"
-        content="Curious by nature, entrepreneur and JavaScript enthusiast."
-      />
+      <meta property="og:description" content="Likes to write code sometimes" />
       <meta property="og:site_name" content="Pedro Filho - Software Engineer" />
       <meta property="og:url" content="https://pedroapfilho.com" />
       <meta
@@ -75,19 +59,10 @@ const Home = () => (
       <Container>
         <ProfileImage />
         <Title>
-          Hey 👋, I'm <Name>Pedro</Name>
+          Hey 👋, I'm <b>Pedro</b>
         </Title>
         <br />
-        <SubTitle>
-          Software Engineer at{" "}
-          <ExternalLink
-            href="https://blockchain.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Blockchain.com
-          </ExternalLink>
-        </SubTitle>
+        <SubTitle>I like to write code sometimes</SubTitle>
         <Navigation />
       </Container>
     </Layout>
