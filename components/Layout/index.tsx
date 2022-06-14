@@ -1,23 +1,5 @@
 import { ReactNode } from "react";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import theme from "../../theme";
-
-const GlobalStyle = createGlobalStyle`
-  * {
-      margin: 0;
-      padding: 0;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-    
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection {
-    background: ${(props) => props.theme.colors.accent}
-  }
-`;
+import styled from "styled-components";
 
 const Container = styled.main`
   height: 100vh;
@@ -37,14 +19,7 @@ const Container = styled.main`
 `;
 
 const Layout = ({ children }: { children: ReactNode }) => (
-  <ThemeProvider theme={theme}>
-    <Container>
-      <>
-        <GlobalStyle />
-        {children}
-      </>
-    </Container>
-  </ThemeProvider>
+  <Container>{children}</Container>
 );
 
 export default Layout;
