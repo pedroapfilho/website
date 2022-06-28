@@ -21,12 +21,12 @@ const GlobalStyle = createGlobalStyle`
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <>
         <GlobalStyle />
         <Component {...pageProps} />
-      </ThemeProvider>
-    </>
+      </>
+    </ThemeProvider>
   );
 };
 

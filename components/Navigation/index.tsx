@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Link from "../Link";
 
 const Nav = styled.nav`
   text-align: center;
@@ -32,21 +31,54 @@ const ListItem = styled.li`
   }
 `;
 
+const Link = styled.a`
+  font-weight: normal;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 0.5em;
+  transition: all 0.2s;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.accent};
+  }
+`;
+
 const Navigation = () => {
   return (
     <Nav>
       <List>
         <ListItem>
-          <Link title="Code" link="https://github.com/pedroapfilho" />
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/pedroapfilho"
+          >
+            Code
+          </Link>
         </ListItem>
         <ListItem>
-          <Link title="Thoughts" link="https://twitter.com/pedroapfilho" />
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/pedroapfilho"
+          >
+            Thoughts
+          </Link>
         </ListItem>
         <ListItem>
-          <Link title="Resume" link="/resume.pdf" />
+          <Link target="_blank" rel="noopener noreferrer" href="/resume.pdf">
+            Resume
+          </Link>
         </ListItem>
         <ListItem>
-          <Link title="Youtube" link="https://youtube.com/c/ohmyfunction" />
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://youtube.com/c/ohmyfunction"
+          >
+            Youtube
+          </Link>
         </ListItem>
       </List>
     </Nav>

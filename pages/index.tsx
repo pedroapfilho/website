@@ -59,7 +59,7 @@ const Home = () => (
       <Container>
         <ProfileImage />
         <Title>
-          Hey 👋, I'm <b>Pedro</b>
+          <b>gm</b> 👋, I'm <b>Pedro</b>
         </Title>
         <br />
         <SubTitle>I like to write code sometimes</SubTitle>
