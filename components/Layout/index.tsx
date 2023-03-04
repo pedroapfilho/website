@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 const Container = styled.main`
-  height: 100vh;
+  height: 100dvh;
 
   box-sizing: border-box;
   padding: 2em;
