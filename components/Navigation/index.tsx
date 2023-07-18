@@ -22,11 +22,11 @@ const ListItem = styled.li`
   display: inline-block;
 
   & > a {
-    padding: 0.5em;
-    margin: 0.5em;
+    padding: 0.5rem;
+    margin: 0.5rem;
 
     @media screen and (max-width: ${(props) => props.theme.breakpoints.xs}) {
-      margin: 0.25em;
+      margin: 0.25rem;
     }
   }
 `;
@@ -35,7 +35,7 @@ const Link = styled.a`
   font-weight: normal;
   text-decoration: none;
   color: inherit;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
   transition: all 0.2s;
 
   &:hover {

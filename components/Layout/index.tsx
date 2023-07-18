@@ -5,7 +5,7 @@ const Container = styled.main`
   height: 100dvh;
 
   box-sizing: border-box;
-  padding: 2em;
+  padding: 2rem;
 
   @media (prefers-color-scheme: light) {
     color: ${(props) => props.theme.colors.primary};
