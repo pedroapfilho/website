@@ -9,6 +9,7 @@ const ProfileImage = () => {
         src="/profile.jpg"
         alt="Profile Image"
         priority
+        fetchPriority="high"
       />
     </div>
   );

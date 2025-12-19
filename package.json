@@ -8,16 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "^16.0.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "^16.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.0",
-    "@types/node": "^24.10.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.0.3",
     "@types/react": "^19.0.1",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.7.2"
   },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 Safari version",
+    "last 1 Edge version"
+  ],
   "packageManager": "pnpm@9.15.0"
 }
