@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #1a1a1a;
-  --color-secondary: #ffffff;
-  --color-accent: #f7f7f7;
-  --breakpoint-xs: 567px;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+@theme inline {
+    --color-primary: #ffffff;
+    --color-primary-foreground: #1a1a1a;
+    --breakpoint-xs: 567px;
+    --font-mono:
+        var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-}
+@layer base {
+    * {
+        @apply border-primary-foreground outline-primary-foreground/50;
+    }
 
-::selection {
-  background: var(--color-accent);
-}
+    body {
+        @apply font-mono bg-primary text-primary-foreground;
+    }
 
-@media (prefers-color-scheme: dark) {
-  ::selection {
-    background: var(--color-primary);
-  }
+    ::selection {
+        @apply bg-primary-foreground text-primary;
+    }
 }
