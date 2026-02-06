@@ -33,7 +33,7 @@ const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en" suppressHydrationWarning className={ibmPlexMono.variable}>
-    <body className="antialiased overscroll-none h-dvh box-border p-8 text-primary-foreground bg-primary font-mono">
+    <body className="antialiased overscroll-none h-dvh box-border px-4 py-8 text-primary-foreground bg-primary font-mono">
       {children}
     </body>
   </html>
