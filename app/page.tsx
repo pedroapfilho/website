@@ -27,7 +27,7 @@ const Home = () => (
     <div className="text-center max-w-xl">
       <p className="text-sm">
         <ScrambleText cycles={1} interval={30}>
-          Usually I work on the crypto space, as a full-stack software engineer,
+          Usually I work on the crypto space, as a product engineer,
           but you can find me working on other projects as well,
           <i>just for fun</i>.
         </ScrambleText>

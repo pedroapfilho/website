@@ -10,22 +10,22 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const metadata: Metadata = {
-  title: "Pedro Filho - Software Engineer",
+  title: "Pedro Filho - Product Engineer",
   description: "Likes to write code sometimes",
   openGraph: {
     type: "website",
-    title: "Pedro Filho - Software Engineer",
+    title: "Pedro Filho - Product Engineer",
     description:
-      "Usually I work on the crypto space, as a full-stack software engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
-    siteName: "Pedro Filho - Software Engineer",
+      "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
+    siteName: "Pedro Filho - Product Engineer",
     url: "https://pedroapfilho.com",
     images: ["https://pedroapfilho.com/profile.jpg"],
   },
   twitter: {
     card: "summary",
-    title: "Pedro Filho - Software Engineer",
+    title: "Pedro Filho - Product Engineer",
     description:
-      "Usually I work on the crypto space, as a full-stack software engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
+      "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
     images: ["https://pedroapfilho.com/profile.jpg"],
     creator: "@pedroapfilho",
   },

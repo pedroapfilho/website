@@ -14,7 +14,7 @@ import {
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const DEFAULT_CHARS = "!@#$%^&*():{};|,.<>/?";
+const DEFAULT_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 type ScrambleTextProps = {
   children: ReactNode;
