@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/navigation";
 import { ProfileImage } from "@/components/profile-image";
-import { ScrambleText } from "@/components/scramble-text";
 
 const Home = () => (
   <main className="flex flex-col items-center justify-center relative h-full gap-8">
@@ -8,29 +7,18 @@ const Home = () => (
 
     <div className="flex flex-col gap-2 text-center">
       <h1 className="text-2xl">
-        <ScrambleText>
-          <b>gm</b>
-        </ScrambleText>{" "}
-        👋, I&apos;m{" "}
-        <ScrambleText>
-          <b>Pedro</b>.
-        </ScrambleText>
+        <b>gm</b> 👋, I&apos;m <b>Pedro</b>.
       </h1>
 
       <h2 className="text-base">
-        <ScrambleText>
-          I like to write code <i>sometimes</i>.
-        </ScrambleText>
+        I like to write code <i>sometimes</i>.
       </h2>
     </div>
 
     <div className="text-center max-w-xl">
       <p className="text-sm">
-        <ScrambleText cycles={1} interval={30}>
-          Usually I work on the crypto space, as a product engineer,
-          but you can find me working on other projects as well,
-          <i>just for fun</i>.
-        </ScrambleText>
+        Usually I work on the crypto space, as a product engineer, but you can
+        find me working on other projects as well, <i>just for fun</i>.
       </p>
     </div>
 

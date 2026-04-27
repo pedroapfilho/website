@@ -1,5 +1,3 @@
-import { ScrambleText } from "./scramble-text";
-
 const links = [
   { href: "https://github.com/pedroapfilho", label: "Code" },
   { href: "https://x.com/pedroapfilho", label: "X" },
@@ -10,19 +8,17 @@ const links = [
 
 const Navigation = () => (
   <nav className="w-full absolute inset-x-0 bottom-0">
-    <ul className="flex flex-wrap justify-center gap-1">
+    <ul className="flex flex-wrap justify-center gap-2">
       {links.map((link) => (
         <li key={link.href} className="inline-block">
-          <ScrambleText trigger="hover">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={link.href}
-              className="block p-2 font-normal no-underline text-inherit rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-foreground"
-            >
-              {link.label}
-            </a>
-          </ScrambleText>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={link.href}
+            className="block p-2 font-normal no-underline text-inherit rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-foreground"
+          >
+            {link.label}
+          </a>
         </li>
       ))}
     </ul>
