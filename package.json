@@ -31,5 +31,10 @@
     "last 1 Safari version",
     "last 1 Edge version"
   ],
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.28.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  }
 }
