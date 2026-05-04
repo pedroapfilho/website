@@ -8,18 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@sparticuz/chromium':
-        specifier: ^148.0.0
-        version: 148.0.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
       next:
         specifier: ^16.2.4
         version: 16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      puppeteer-core:
-        specifier: ^24.42.0
-        version: 24.42.0
       react:
         specifier: ^19.2.5
         version: 19.2.5
@@ -42,6 +36,9 @@ importers:
       '@types/react':
         specifier: ^19.2.14
         version: 19.2.14
+      puppeteer-core:
+        specifier: ^24.42.0
+        version: 24.42.0
       tailwindcss:
         specifier: ^4.2.4
         version: 4.2.4
@@ -286,10 +283,6 @@ packages:
     resolution: {integrity: sha512-46BZJYJjc/WwmKjsvDFykHtXrtomsCIrwYQPOP7VfMJoZY2bsDF9oROBABR3paDjDcmkUye1Pb1BqdcdiipaWA==}
     engines: {node: '>=18'}
     hasBin: true
-
-  '@sparticuz/chromium@148.0.0':
-    resolution: {integrity: sha512-na5beDSZkrlcEWEMt+eHu4Xe+MLUgCtHBjHaXGsNaQu5tJWwXE+McxAcMtyumEM/JzXrxGpkO5vAPD9TWhil3g==}
-    engines: {node: '>=22.17.0'}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -1324,14 +1317,6 @@ snapshots:
       - bare-buffer
       - react-native-b4a
       - supports-color
-
-  '@sparticuz/chromium@148.0.0':
-    dependencies:
-      tar-fs: 3.1.2
-    transitivePeerDependencies:
-      - bare-abort-controller
-      - bare-buffer
-      - react-native-b4a
 
   '@swc/helpers@0.5.15':
     dependencies:
