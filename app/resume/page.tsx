@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { type Job, resume } from "./data";
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: `${resume.name} — Resume`,
   description: resume.title,
 };
@@ -40,8 +40,8 @@ const ResumePage = () => (
 
     <Section title="Experience">
       <ol role="list" className="flex flex-col gap-6">
-        {resume.experience.map((job, i) => (
-          <li key={`${job.company}-${i}`}>
+        {resume.experience.map((job) => (
+          <li key={`${job.company}-${job.dates}`}>
             <JobEntry job={job} />
           </li>
         ))}
@@ -190,5 +190,4 @@ const JobEntry = ({ job }: { job: Job }) => (
   </article>
 );
 
-export { metadata };
 export default ResumePage;
