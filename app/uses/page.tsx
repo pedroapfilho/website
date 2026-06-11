@@ -28,7 +28,7 @@ const useGroups = [
           },
           {
             name: "Dell Pro 27 Plus 4K USB-C Hub Monitor - P2725QE",
-            href: "https://www.dell.com/support/product-details/en-us/product/p2725qe-monitor/resources/regulatory",
+            href: "https://www.dell.com/en-us/shop/dell-pro-27-plus-4k-usb-c-hub-monitor-p2725qe/apd/210-brjb/monitors-monitor-accessories",
           },
         ],
       },
@@ -84,7 +84,7 @@ const useGroups = [
           },
           {
             name: "Rode PSA1 Studio Arm",
-            href: "https://edge.rode.com/pdf/page/202/modules/8/psa1_product_manual.pdf",
+            href: "https://rode.com/en-us/products/psa1",
           },
           {
             name: "Solid State Logic SSL 2+",
