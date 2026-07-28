@@ -1,96 +1,94 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-mono",
+import type { Metadata } from "next";
+import { IBM_Plex_Mono as ibmPlexMonoFont } from "next/font/google";
+import Link from "next/link";
+
+const ibmPlexMono = ibmPlexMonoFont({
   display: "swap",
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
 });
 
 const metadata: Metadata = {
-  title: "Pedro Filho - Product Engineer",
   description: "Likes to write code sometimes",
   openGraph: {
-    type: "website",
-    title: "Pedro Filho - Product Engineer",
     description:
       "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
-    siteName: "Pedro Filho - Product Engineer",
-    url: "https://pedroapfilho.com",
     images: ["https://pedroapfilho.com/profile.jpg"],
+    siteName: "Pedro Filho - Product Engineer",
+    title: "Pedro Filho - Product Engineer",
+    type: "website",
+    url: "https://pedroapfilho.com",
   },
+  title: "Pedro Filho - Product Engineer",
   twitter: {
     card: "summary",
-    title: "Pedro Filho - Product Engineer",
+    creator: "@pedroapfilho",
     description:
       "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
     images: ["https://pedroapfilho.com/profile.jpg"],
-    creator: "@pedroapfilho",
+    title: "Pedro Filho - Product Engineer",
   },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en" suppressHydrationWarning className={ibmPlexMono.variable}>
-    <body className="flex min-h-dvh flex-col box-border bg-primary font-mono text-primary-foreground antialiased overscroll-none">
+  <html className={ibmPlexMono.variable} lang="en" suppressHydrationWarning>
+    <body className="bg-primary text-primary-foreground box-border flex min-h-dvh flex-col overscroll-none font-mono antialiased">
       {children}
-      <nav aria-label="Primary" className="w-full bg-primary px-4 py-4">
-        <ul
-          role="list"
-          className="mx-auto flex max-w-2xl flex-wrap justify-center gap-x-2 gap-y-1 text-base sm:text-sm"
-        >
+      <nav aria-label="Primary" className="bg-primary w-full px-4 py-4">
+        <ul className="mx-auto flex max-w-2xl flex-wrap justify-center gap-x-2 gap-y-1 text-base sm:text-sm">
           <li>
             <a
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="https://github.com/pedroapfilho"
-              target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+              target="_blank"
             >
               Code
             </a>
           </li>
           <li>
             <a
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="https://x.com/pedroapfilho"
-              target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+              target="_blank"
             >
               X
             </a>
           </li>
           <li>
             <Link
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="/resume"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               Resume
             </Link>
           </li>
           <li>
             <Link
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="/oss"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               OSS
             </Link>
           </li>
           <li>
             <Link
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="/uses"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               /uses
             </Link>
           </li>
           <li>
             <a
+              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
               href="https://youtube.com/c/ohmyfunction"
-              target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg px-2 py-2 font-normal no-underline text-inherit hover:bg-primary-foreground hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+              target="_blank"
             >
               Youtube
             </a>

@@ -1,0 +1,17 @@
+name: Format
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  oxfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/setup@v1
+        with:
+          runtime: node@24
+          cache: true
+      - run: pnpm run format:check

@@ -1,0 +1,20 @@
+name: Lint
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  oxlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/setup@v1
+        with:
+          runtime: node@24
+          cache: true
+      # Type-aware linting reads Next's generated route types, which only exist
+      # after a build.
+      - run: pnpm build
+      - run: pnpm oxlint --format=github .
