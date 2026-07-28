@@ -30,6 +30,6 @@ Type-aware linting reads Next's generated route types, so `lint.yml` and `typech
 
 Fleet-wide rules live in the orchestrator's `standards.md`. Repo-specific notes:
 
-- Build allowlist is `allowBuilds:` in `pnpm-workspace.yaml`, not `pnpm.onlyBuiltDependencies` in `package.json`; pnpm 11 only reads the former, and it works here even though this is not a workspace.
+- Build allowlist is `allowBuilds:` in `pnpm-workspace.yaml`, not `pnpm.onlyBuiltDependencies` in `package.json`; pnpm 11 only reads the former, and it works here even though this is not a workspace. That file lists `packages: ["."]` because Vercel installs with pnpm 9, which fails on a workspace file with an empty `packages`.
 - Resume dates are `MM/YYYY` strings parsed into `<time dateTime>` ISO months; keep the format stable or `toIsoMonth` silently drops the machine-readable date.
 - Fonts are imported aliased (`IBM_Plex_Mono as ibmPlexMonoFont`) so the loader call does not trip `new-cap`.
