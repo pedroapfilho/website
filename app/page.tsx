@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import profileImage from "./profile.jpg";
 
 const Home = () => (
@@ -6,13 +7,13 @@ const Home = () => (
     <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-8">
       <div className="m-4 overflow-hidden rounded-lg">
         <Image
-          width={128}
-          height={128}
-          src={profileImage}
           alt="Profile Image"
-          priority
           fetchPriority="high"
+          height={128}
           placeholder="blur"
+          priority
+          src={profileImage}
+          width={128}
         />
       </div>
 
@@ -28,8 +29,8 @@ const Home = () => (
 
       <div className="max-w-xl text-center">
         <p className="text-base text-pretty sm:text-sm">
-          Usually I work on the crypto space, as a product engineer, but you can
-          find me working on other projects as well, <i>just for fun</i>.
+          Usually I work on the crypto space, as a product engineer, but you can find me working on
+          other projects as well, <i>just for fun</i>.
         </p>
       </div>
     </div>

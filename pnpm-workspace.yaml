@@ -1,0 +1,8 @@
+# Not a workspace: this file exists because pnpm 11 reads the build allowlist
+# from here and nowhere else. `packages` has to be non-empty because Vercel
+# still installs with pnpm 9, which rejects a workspace file without it.
+packages:
+  - "."
+
+allowBuilds:
+  sharp: true

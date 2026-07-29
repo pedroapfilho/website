@@ -1,15 +1,16 @@
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
-/coverage
+coverage
 
-/.next/
-/out/
-
+.next/
+out/
+build
+next-env.d.ts
 *.tsbuildinfo
-
-/build
+.vercel
+.fallow/
 
 .DS_Store
 *.pem
@@ -17,10 +18,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*
+!.env.example
 
-.vercel
+.idea
+.vscode

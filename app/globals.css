@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme inline {
-    --color-primary: #ffffff;
-    --color-primary-foreground: #1a1a1a;
-    --breakpoint-xs: 567px;
-    --font-mono:
-        var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+  --color-primary: #ffffff;
+  --color-primary-foreground: #1a1a1a;
+  --breakpoint-xs: 567px;
+  --font-mono:
+    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 @layer base {
-    * {
-        @apply border-primary-foreground outline-primary-foreground/50;
-    }
+  * {
+    @apply border-primary-foreground outline-primary-foreground/50;
+  }
 
-    body {
-        @apply font-mono bg-primary text-primary-foreground;
-    }
+  body {
+    @apply bg-primary text-primary-foreground font-mono;
+  }
 
-    ::selection {
-        @apply bg-primary-foreground text-primary;
-    }
+  ::selection {
+    @apply bg-primary-foreground text-primary;
+  }
 }
