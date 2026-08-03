@@ -37,7 +37,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html className={ibmPlexMono.variable} lang="en" suppressHydrationWarning>
     <body className="bg-primary text-primary-foreground box-border flex min-h-dvh flex-col overscroll-none font-mono antialiased">
       {children}
-      <nav aria-label="Primary" className="bg-primary w-full py-4">
+      <nav aria-label="Primary" className="bg-primary w-full py-4 print:hidden">
         <ul className="mx-auto flex w-full max-w-2xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
           <li>
             <a
