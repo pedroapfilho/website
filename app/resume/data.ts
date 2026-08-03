@@ -219,7 +219,7 @@ const resume: Resume = {
     },
   ],
   summary:
-    "Product-minded Full Stack Engineer with 9+ years of experience owning end-to-end web platforms in cryptocurrency exchanges, DeFi apps, and high-performance trading systems. Operates as a Product Engineer, or as a Full Stack Engineer — depending on how you name it. Working from problem discovery and UX all the way down to backend services, data, and reliability. Strong background in payments, KYC, data-intensive systems, and shipping measurable improvements to revenue, performance, and user experience.",
+    "Product-minded Full Stack Engineer with 9+ years of experience owning end-to-end web platforms in cryptocurrency exchanges, DeFi apps, and high-performance trading systems. Operates as a Product Engineer, or as a Full Stack Engineer, depending on how you name it. Working from problem discovery and UX all the way down to backend services, data, and reliability. Strong background in payments, KYC, data-intensive systems, and shipping measurable improvements to revenue, performance, and user experience.",
   title: "Product Engineer · Full Stack",
 };
 

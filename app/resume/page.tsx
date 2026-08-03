@@ -69,9 +69,7 @@ const Languages = () => (
   </dl>
 );
 
-// Escaped, not literal: the long dash is banned in this repo's source, while
-// the printed range has always rendered with one.
-const DATE_SEPARATOR = " \u2014 ";
+const DATE_SEPARATOR = " \u2013 ";
 
 const DateRange = ({ end, start }: { end: string; start: string }) => (
   <span className="text-neutral-500 tabular-nums">
