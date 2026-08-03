@@ -14,6 +14,10 @@
     @apply border-primary-foreground outline-primary-foreground/50;
   }
 
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-primary text-primary-foreground font-mono;
   }
