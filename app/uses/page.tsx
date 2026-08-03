@@ -167,8 +167,8 @@ const useGroups = [
             name: "Ghostty",
           },
           {
-            href: "https://cmux.com/",
-            name: "cmux",
+            href: "https://herdr.dev/",
+            name: "herdr",
           },
         ],
         title: "Terminal",
