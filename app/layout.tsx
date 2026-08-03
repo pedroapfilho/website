@@ -11,23 +11,30 @@ const ibmPlexMono = ibmPlexMonoFont({
   weight: ["400", "500", "600", "700"],
 });
 
+const SOCIAL_DESCRIPTION =
+  "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.";
+
+const NAV_LINK_CLASS =
+  "hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2";
+
 const metadata: Metadata = {
   description: "Likes to write code sometimes",
   openGraph: {
-    description:
-      "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
+    description: SOCIAL_DESCRIPTION,
     images: ["https://pedroapfilho.com/profile.jpg"],
     siteName: "Pedro Filho - Product Engineer",
     title: "Pedro Filho - Product Engineer",
     type: "website",
     url: "https://pedroapfilho.com",
   },
-  title: "Pedro Filho - Product Engineer",
+  title: {
+    default: "Pedro Filho - Product Engineer",
+    template: "%s - Pedro Filho",
+  },
   twitter: {
     card: "summary",
     creator: "@pedroapfilho",
-    description:
-      "Usually I work on the crypto space, as a product engineer, but you can find me working on other projects as well, just because I really like to learn new things.",
+    description: SOCIAL_DESCRIPTION,
     images: ["https://pedroapfilho.com/profile.jpg"],
     title: "Pedro Filho - Product Engineer",
   },
@@ -35,13 +42,13 @@ const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html className={ibmPlexMono.variable} lang="en" suppressHydrationWarning>
-    <body className="bg-primary text-primary-foreground box-border flex min-h-dvh flex-col overscroll-none font-mono antialiased">
-      {children}
+    <body className="box-border flex min-h-dvh flex-col overscroll-none antialiased">
+      <main className="isolate flex flex-1 flex-col">{children}</main>
       <nav aria-label="Primary" className="bg-primary w-full py-4 print:hidden">
         <ul className="mx-auto flex w-full max-w-3xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
           <li>
             <a
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className={NAV_LINK_CLASS}
               href="https://github.com/pedroapfilho"
               rel="noopener noreferrer"
               target="_blank"
@@ -51,7 +58,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
           </li>
           <li>
             <a
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className={NAV_LINK_CLASS}
               href="https://x.com/pedroapfilho"
               rel="noopener noreferrer"
               target="_blank"
@@ -60,32 +67,23 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
             </a>
           </li>
           <li>
-            <Link
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
-              href="/resume"
-            >
+            <Link className={NAV_LINK_CLASS} href="/resume">
               Resume
             </Link>
           </li>
           <li>
-            <Link
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
-              href="/side"
-            >
+            <Link className={NAV_LINK_CLASS} href="/side">
               Side
             </Link>
           </li>
           <li>
-            <Link
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
-              href="/uses"
-            >
+            <Link className={NAV_LINK_CLASS} href="/uses">
               /uses
             </Link>
           </li>
           <li>
             <a
-              className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className={NAV_LINK_CLASS}
               href="https://youtube.com/c/ohmyfunction"
               rel="noopener noreferrer"
               target="_blank"

@@ -3,7 +3,6 @@
 @theme inline {
   --color-primary: #ffffff;
   --color-primary-foreground: #1a1a1a;
-  --breakpoint-xs: 567px;
   --font-mono:
     var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;

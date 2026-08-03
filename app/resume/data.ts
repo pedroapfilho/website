@@ -9,15 +9,20 @@ type SkillGroup = {
   label: string;
 };
 
+const PRESENT = "present";
+
 type Job = {
   company: string;
-  dates: string;
   description: string;
+  /** ISO `YYYY-MM`, or `PRESENT` for a role with no end date yet. */
+  end: string;
   location: string;
   metrics: Array<string>;
   product: string;
   role: string;
   stack: Array<string>;
+  /** ISO `YYYY-MM`. */
+  start: string;
 };
 
 type Resume = {
@@ -71,9 +76,9 @@ const resume: Resume = {
   experience: [
     {
       company: "[stealth launchpad]",
-      dates: "07/2025 — present",
       description:
         "Partnered directly with founders on problem definition, product scope, and go-to-market for a new token launchpad. Designed and led the end-to-end architecture from ground zero to production, including backend services, database schema, API layer, and React/Next.js frontend, plus smart contract integrations with on-chain events. Set up CI/CD, observability, and security best practices.",
+      end: PRESENT,
       location: "Remote",
       metrics: [
         "Took platform from zero to production launch on an accelerated timeline",
@@ -83,12 +88,13 @@ const resume: Resume = {
       product: "Token Launcher Platform",
       role: "Principal Product Engineer · Full Stack",
       stack: ["Go", "Rust", "React", "Node.js", "Next.js", "Smart Contracts", "PostgreSQL", "AWS"],
+      start: "2025-07",
     },
     {
       company: "pump.fun",
-      dates: "08/2024 — 07/2025",
       description:
         "Owned core token creation and trading flows end-to-end, from product shaping and UX to backend services. Worked across the full stack to refine the coin creation experience, improve reliability, and support rapid experimentation. Refactored critical backend logic and improved error handling, observability, and data consistency, unlocking faster iteration on new features.",
+      end: "2025-07",
       location: "Remote",
       metrics: [
         "Reduced sessions with errors from ~38% to ~5% (~87% relative reduction)",
@@ -98,12 +104,13 @@ const resume: Resume = {
       product: "Token Launcher",
       role: "Principal Product Engineer · Full Stack",
       stack: ["React", "Node.js", "NestJS", "Next.js", "PostgreSQL", "Redis"],
+      start: "2024-08",
     },
     {
       company: "Kraken",
-      dates: "06/2022 — 08/2024",
       description:
         "Acted as a product-minded engineer on the Pro trading application, owning surfaces from order forms to charts. Collaborated with PMs, designers, and backend teams to define requirements, refine UX for traders, and instrument key metrics. Worked across frontend and Node-based backend services on order entry, market data integrations, and charting, ensuring low-latency updates and high reliability.",
+      end: "2024-08",
       location: "Remote",
       metrics: [
         "Increased revenue per session by 10%+",
@@ -113,12 +120,13 @@ const resume: Resume = {
       product: "Centralized Exchange",
       role: "Senior Product Engineer · Trading Platform",
       stack: ["React", "Redux Toolkit", "Node.js", "WebSockets", "Data Visualization"],
+      start: "2022-06",
     },
     {
       company: "Blockchain.com",
-      dates: "11/2020 — 06/2022",
       description:
         "Worked as a product engineer on wallet and payments, owning key KPIs around acceptance rate and reliability. Developed and maintained end-to-end web wallet and payment flows, from React UI to Node.js services and database integration. Collaborated with infra and product to prioritize high-impact improvements.",
+      end: "2022-06",
       location: "Remote · London, UK",
       metrics: [
         "Increased payment acceptance rate from 30% to 80% in 2 weeks",
@@ -128,12 +136,13 @@ const resume: Resume = {
       product: "Crypto Wallet & Payments",
       role: "Senior Product Engineer · Full Stack",
       stack: ["React", "Redux", "Node.js", "TypeScript", "PostgreSQL", "Kafka"],
+      start: "2020-11",
     },
     {
       company: "Game Analytics",
-      dates: "08/2019 — 11/2020",
       description:
         "Partnered with product and customers to build a new analytics platform focused on game studios' reporting needs. Led development from the ground up, contributing to both data-intensive frontend dashboards and backend services powering them. Implemented key APIs and aggregation logic, and enforced quality standards with automated testing and code reviews.",
+      end: "2020-11",
       location: "Remote · London, UK",
       metrics: [
         "Built dashboards handling billions of data points with optimized chart performance",
@@ -143,12 +152,13 @@ const resume: Resume = {
       product: "Analytics Platform for Mobile Games",
       role: "Senior Product Engineer · Full Stack",
       stack: ["React", "Node.js", "AWS Lambda", "Kinesis", "S3", "Data Visualization"],
+      start: "2019-08",
     },
     {
       company: "Intrasurance",
-      dates: "11/2018 — 08/2019",
       description:
         "Worked on an embeddable insurance platform, implementing core flows for quoting and policy purchase across client-facing widgets and backend integration services, integrating with internal APIs and third-party providers. Contributed to backend endpoints and deployment pipelines.",
+      end: "2019-08",
       location: "Remote · Lisbon, Portugal",
       metrics: [
         "Shipped quoting and policy-purchase flows across embeddable widget and backend services",
@@ -158,12 +168,13 @@ const resume: Resume = {
       product: "Insurance Platform",
       role: "Product Engineer · Full Stack",
       stack: ["React", "Redux", "Node.js", "Azure", "Microservices"],
+      start: "2018-11",
     },
     {
       company: "Norio Matsubara",
-      dates: "02/2016 — 11/2018",
       description:
         "Advised portfolio companies on product strategy and technical architecture, with hands-on full stack implementation. Contributed to backend APIs, database design, and frontend features across multiple products, helping teams ship user-focused features more reliably.",
+      end: "2018-11",
       location: "Remote · Faro, Portugal",
       metrics: [
         "Advised multiple portfolio companies on product strategy and architecture",
@@ -173,6 +184,7 @@ const resume: Resume = {
       product: "Startup Portfolio Technical Advisor",
       role: "Product Engineer & Technical Advisor · Full Stack",
       stack: ["React", "PostgreSQL", "MongoDB", "Node.js", "Agile/Scrum"],
+      start: "2016-02",
     },
   ],
   languages: [
@@ -211,5 +223,5 @@ const resume: Resume = {
   title: "Product Engineer · Full Stack",
 };
 
-export { resume };
+export { PRESENT, resume };
 export type { Resume, Job, Contact, SkillGroup };

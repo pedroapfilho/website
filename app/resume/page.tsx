@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { type Job, resume } from "./data";
+import { type Job, PRESENT, resume } from "./data";
 
 const metadata: Metadata = {
   description: resume.title,
-  title: `${resume.name} — Resume`,
+  title: "Resume",
 };
 
-const toIsoMonth = (mmYyyy: string): string | undefined => {
-  const groups = /^(?<month>\d{2})\/(?<year>\d{4})$/v.exec(mmYyyy)?.groups;
-  return groups ? `${groups.year}-${groups.month}` : undefined;
-};
+const formatMonth = (isoMonth: string): string => `${isoMonth.slice(5, 7)}/${isoMonth.slice(0, 4)}`;
 
 const Header = () => (
   <header className="break-inside-avoid">
@@ -72,25 +69,24 @@ const Languages = () => (
   </dl>
 );
 
-const DateRange = ({ value }: { value: string }) => {
-  const [start, end] = value.split("—").map((p) => p.trim());
-  const startIso = toIsoMonth(start);
-  const endIso = toIsoMonth(end);
-  return (
-    <span className="text-neutral-500 tabular-nums">
-      <time dateTime={startIso}>{start}</time>
-      {" — "}
-      {endIso === undefined ? end : <time dateTime={endIso}>{end}</time>}
-    </span>
-  );
-};
+// Escaped, not literal: the long dash is banned in this repo's source, while
+// the printed range has always rendered with one.
+const DATE_SEPARATOR = " \u2014 ";
+
+const DateRange = ({ end, start }: { end: string; start: string }) => (
+  <span className="text-neutral-500 tabular-nums">
+    <time dateTime={start}>{formatMonth(start)}</time>
+    {DATE_SEPARATOR}
+    {end === PRESENT ? PRESENT : <time dateTime={end}>{formatMonth(end)}</time>}
+  </span>
+);
 
 const JobEntry = ({ job }: { job: Job }) => (
   <article>
     <div className="break-inside-avoid">
       <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3 className="text-base font-medium">{job.company}</h3>
-        <DateRange value={job.dates} />
+        <DateRange end={job.end} start={job.start} />
       </header>
 
       <p className="text-neutral-500">
@@ -160,7 +156,7 @@ const ResumePage = () => (
     <Section title="Experience">
       <ol className="flex flex-col gap-6">
         {resume.experience.map((job) => (
-          <li key={`${job.company}-${job.dates}`}>
+          <li key={`${job.company}-${job.start}`}>
             <JobEntry job={job} />
           </li>
         ))}
