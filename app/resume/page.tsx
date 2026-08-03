@@ -18,11 +18,14 @@ const Header = () => (
     <h1 className="text-3xl font-medium tracking-tight text-balance">{resume.name}</h1>
     <p className="mt-1 text-neutral-500">{resume.title}</p>
 
-    <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-1.5 sm:grid-cols-2">
+    <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-1.5 text-sm sm:grid-cols-2">
       {resume.contacts.map((c) => (
         <div className="grid grid-cols-[5rem_1fr] items-baseline" key={c.href}>
           <dt className="text-xs tracking-wide text-neutral-500 uppercase">{c.label}</dt>
-          <dd>
+          {/* min-w-0 lets the 1fr track shrink below the value's min-content width:
+              wrap-break-word alone does not reduce it, so a long handle would
+              widen the track and print past the page margin instead of wrapping. */}
+          <dd className="min-w-0">
             <a
               className="hover:decoration-primary-foreground wrap-break-word underline decoration-neutral-300 underline-offset-2"
               href={c.href}
