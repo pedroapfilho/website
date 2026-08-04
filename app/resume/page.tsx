@@ -131,7 +131,7 @@ const JobEntry = ({ job }: { job: Job }) => (
 );
 
 const ResumePage = () => (
-  <article className="mx-auto max-w-190 px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
+  <article className="mx-auto max-w-3xl px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
     <nav className="mb-10 flex items-center justify-between text-sm text-neutral-500 print:hidden">
       <Link className="hover:text-primary-foreground" href="/">
         ← back
