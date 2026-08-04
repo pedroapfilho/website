@@ -13,18 +13,18 @@ const formatMonth = (isoMonth: string): string => `${isoMonth.slice(5, 7)}/${iso
 const Header = () => (
   <header className="break-inside-avoid">
     <h1 className="text-3xl font-medium tracking-tight text-balance">{resume.name}</h1>
-    <p className="mt-1 text-neutral-500">{resume.title}</p>
+    <p className="text-primary-foreground/60 mt-1">{resume.title}</p>
 
     <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-1.5 text-sm sm:grid-cols-2">
       {resume.contacts.map((c) => (
         <div className="grid grid-cols-[5rem_1fr] items-baseline" key={c.href}>
-          <dt className="text-xs tracking-wide text-neutral-500 uppercase">{c.label}</dt>
+          <dt className="text-primary-foreground/60 text-xs tracking-wide uppercase">{c.label}</dt>
           {/* min-w-0 lets the 1fr track shrink below the value's min-content width:
               wrap-break-word alone does not reduce it, so a long handle would
               widen the track and print past the page margin instead of wrapping. */}
           <dd className="min-w-0">
             <a
-              className="hover:decoration-primary-foreground wrap-break-word underline decoration-neutral-300 underline-offset-2"
+              className="decoration-primary-foreground/30 hover:decoration-primary-foreground wrap-break-word underline underline-offset-2"
               href={c.href}
             >
               {c.display}
@@ -39,8 +39,10 @@ const Header = () => (
 const Section = ({ children, title }: { children: React.ReactNode; title: string }) => (
   <section className="mt-9 text-sm">
     <div className="break-inside-avoid">
-      <h2 className="text-xs font-medium tracking-wide text-neutral-500 uppercase">{title}</h2>
-      <hr className="mt-2 mb-4 border-t border-neutral-200" />
+      <h2 className="text-primary-foreground/60 text-xs font-medium tracking-wide uppercase">
+        {title}
+      </h2>
+      <hr className="border-primary-foreground/10 mt-2 mb-4 border-t" />
     </div>
 
     {children}
@@ -51,7 +53,7 @@ const Skills = () => (
   <dl className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-[max-content_1fr]">
     {resume.skills.map((s) => (
       <div className="contents" key={s.label}>
-        <dt className="text-neutral-500 sm:whitespace-nowrap">{s.label}</dt>
+        <dt className="text-primary-foreground/60 sm:whitespace-nowrap">{s.label}</dt>
         <dd className="text-pretty">{s.items.join(" · ")}</dd>
       </div>
     ))}
@@ -62,7 +64,7 @@ const Languages = () => (
   <dl className="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-1">
     {resume.languages.map((l) => (
       <div className="contents" key={l.language}>
-        <dt className="text-neutral-500">{l.language}</dt>
+        <dt className="text-primary-foreground/60">{l.language}</dt>
         <dd>{l.level}</dd>
       </div>
     ))}
@@ -72,7 +74,7 @@ const Languages = () => (
 const DATE_SEPARATOR = " \u2013 ";
 
 const DateRange = ({ end, start }: { end: string; start: string }) => (
-  <span className="text-neutral-500 tabular-nums">
+  <span className="text-primary-foreground/60 tabular-nums">
     <time dateTime={start}>{formatMonth(start)}</time>
     {DATE_SEPARATOR}
     {end === PRESENT ? PRESENT : <time dateTime={end}>{formatMonth(end)}</time>}
@@ -87,18 +89,18 @@ const JobEntry = ({ job }: { job: Job }) => (
         <DateRange end={job.end} start={job.start} />
       </header>
 
-      <p className="text-neutral-500">
+      <p className="text-primary-foreground/60">
         {job.role}
-        <span className="text-neutral-300"> · </span>
+        <span className="text-primary-foreground/40"> · </span>
         {job.location}
       </p>
 
-      <p className="mt-1 text-neutral-700 italic">{job.product}</p>
+      <p className="text-primary-foreground/80 mt-1 italic">{job.product}</p>
 
       <ul className="mt-2 flex flex-wrap gap-x-1.5 gap-y-1">
         {job.stack.map((t) => (
           <li
-            className="rounded border border-neutral-200 px-1.5 py-0.5 text-xs text-neutral-600"
+            className="border-primary-foreground/10 text-primary-foreground/80 rounded border px-1.5 py-0.5 text-xs"
             key={t}
           >
             {t}
@@ -113,7 +115,7 @@ const JobEntry = ({ job }: { job: Job }) => (
       <ul className="mt-2 flex flex-col gap-1">
         {job.metrics.map((m) => (
           <li
-            className="relative pl-4 text-pretty before:absolute before:left-0 before:text-neutral-400 before:content-['•']"
+            className="before:text-primary-foreground/40 relative pl-4 text-pretty before:absolute before:left-0 before:content-['•']"
             key={m}
           >
             {m}
@@ -126,7 +128,7 @@ const JobEntry = ({ job }: { job: Job }) => (
 
 const ResumePage = () => (
   <article className="mx-auto max-w-3xl px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
-    <nav className="mb-10 flex items-center justify-between text-sm text-neutral-500 print:hidden">
+    <nav className="text-primary-foreground/60 mb-10 flex items-center justify-between text-sm print:hidden">
       <Link className="hover:text-primary-foreground" href="/">
         ← back
       </Link>
@@ -164,7 +166,7 @@ const ResumePage = () => (
     <Section title="Education">
       <p>
         <span className="font-medium">{resume.education.degree}</span>
-        <span className="text-neutral-500"> · {resume.education.school}</span>
+        <span className="text-primary-foreground/60"> · {resume.education.school}</span>
       </p>
     </Section>
 
