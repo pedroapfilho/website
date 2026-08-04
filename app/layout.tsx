@@ -38,7 +38,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body className="bg-primary text-primary-foreground box-border flex min-h-dvh flex-col overscroll-none font-mono antialiased">
       {children}
       <nav aria-label="Primary" className="bg-primary w-full py-4 print:hidden">
-        <ul className="mx-auto flex w-full max-w-2xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
+        <ul className="mx-auto flex w-full max-w-3xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
           <li>
             <a
               className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
