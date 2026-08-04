@@ -70,9 +70,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
           <li>
             <Link
               className="hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
-              href="/oss"
+              href="/side"
             >
-              OSS
+              Side
             </Link>
           </li>
           <li>

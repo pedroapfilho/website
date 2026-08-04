@@ -11,7 +11,7 @@ Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single 
 ```
 app/
   page.tsx        home
-  oss/            open source list
+  side/           projects and libraries
   uses/           gear and tooling
   resume/         resume page + data.ts (the single source for both HTML and PDF)
 scripts/
