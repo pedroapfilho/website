@@ -20,11 +20,11 @@ scripts/
 
 ## Dev workflow
 
-`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → lint-staged (oxlint + oxfmt). CI runs lint, format, typecheck, build, and fallow.
+`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → lint-staged (oxlint + oxfmt), then regenerates `public/resume.pdf` when the commit touches the resume sources. CI runs lint, format, typecheck, build, and fallow.
 
 Type-aware linting reads Next's generated route types, so `lint.yml` and `typecheck.yml` both run `pnpm build` first. Running `pnpm lint` locally against a stale `.next` gives false positives; build once after pulling.
 
-`pnpm generate:resume` needs a local Chrome (`channel: "chrome"`); it is a manual step, not part of CI.
+`pnpm generate:resume` needs a local Chrome (`channel: "chrome"`), so it never runs in CI. The pre-commit hook calls it when `app/resume/**`, `app/layout.tsx`, `app/globals.css`, or `scripts/generate-resume.ts` is staged and `public/resume.pdf` is not, then stages the PDF into the same commit. Staging the PDF yourself skips it. It prints the resume from the working tree, not the index, so unstaged edits to those files land in the PDF.
 
 ## Conventions
 
