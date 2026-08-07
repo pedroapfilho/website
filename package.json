@@ -26,7 +26,7 @@
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "fallow": "^3.14.0",
@@ -36,8 +36,8 @@
     "oxlint": "^1.77.0",
     "oxlint-config-awesomeness": "^3.3.0",
     "oxlint-tsgolint": "^7.0.2001",
-    "puppeteer-core": "^24.42.0",
-    "tailwindcss": "^4.2.4",
+    "puppeteer-core": "^25.5.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },
   "lint-staged": {
