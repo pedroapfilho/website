@@ -31,7 +31,6 @@ const runLines = (command: string, args: Array<string>): Array<string> => {
       .map((line) => line.trim())
       .filter((line) => line.length > 0);
   } catch {
-    // `pgrep` and `ps` exit non-zero when nothing matches, which is an answer, not a failure.
     return [];
   }
 };
@@ -83,7 +82,6 @@ const readServerRecord = (): ServerRecord | undefined => {
     }
     return { pgid, port };
   } catch {
-    // No record, or one we cannot parse: either way there is nothing to reap.
     return undefined;
   }
 };
@@ -138,8 +136,6 @@ const cleanup = async (): Promise<void> => {
     return;
   }
 
-  // Signalled to the group rather than the child: `pnpm exec` stands in front of `next dev`, which
-  // stands in front of `next-server`, so signalling the direct child leaves two processes running.
   killGroup(group, "SIGTERM");
   if (server && server.exitCode === null) {
     const child = server;
@@ -150,8 +146,6 @@ const cleanup = async (): Promise<void> => {
         });
       }),
       new Promise<void>((resolve) => {
-        // Unref'd so a dev server that exits promptly does not hold the
-        // process open for the rest of the grace period.
         setTimeout(resolve, SHUTDOWN_GRACE_MS).unref();
       }),
     ]);
@@ -221,7 +215,6 @@ try {
   const port = await getFreePort();
   server = spawn("pnpm", ["exec", "next", "dev", "-p", String(port)], {
     cwd: projectRoot,
-    // Its own process group, so one signal reaches `next dev` and `next-server` as well.
     detached: true,
     env: { ...process.env, PORT: String(port) },
     stdio: ["ignore", "pipe", "pipe"],
@@ -230,8 +223,6 @@ try {
   if (pgid === undefined) {
     throw new Error("The dev server failed to spawn");
   }
-  // Written synchronously, with nothing awaited in between, to keep the window in which a SIGKILL
-  // would orphan an unrecorded process group as small as it can be.
   serverGroup = pgid;
   mkdirSync(path.dirname(recordPath), { recursive: true });
   writeFileSync(recordPath, JSON.stringify({ pgid, port } satisfies ServerRecord));
