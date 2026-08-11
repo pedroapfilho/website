@@ -11,8 +11,6 @@ export default defineConfig({
     {
       files: ["scripts/**"],
       rules: {
-        // Polling a dev server is sequential by nature: each probe has to see
-        // the previous one's result before deciding whether to sleep again.
         "no-await-in-loop": "off",
       },
     },
