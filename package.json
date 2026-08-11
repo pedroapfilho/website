@@ -22,13 +22,13 @@
   },
   "dependencies": {
     "next": "^16.3.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
     "fallow": "^3.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
