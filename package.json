@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#scripts/*": "./scripts/*.ts"
+  },
   "scripts": {
     "start": "next start",
     "dev": "next dev",
@@ -13,6 +16,7 @@
     "build": "next build",
     "clean": "rm -rf .next out node_modules",
     "generate:resume": "node scripts/generate-resume.ts",
+    "test": "node --test scripts/*.test.ts",
     "fallow": "fallow",
     "fallow:dead": "fallow dead-code",
     "fallow:dupes": "fallow dupes",

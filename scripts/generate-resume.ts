@@ -6,14 +6,15 @@ import path from "node:path";
 
 import { type Browser, launch } from "puppeteer-core";
 
+import { reapRecordedServer, stopProcessGroup, writeAtomically } from "#scripts/process-lifecycle";
+import type { ProcessGroup, RecordStore, ServerRecord } from "#scripts/process-lifecycle";
+
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const outPath = path.join(projectRoot, "public", "resume.pdf");
 const recordPath = path.join(projectRoot, "node_modules", ".cache", "resume-dev-server.json");
 
 const SHUTDOWN_GRACE_MS = 5000;
 const GROUP_POLL_MS = 100;
-
-type ServerRecord = { pgid: number; port: number };
 
 let server: ChildProcess | undefined;
 let serverGroup: number | undefined;
@@ -62,67 +63,23 @@ const waitForGroupExit = async (pgid: number, timeoutMs: number): Promise<boolea
   return groupCommands(pgid).length === 0;
 };
 
-const readServerRecord = (): ServerRecord | undefined => {
-  try {
-    const parsed: unknown = JSON.parse(readFileSync(recordPath, "utf8"));
-    if (
-      typeof parsed !== "object" ||
-      parsed === null ||
-      !("pgid" in parsed) ||
-      !("port" in parsed)
-    ) {
+const recordStore: RecordStore = {
+  read: () => {
+    try {
+      return JSON.parse(readFileSync(recordPath, "utf8")) as unknown;
+    } catch {
       return undefined;
     }
-    const { pgid, port } = parsed;
-    if (typeof pgid !== "number" || !Number.isInteger(pgid) || pgid <= 1) {
-      return undefined;
-    }
-    if (typeof port !== "number" || !Number.isInteger(port)) {
-      return undefined;
-    }
-    return { pgid, port };
-  } catch {
-    return undefined;
-  }
+  },
+  remove: () => {
+    rmSync(recordPath, { force: true });
+  },
 };
 
-/**
- * A SIGKILLed parent runs no handlers, so nothing this process does at exit can reach the dev
- * server it left running. The record written at spawn time is the only thing that outlives that,
- * and Next refuses to start a second dev server in the same directory, so the orphan has to go
- * before this run boots one.
- */
-const reapOrphanedServer = async (): Promise<void> => {
-  const record = readServerRecord();
-  rmSync(recordPath, { force: true });
-  if (record === undefined) {
-    return;
-  }
-
-  const commands = groupCommands(record.pgid);
-  if (commands.length === 0) {
-    return;
-  }
-  const marker = `next dev -p ${record.port}`;
-  if (!commands.some((command) => command.includes(marker))) {
-    console.warn(
-      `Leaving process group ${record.pgid} alone: nothing in it runs \`${marker}\`, so that id belongs to something else now.`,
-    );
-    return;
-  }
-
-  console.log(
-    `Reaping an orphaned dev server on port ${record.port} (process group ${record.pgid}).`,
-  );
-  killGroup(record.pgid, "SIGTERM");
-  if (!(await waitForGroupExit(record.pgid, SHUTDOWN_GRACE_MS))) {
-    killGroup(record.pgid, "SIGKILL");
-    if (!(await waitForGroupExit(record.pgid, SHUTDOWN_GRACE_MS))) {
-      throw new Error(
-        `Could not stop the orphaned dev server in process group ${record.pgid}; stop it by hand and retry.`,
-      );
-    }
-  }
+const processGroup: ProcessGroup = {
+  commands: groupCommands,
+  signal: killGroup,
+  waitForExit: waitForGroupExit,
 };
 
 const cleanup = async (): Promise<void> => {
@@ -136,23 +93,9 @@ const cleanup = async (): Promise<void> => {
     return;
   }
 
-  killGroup(group, "SIGTERM");
-  if (server && server.exitCode === null) {
-    const child = server;
-    await Promise.race([
-      new Promise<void>((resolve) => {
-        child.once("exit", () => {
-          resolve();
-        });
-      }),
-      new Promise<void>((resolve) => {
-        setTimeout(resolve, SHUTDOWN_GRACE_MS).unref();
-      }),
-    ]);
-  }
-  killGroup(group, "SIGKILL");
+  await stopProcessGroup(group, processGroup, SHUTDOWN_GRACE_MS);
   serverGroup = undefined;
-  rmSync(recordPath, { force: true });
+  recordStore.remove();
 };
 
 const shutdown = async (): Promise<never> => {
@@ -210,7 +153,13 @@ const waitForReady = async (url: string, timeoutMs = 60_000): Promise<void> => {
 };
 
 try {
-  await reapOrphanedServer();
+  await reapRecordedServer({
+    graceMs: SHUTDOWN_GRACE_MS,
+    log: console.log,
+    processGroup,
+    store: recordStore,
+    warn: console.warn,
+  });
 
   const port = await getFreePort();
   server = spawn("pnpm", ["exec", "next", "dev", "-p", String(port)], {
@@ -253,8 +202,7 @@ try {
   });
 
   await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(`${outPath}.tmp`, pdf);
-  await rename(`${outPath}.tmp`, outPath);
+  await writeAtomically(outPath, pdf, { rename, writeFile });
   console.log(`Wrote ${outPath} (${pdf.byteLength} bytes)`);
 } catch (error) {
   console.error("Resume generation failed:", error);
