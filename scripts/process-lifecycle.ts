@@ -19,6 +19,16 @@ type ReapOptions = {
   warn: (message: string) => void;
 };
 
+type DevServerCommand = {
+  argv: Array<string>;
+  marker: string;
+};
+
+const devServerCommand = (port: number): DevServerCommand => {
+  const argv = ["next", "dev", "-p", String(port)];
+  return { argv, marker: argv.join(" ") };
+};
+
 const parseServerRecord = (value: unknown): ServerRecord | undefined => {
   if (typeof value !== "object" || value === null || !("pgid" in value) || !("port" in value)) {
     return undefined;
@@ -27,7 +37,7 @@ const parseServerRecord = (value: unknown): ServerRecord | undefined => {
   if (typeof pgid !== "number" || !Number.isInteger(pgid) || pgid <= 1) {
     return undefined;
   }
-  if (typeof port !== "number" || !Number.isInteger(port)) {
+  if (typeof port !== "number" || !Number.isInteger(port) || port < 1 || port > 65_535) {
     return undefined;
   }
   return { pgid, port };
@@ -67,7 +77,7 @@ const reapRecordedServer = async ({
   if (commands.length === 0) {
     return;
   }
-  const marker = `next dev -p ${record.port}`;
+  const { marker } = devServerCommand(record.port);
   if (!commands.some((command) => command.includes(marker))) {
     warn(
       `Leaving process group ${record.pgid} alone: nothing in it runs \`${marker}\`, so that id belongs to something else now.`,
@@ -79,20 +89,5 @@ const reapRecordedServer = async ({
   await stopProcessGroup(record.pgid, processGroup, graceMs);
 };
 
-type AtomicWrite = {
-  rename: (from: string, to: string) => Promise<void>;
-  writeFile: (path: string, data: Uint8Array) => Promise<void>;
-};
-
-const writeAtomically = async (
-  path: string,
-  data: Uint8Array,
-  atomicWrite: AtomicWrite,
-): Promise<void> => {
-  const temporaryPath = `${path}.tmp`;
-  await atomicWrite.writeFile(temporaryPath, data);
-  await atomicWrite.rename(temporaryPath, path);
-};
-
-export { parseServerRecord, reapRecordedServer, stopProcessGroup, writeAtomically };
-export type { AtomicWrite, ProcessGroup, RecordStore, ServerRecord };
+export { devServerCommand, parseServerRecord, reapRecordedServer, stopProcessGroup };
+export type { DevServerCommand, ProcessGroup, RecordStore, ServerRecord };

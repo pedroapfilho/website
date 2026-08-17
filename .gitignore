@@ -12,6 +12,8 @@ next-env.d.ts
 .vercel
 .fallow/
 
+*.tmp
+
 .DS_Store
 *.pem
 

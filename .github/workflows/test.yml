@@ -1,4 +1,4 @@
-name: Typecheck
+name: Test
 on:
   push:
     branches: [main]
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  typecheck:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -14,6 +14,4 @@ jobs:
         with:
           runtime: node@24
           cache: true
-      # Next writes .next/types during the build.
-      - run: pnpm build
-      - run: pnpm typecheck
+      - run: pnpm test

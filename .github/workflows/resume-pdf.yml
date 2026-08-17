@@ -1,0 +1,36 @@
+name: Resume PDF
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      # Chrome's PDF metadata is nondeterministic, so CI checks commit ordering instead of bytes.
+      - env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          . ./scripts/resume-sources.sh
+          changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          sources=$(echo "$changed" | grep -E "$resume_sources_pattern" || true)
+          if [ -z "$sources" ]; then
+            exit 0
+          fi
+
+          pdf_commit=$(git log --topo-order --max-count=1 --format=%H "$BASE_SHA..$HEAD_SHA" -- public/resume.pdf)
+          sources_after_pdf=$sources
+          if [ -n "$pdf_commit" ]; then
+            sources_after_pdf=$(git diff --name-only "$pdf_commit" "$HEAD_SHA" | grep -E "$resume_sources_pattern" || true)
+          fi
+
+          if [ -z "$pdf_commit" ] || [ -n "$sources_after_pdf" ] || ! git cat-file -e "$HEAD_SHA:public/resume.pdf" 2>/dev/null; then
+            echo "::error::Resume sources are newer than public/resume.pdf, or the PDF is missing. Run pnpm generate:resume and commit the result."
+            echo "Changed sources since the latest PDF update:"
+            echo "$sources_after_pdf"
+            exit 1
+          fi
