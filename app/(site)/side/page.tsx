@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-import { libraries, projects, type SideEntry } from "./data";
+import { ExternalLink } from "../../external-link";
+
+import { type SideEntry, sideSections } from "./data";
 
 const metadata: Metadata = {
   description: "Products and open-source libraries created by Pedro Filho.",
@@ -11,11 +13,9 @@ const LinkList = ({ items }: { items: Array<SideEntry> }) => (
   <ul className="border-primary-foreground/10 border-t">
     {items.map((item) => (
       <li className="border-primary-foreground/10 border-b" key={item.name}>
-        <a
+        <ExternalLink
           className="group flex items-start justify-between gap-4 py-4 no-underline focus-visible:outline-2 focus-visible:outline-offset-4"
           href={item.href}
-          rel="noopener noreferrer"
-          target="_blank"
         >
           <div className="flex min-w-0 flex-col gap-1">
             <div className="decoration-primary-foreground/30 group-hover:decoration-primary-foreground font-normal underline underline-offset-4">
@@ -31,7 +31,7 @@ const LinkList = ({ items }: { items: Array<SideEntry> }) => (
           >
             ↗
           </span>
-        </a>
+        </ExternalLink>
       </li>
     ))}
   </ul>
@@ -46,15 +46,12 @@ const SidePage = () => (
       </p>
     </header>
 
-    <section className="flex flex-col gap-4">
-      <h2 className="text-lg font-medium tracking-tight">Projects</h2>
-      <LinkList items={projects} />
-    </section>
-
-    <section className="flex flex-col gap-4">
-      <h2 className="text-lg font-medium tracking-tight">Libraries</h2>
-      <LinkList items={libraries} />
-    </section>
+    {sideSections.map((section) => (
+      <section className="flex flex-col gap-4" key={section.title}>
+        <h2 className="text-lg font-medium tracking-tight">{section.title}</h2>
+        <LinkList items={section.entries} />
+      </section>
+    ))}
   </div>
 );
 

@@ -1,4 +1,4 @@
-import { type ChildProcess, execFileSync, spawn } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
@@ -6,7 +6,7 @@ import path from "node:path";
 
 import { type Browser, launch } from "puppeteer-core";
 
-import { reapRecordedServer, stopProcessGroup, writeAtomically } from "#scripts/process-lifecycle";
+import { devServerCommand, reapRecordedServer, stopProcessGroup } from "#scripts/process-lifecycle";
 import type { ProcessGroup, RecordStore, ServerRecord } from "#scripts/process-lifecycle";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
@@ -16,9 +16,17 @@ const recordPath = path.join(projectRoot, "node_modules", ".cache", "resume-dev-
 const SHUTDOWN_GRACE_MS = 5000;
 const GROUP_POLL_MS = 100;
 
-let server: ChildProcess | undefined;
 let serverGroup: number | undefined;
 let browser: Browser | undefined;
+let teardown: Promise<void> | undefined;
+
+const writeAtomically = async (target: string, data: Uint8Array): Promise<void> => {
+  // Per-pid temp name: two concurrent generators sharing one path interleave
+  // their writes, and `rename` then publishes a mix of both PDFs atomically.
+  const temporaryPath = `${target}.${process.pid}.tmp`;
+  await writeFile(temporaryPath, data);
+  await rename(temporaryPath, target);
+};
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => {
@@ -82,24 +90,45 @@ const processGroup: ProcessGroup = {
   waitForExit: waitForGroupExit,
 };
 
-const cleanup = async (): Promise<void> => {
+const closeBrowser = async (): Promise<void> => {
   try {
     await browser?.close();
   } catch {
     // A browser that already died is the state we wanted anyway.
   }
-  const group = serverGroup;
-  if (group === undefined) {
-    return;
-  }
-
-  await stopProcessGroup(group, processGroup, SHUTDOWN_GRACE_MS);
-  serverGroup = undefined;
-  recordStore.remove();
 };
 
+const runCleanup = async (): Promise<void> => {
+  // The detached group outlives this process and holds a port; the browser does
+  // neither. Releasing the group first means a `browser.close()` that hangs on
+  // profile-lock contention cannot strand a dev server.
+  const closing = closeBrowser();
+
+  const group = serverGroup;
+  if (group !== undefined) {
+    try {
+      await stopProcessGroup(group, processGroup, SHUTDOWN_GRACE_MS);
+      serverGroup = undefined;
+      recordStore.remove();
+    } catch (error) {
+      // Deliberately leaving serverGroup set: the exit handler's SIGKILL is the
+      // only remaining chance to stop a group SIGTERM and SIGKILL both missed.
+      console.error("Could not stop the dev server:", error);
+    }
+  }
+
+  await closing;
+};
+
+const cleanup = (): Promise<void> => (teardown ??= runCleanup());
+
 const shutdown = async (): Promise<never> => {
-  await cleanup();
+  try {
+    await cleanup();
+  } catch (error) {
+    // Exiting is not optional, so a teardown failure must not take the exit with it.
+    console.error("Cleanup failed during shutdown:", error);
+  }
   process.exit(1);
 };
 
@@ -162,7 +191,7 @@ try {
   });
 
   const port = await getFreePort();
-  server = spawn("pnpm", ["exec", "next", "dev", "-p", String(port)], {
+  const server = spawn("pnpm", ["exec", ...devServerCommand(port).argv], {
     cwd: projectRoot,
     detached: true,
     env: { ...process.env, PORT: String(port) },
@@ -202,7 +231,7 @@ try {
   });
 
   await mkdir(path.dirname(outPath), { recursive: true });
-  await writeAtomically(outPath, pdf, { rename, writeFile });
+  await writeAtomically(outPath, pdf);
   console.log(`Wrote ${outPath} (${pdf.byteLength} bytes)`);
 } catch (error) {
   console.error("Resume generation failed:", error);

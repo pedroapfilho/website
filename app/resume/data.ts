@@ -9,20 +9,34 @@ type SkillGroup = {
   label: string;
 };
 
-const PRESENT = "present";
+type IsoMonth = `${number}-${
+  | "01"
+  | "02"
+  | "03"
+  | "04"
+  | "05"
+  | "06"
+  | "07"
+  | "08"
+  | "09"
+  | "10"
+  | "11"
+  | "12"}`;
 
+/**
+ * `experience` must stay newest-first and unbroken: each job's end date is read
+ * off the previous entry's `start`, so a career gap or two concurrent roles
+ * cannot be represented without reintroducing an explicit end field.
+ */
 type Job = {
   company: string;
   description: string;
-  /** ISO `YYYY-MM`, or `PRESENT` for a role with no end date yet. */
-  end: string;
   location: string;
   metrics: Array<string>;
   product: string;
   role: string;
   stack: Array<string>;
-  /** ISO `YYYY-MM`. */
-  start: string;
+  start: IsoMonth;
 };
 
 type Resume = {
@@ -78,7 +92,6 @@ const resume: Resume = {
       company: "[stealth launchpad]",
       description:
         "Partnered directly with founders on problem definition, product scope, and go-to-market for a new token launchpad. Designed and led the end-to-end architecture from ground zero to production, including backend services, database schema, API layer, and React/Next.js frontend, plus smart contract integrations with on-chain events. Set up CI/CD, observability, and security best practices.",
-      end: PRESENT,
       location: "Remote",
       metrics: [
         "Took platform from zero to production launch on an accelerated timeline",
@@ -94,7 +107,6 @@ const resume: Resume = {
       company: "pump.fun",
       description:
         "Owned core token creation and trading flows end-to-end, from product shaping and UX to backend services. Worked across the full stack to refine the coin creation experience, improve reliability, and support rapid experimentation. Refactored critical backend logic and improved error handling, observability, and data consistency, unlocking faster iteration on new features.",
-      end: "2025-07",
       location: "Remote",
       metrics: [
         "Reduced sessions with errors from ~38% to ~5% (~87% relative reduction)",
@@ -110,7 +122,6 @@ const resume: Resume = {
       company: "Kraken",
       description:
         "Acted as a product-minded engineer on the Pro trading application, owning surfaces from order forms to charts. Collaborated with PMs, designers, and backend teams to define requirements, refine UX for traders, and instrument key metrics. Worked across frontend and Node-based backend services on order entry, market data integrations, and charting, ensuring low-latency updates and high reliability.",
-      end: "2024-08",
       location: "Remote",
       metrics: [
         "Increased revenue per session by 10%+",
@@ -126,7 +137,6 @@ const resume: Resume = {
       company: "Blockchain.com",
       description:
         "Worked as a product engineer on wallet and payments, owning key KPIs around acceptance rate and reliability. Developed and maintained end-to-end web wallet and payment flows, from React UI to Node.js services and database integration. Collaborated with infra and product to prioritize high-impact improvements.",
-      end: "2022-06",
       location: "Remote · London, UK",
       metrics: [
         "Increased payment acceptance rate from 30% to 80% in 2 weeks",
@@ -142,7 +152,6 @@ const resume: Resume = {
       company: "Game Analytics",
       description:
         "Partnered with product and customers to build a new analytics platform focused on game studios' reporting needs. Led development from the ground up, contributing to both data-intensive frontend dashboards and backend services powering them. Implemented key APIs and aggregation logic, and enforced quality standards with automated testing and code reviews.",
-      end: "2020-11",
       location: "Remote · London, UK",
       metrics: [
         "Built dashboards handling billions of data points with optimized chart performance",
@@ -158,7 +167,6 @@ const resume: Resume = {
       company: "Intrasurance",
       description:
         "Worked on an embeddable insurance platform, implementing core flows for quoting and policy purchase across client-facing widgets and backend integration services, integrating with internal APIs and third-party providers. Contributed to backend endpoints and deployment pipelines.",
-      end: "2019-08",
       location: "Remote · Lisbon, Portugal",
       metrics: [
         "Shipped quoting and policy-purchase flows across embeddable widget and backend services",
@@ -174,7 +182,6 @@ const resume: Resume = {
       company: "Norio Matsubara",
       description:
         "Advised portfolio companies on product strategy and technical architecture, with hands-on full stack implementation. Contributed to backend APIs, database design, and frontend features across multiple products, helping teams ship user-focused features more reliably.",
-      end: "2018-11",
       location: "Remote · Faro, Portugal",
       metrics: [
         "Advised multiple portfolio companies on product strategy and architecture",
@@ -223,5 +230,5 @@ const resume: Resume = {
   title: "Product Engineer · Full Stack",
 };
 
-export { PRESENT, resume };
-export type { Resume, Job, Contact, SkillGroup };
+export { resume };
+export type { Resume, Job, Contact, IsoMonth, SkillGroup };

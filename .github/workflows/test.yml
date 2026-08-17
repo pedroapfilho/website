@@ -1,4 +1,4 @@
-name: Build
+name: Test
 on:
   push:
     branches: [main]
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -14,4 +14,4 @@ jobs:
         with:
           runtime: node@24
           cache: true
-      - run: pnpm build
+      - run: pnpm test

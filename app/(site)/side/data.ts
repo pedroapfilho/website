@@ -4,6 +4,11 @@ type SideEntry = {
   name: string;
 };
 
+type SideSection = {
+  entries: Array<SideEntry>;
+  title: string;
+};
+
 const projects: Array<SideEntry> = [
   {
     description: "Redacts personal data from text, PDFs, and images entirely on your own machine.",
@@ -67,5 +72,10 @@ const libraries: Array<SideEntry> = [
   },
 ];
 
-export { libraries, projects };
-export type { SideEntry };
+const sideSections: Array<SideSection> = [
+  { entries: projects, title: "Projects" },
+  { entries: libraries, title: "Libraries" },
+];
+
+export { sideSections };
+export type { SideEntry, SideSection };

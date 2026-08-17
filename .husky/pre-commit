@@ -1,11 +1,13 @@
 pnpm lint-staged
 
+. ./scripts/resume-sources.sh
+
 staged=$(git diff --cached --name-only --diff-filter=ACMR)
 
 # The PDF is not byte-reproducible (Chrome stamps a creation date), so the
 # trigger has to be the sources, not a diff of the output.
-if echo "$staged" | grep -qE '^(app/resume/|app/layout\.tsx|app/globals\.css|scripts/generate-resume\.ts)' &&
-  ! echo "$staged" | grep -qx 'public/resume.pdf'; then
+if echo "$staged" | grep -qE "$resume_sources_pattern" &&
+  ! echo "$staged" | grep -qx 'public/resume\.pdf'; then
   echo "Resume sources changed, regenerating public/resume.pdf…"
   pnpm generate:resume || {
     echo "Resume generation failed. It needs a local Google Chrome." >&2

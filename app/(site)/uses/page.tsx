@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { ExternalLink } from "../../external-link";
+
 import { useGroups } from "./data";
 
 const metadata: Metadata = {
@@ -31,14 +33,12 @@ const UsesPage = () => (
                   <ul className="flex flex-col gap-1">
                     {section.items.map((item) => (
                       <li className="text-base sm:text-sm" key={item.href}>
-                        <a
+                        <ExternalLink
                           className="decoration-primary-foreground/30 hover:decoration-primary-foreground underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
                           href={item.href}
-                          rel="noopener noreferrer"
-                          target="_blank"
                         >
                           {item.name}
-                        </a>
+                        </ExternalLink>
                       </li>
                     ))}
                   </ul>

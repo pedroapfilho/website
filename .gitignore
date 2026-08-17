@@ -12,6 +12,9 @@ next-env.d.ts
 .vercel
 .fallow/
 
+# A generator killed between writeFile and rename strands one of these.
+*.tmp
+
 .DS_Store
 *.pem
 

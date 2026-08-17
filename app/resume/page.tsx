@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { type Job, PRESENT, resume } from "./data";
+import { type IsoMonth, type Job, resume } from "./data";
 
 const metadata: Metadata = {
   description: resume.title,
   title: "Resume",
 };
 
-const formatMonth = (isoMonth: string): string => `${isoMonth.slice(5, 7)}/${isoMonth.slice(0, 4)}`;
+const formatMonth = (isoMonth: IsoMonth): string =>
+  `${isoMonth.slice(5, 7)}/${isoMonth.slice(0, 4)}`;
 
 const Header = () => (
   <header className="break-inside-avoid">
@@ -49,44 +50,66 @@ const Section = ({ children, title }: { children: React.ReactNode; title: string
   </section>
 );
 
-const Skills = () => (
-  <dl className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-[max-content_1fr]">
-    {resume.skills.map((s) => (
-      <div className="contents" key={s.label}>
-        <dt className="text-primary-foreground/60 sm:whitespace-nowrap">{s.label}</dt>
-        <dd className="text-pretty">{s.items.join(" · ")}</dd>
+type DefinitionRow = {
+  term: string;
+  value: string;
+};
+
+const DefinitionGrid = ({
+  listClassName,
+  rows,
+  termClassName,
+  valueClassName = "",
+}: {
+  listClassName: string;
+  rows: Array<DefinitionRow>;
+  termClassName: string;
+  valueClassName?: string;
+}) => (
+  <dl className={listClassName}>
+    {rows.map((row) => (
+      <div className="contents" key={row.term}>
+        <dt className={termClassName}>{row.term}</dt>
+        <dd className={valueClassName}>{row.value}</dd>
       </div>
     ))}
   </dl>
+);
+
+const Skills = () => (
+  <DefinitionGrid
+    listClassName="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-[max-content_1fr]"
+    rows={resume.skills.map((s) => ({ term: s.label, value: s.items.join(" · ") }))}
+    termClassName="text-primary-foreground/60 sm:whitespace-nowrap"
+    valueClassName="text-pretty"
+  />
 );
 
 const Languages = () => (
-  <dl className="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-1">
-    {resume.languages.map((l) => (
-      <div className="contents" key={l.language}>
-        <dt className="text-primary-foreground/60">{l.language}</dt>
-        <dd>{l.level}</dd>
-      </div>
-    ))}
-  </dl>
+  <DefinitionGrid
+    listClassName="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-1"
+    rows={resume.languages.map((l) => ({ term: l.language, value: l.level }))}
+    termClassName="text-primary-foreground/60"
+  />
 );
 
 const DATE_SEPARATOR = " \u2013 ";
+const PRESENT_LABEL = "present";
 
-const DateRange = ({ end, start }: { end: string; start: string }) => (
+const DateRange = ({ end, start }: { end: IsoMonth | null; start: IsoMonth }) => (
   <span className="text-primary-foreground/60 tabular-nums">
     <time dateTime={start}>{formatMonth(start)}</time>
     {DATE_SEPARATOR}
-    {end === PRESENT ? PRESENT : <time dateTime={end}>{formatMonth(end)}</time>}
+    {end === null ? PRESENT_LABEL : <time dateTime={end}>{formatMonth(end)}</time>}
   </span>
 );
 
-const JobEntry = ({ job }: { job: Job }) => (
+const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
   <article>
     <div className="break-inside-avoid">
       <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3 className="text-base font-medium">{job.company}</h3>
-        <DateRange end={job.end} start={job.start} />
+        <DateRange end={end} start={job.start} />
       </header>
 
       <p className="text-primary-foreground/60">
@@ -155,9 +178,9 @@ const ResumePage = () => (
 
     <Section title="Experience">
       <ol className="flex flex-col gap-6">
-        {resume.experience.map((job) => (
+        {resume.experience.map((job, index) => (
           <li key={`${job.company}-${job.start}`}>
-            <JobEntry job={job} />
+            <JobEntry end={resume.experience[index - 1]?.start ?? null} job={job} />
           </li>
         ))}
       </ol>
