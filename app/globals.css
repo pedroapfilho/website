@@ -8,10 +8,6 @@
     "Courier New", monospace;
 }
 
-@utility page-gutter {
-  @apply mx-auto w-full max-w-3xl px-6 sm:px-12;
-}
-
 @layer base {
   * {
     @apply border-primary-foreground outline-primary-foreground/50;

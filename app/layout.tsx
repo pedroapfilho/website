@@ -62,7 +62,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body className="box-border flex min-h-dvh flex-col overscroll-none antialiased">
       <main className="isolate flex flex-1 flex-col">{children}</main>
       <nav aria-label="Primary" className="bg-primary w-full py-4 print:hidden">
-        <ul className="page-gutter flex flex-wrap justify-center gap-x-2 gap-y-1 text-base sm:text-sm">
+        <ul className="mx-auto flex w-full max-w-3xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
               {item.external ? (

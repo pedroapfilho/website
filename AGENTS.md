@@ -36,7 +36,6 @@ Fleet-wide rules live in the orchestrator's `standards.md`. Repo-specific notes:
 - Resume dates are typed `IsoMonth` in `app/resume/data.ts`. Only `start` is stored: `experience` is newest-first and contiguous, so each job's end date is read off the previous entry's `start` and the newest entry renders as "present". A career gap or two concurrent roles cannot be expressed without reintroducing an explicit `end`. The `MM/YYYY` label and the word "present" are both produced at render time, so `<time dateTime>` always gets a machine-readable value.
 - Every off-site link goes through `ExternalLink` (`app/external-link.tsx`), which owns the `rel="noopener noreferrer" target="_blank"` pairing so a new link cannot ship without it.
 - Fonts are imported aliased (`IBM_Plex_Mono as ibmPlexMonoFont`) so the loader call does not trip `new-cap`.
-- Page gutter geometry lives in one place, the `page-gutter` utility in `app/globals.css`. The footer nav and the `(site)` content wrapper both use it so their edges stay aligned; `app/resume/page.tsx` deliberately does not, because its `print:` overrides make it a different contract.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
