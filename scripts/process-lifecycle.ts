@@ -24,11 +24,6 @@ type DevServerCommand = {
   marker: string;
 };
 
-/**
- * The single spelling of the dev-server invocation. `argv` launches it and
- * `marker` identifies it in `ps` output, so an edit to one cannot desync the
- * other and leave `reapRecordedServer` disowning a group it started.
- */
 const devServerCommand = (port: number): DevServerCommand => {
   const argv = ["next", "dev", "-p", String(port)];
   return { argv, marker: argv.join(" ") };

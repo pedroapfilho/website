@@ -23,11 +23,6 @@ type IsoMonth = `${number}-${
   | "11"
   | "12"}`;
 
-/**
- * `experience` must stay newest-first and unbroken: each job's end date is read
- * off the previous entry's `start`, so a career gap or two concurrent roles
- * cannot be represented without reintroducing an explicit end field.
- */
 type Job = {
   company: string;
   description: string;

@@ -10,10 +10,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      # `pnpm generate:resume` needs a local Chrome, so CI cannot rebuild the PDF
-      # to compare it. The pre-commit hook that does rebuild it is bypassable with
-      # --no-verify and cannot run without Chrome installed, so the last PDF change
-      # must include or follow every source change in the pull request.
+      # Chrome's PDF metadata is nondeterministic, so CI checks commit ordering instead of bytes.
       - env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}

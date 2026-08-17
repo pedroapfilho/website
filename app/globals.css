@@ -8,9 +8,6 @@
     "Courier New", monospace;
 }
 
-/* The footer nav's edges have to line up with page content, so the two layouts
-   that set this geometry must agree. Changing it in one place only misaligns
-   them, and nothing in typecheck, lint, or build catches that. */
 @utility page-gutter {
   @apply mx-auto w-full max-w-3xl px-6 sm:px-12;
 }

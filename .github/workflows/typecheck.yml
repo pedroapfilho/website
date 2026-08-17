@@ -14,7 +14,6 @@ jobs:
         with:
           runtime: node@24
           cache: true
-      # tsconfig includes .next/types/**, which only exists after a build. Without
-      # this step tsc still passes, silently having checked no route types.
+      # Next writes .next/types during the build.
       - run: pnpm build
       - run: pnpm typecheck

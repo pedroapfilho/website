@@ -21,8 +21,6 @@ let browser: Browser | undefined;
 let teardown: Promise<void> | undefined;
 
 const writeAtomically = async (target: string, data: Uint8Array): Promise<void> => {
-  // Per-pid temp name: two concurrent generators sharing one path interleave
-  // their writes, and `rename` then publishes a mix of both PDFs atomically.
   const temporaryPath = `${target}.${process.pid}.tmp`;
   await writeFile(temporaryPath, data);
   await rename(temporaryPath, target);
@@ -99,10 +97,7 @@ const closeBrowser = async (): Promise<void> => {
 };
 
 const runCleanup = async (): Promise<void> => {
-  // The detached group outlives this process and holds a port; the browser does
-  // neither. Releasing the group first means a `browser.close()` that hangs on
-  // profile-lock contention cannot strand a dev server.
-  const closing = closeBrowser();
+  const closingBrowser = closeBrowser();
 
   const group = serverGroup;
   if (group !== undefined) {
@@ -111,13 +106,11 @@ const runCleanup = async (): Promise<void> => {
       serverGroup = undefined;
       recordStore.remove();
     } catch (error) {
-      // Deliberately leaving serverGroup set: the exit handler's SIGKILL is the
-      // only remaining chance to stop a group SIGTERM and SIGKILL both missed.
       console.error("Could not stop the dev server:", error);
     }
   }
 
-  await closing;
+  await closingBrowser;
 };
 
 const cleanup = (): Promise<void> => (teardown ??= runCleanup());
@@ -126,7 +119,6 @@ const shutdown = async (): Promise<never> => {
   try {
     await cleanup();
   } catch (error) {
-    // Exiting is not optional, so a teardown failure must not take the exit with it.
     console.error("Cleanup failed during shutdown:", error);
   }
   process.exit(1);
