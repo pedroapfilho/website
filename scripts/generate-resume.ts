@@ -72,7 +72,7 @@ const waitForGroupExit = async (pgid: number, timeoutMs: number): Promise<boolea
 const recordStore: RecordStore = {
   read: () => {
     try {
-      return JSON.parse(readFileSync(recordPath, "utf8")) as unknown;
+      return readFileSync(recordPath, "utf8");
     } catch {
       return undefined;
     }

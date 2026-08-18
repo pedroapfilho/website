@@ -20,7 +20,7 @@ const createProcessGroup = (waitResults: Array<boolean>) => {
   return { processGroup, signal, waitForExit };
 };
 
-const createStore = (value: unknown) => {
+const createStore = (value: string | undefined) => {
   const remove = mock.fn<() => void>();
   const store: RecordStore = { read: () => value, remove };
   return { remove, store };
@@ -28,16 +28,20 @@ const createStore = (value: unknown) => {
 
 void describe("process lifecycle", () => {
   void it("rejects malformed and unsafe records", () => {
-    assert.equal(parseServerRecord(null), undefined);
-    assert.equal(parseServerRecord({ pgid: 1, port: 3000 }), undefined);
-    assert.equal(parseServerRecord({ pgid: 42, port: "3000" }), undefined);
+    assert.equal(parseServerRecord("not json"), undefined);
+    assert.equal(parseServerRecord("null"), undefined);
+    assert.equal(parseServerRecord('{"pgid":1,"port":3000}'), undefined);
+    assert.equal(parseServerRecord('{"pgid":42,"port":"3000"}'), undefined);
   });
 
   void it("rejects ports that could never match a marker", () => {
-    assert.equal(parseServerRecord({ pgid: 42, port: 0 }), undefined);
-    assert.equal(parseServerRecord({ pgid: 42, port: -5 }), undefined);
-    assert.equal(parseServerRecord({ pgid: 42, port: 70_000 }), undefined);
-    assert.deepEqual(parseServerRecord({ pgid: 42, port: 65_535 }), { pgid: 42, port: 65_535 });
+    assert.equal(parseServerRecord('{"pgid":42,"port":0}'), undefined);
+    assert.equal(parseServerRecord('{"pgid":42,"port":-5}'), undefined);
+    assert.equal(parseServerRecord('{"pgid":42,"port":70000}'), undefined);
+    assert.deepEqual(parseServerRecord('{"pgid":42,"port":65535}'), {
+      pgid: 42,
+      port: 65_535,
+    });
   });
 
   void it("builds a marker the spawned command line contains", () => {
@@ -48,7 +52,7 @@ void describe("process lifecycle", () => {
   void it("leaves a reused process group without the ownership marker alone", async () => {
     const { processGroup, signal } = createProcessGroup([]);
     processGroup.commands = () => ["node unrelated-service.js"];
-    const { remove, store } = createStore({ pgid: 42, port: 3000 });
+    const { remove, store } = createStore('{"pgid":42,"port":3000}');
     const warn = mock.fn<(message: string) => void>();
 
     await reapRecordedServer({
@@ -67,7 +71,7 @@ void describe("process lifecycle", () => {
   void it("says nothing when the recorded group is already empty", async () => {
     const { processGroup, signal } = createProcessGroup([]);
     processGroup.commands = () => [];
-    const { remove, store } = createStore({ pgid: 42, port: 3000 });
+    const { remove, store } = createStore('{"pgid":42,"port":3000}');
     const warn = mock.fn<(message: string) => void>();
 
     await reapRecordedServer({
@@ -106,7 +110,7 @@ void describe("process lifecycle", () => {
 
   void it("removes an owned record before reaping", async () => {
     const { processGroup } = createProcessGroup([true]);
-    const { remove, store } = createStore({ pgid: 42, port: 3000 });
+    const { remove, store } = createStore('{"pgid":42,"port":3000}');
     await reapRecordedServer({
       graceMs: 10,
       log: mock.fn(),
