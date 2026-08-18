@@ -1,3 +1,10 @@
 {
-  "ignoreDependencies": ["zod-compiler"]
+  "$schema": "./node_modules/fallow/schema.json",
+  "ignoreDependencies": ["zod-compiler"],
+  "ignoreExports": [
+    {
+      "file": "app/**/page.tsx",
+      "exports": ["instant"]
+    }
+  ]
 }

@@ -199,6 +199,7 @@ const ResumePage = () => (
   </article>
 );
 
+export const instant = true;
 export { metadata };
 
 export default ResumePage;

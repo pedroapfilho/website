@@ -55,6 +55,7 @@ const SidePage = () => (
   </div>
 );
 
+export const instant = true;
 export { metadata };
 
 export default SidePage;

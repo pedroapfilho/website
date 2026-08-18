@@ -52,6 +52,7 @@ const UsesPage = () => (
   </div>
 );
 
+export const instant = true;
 export { metadata };
 
 export default UsesPage;

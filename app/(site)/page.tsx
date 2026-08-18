@@ -35,4 +35,6 @@ const Home = () => (
   </div>
 );
 
+export const instant = true;
+
 export default Home;

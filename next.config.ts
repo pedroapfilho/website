@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
+  experimental: {
+    exposeTestingApiInProductionBuild: process.env.EXPOSE_TESTING_API === "1",
+    instantInsights: { validationLevel: "manual-warning" },
+  },
+  partialPrefetching: true,
   reactStrictMode: true,
   turbopack: {
     rules: {
