@@ -1,7 +1,14 @@
-type ServerRecord = { pgid: number; port: number };
+import { z } from "zod";
+
+const serverRecordSchema = z.object({
+  pgid: z.number().int().gt(1),
+  port: z.number().int().min(1).max(65_535),
+});
+
+type ServerRecord = z.infer<typeof serverRecordSchema>;
 
 type RecordStore = {
-  read: () => unknown;
+  read: () => string | undefined;
   remove: () => void;
 };
 
@@ -29,18 +36,16 @@ const devServerCommand = (port: number): DevServerCommand => {
   return { argv, marker: argv.join(" ") };
 };
 
-const parseServerRecord = (value: unknown): ServerRecord | undefined => {
-  if (typeof value !== "object" || value === null || !("pgid" in value) || !("port" in value)) {
+const parseServerRecord = (text: string | undefined): ServerRecord | undefined => {
+  if (text === undefined) {
     return undefined;
   }
-  const { pgid, port } = value;
-  if (typeof pgid !== "number" || !Number.isInteger(pgid) || pgid <= 1) {
+  try {
+    const result = serverRecordSchema.safeParse(JSON.parse(text));
+    return result.success ? result.data : undefined;
+  } catch {
     return undefined;
   }
-  if (typeof port !== "number" || !Number.isInteger(port) || port < 1 || port > 65_535) {
-    return undefined;
-  }
-  return { pgid, port };
 };
 
 const stopProcessGroup = async (
