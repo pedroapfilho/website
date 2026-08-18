@@ -6,3 +6,11 @@ packages:
 
 allowBuilds:
   sharp: true
+
+minimumReleaseAgeExclude:
+  - "@dashfoo/*"
+  - "@easeia/*"
+  - "@usebutr/*"
+  - "@walletwright/*"
+  - astro-awesomeness
+  - oxlint-config-awesomeness
