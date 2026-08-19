@@ -3,10 +3,6 @@ import awesomeness from "oxlint-config-awesomeness";
 
 export default defineConfig({
   extends: [awesomeness],
-  options: {
-    typeAware: true,
-    typeCheck: true,
-  },
   overrides: [
     {
       files: ["scripts/**"],
