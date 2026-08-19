@@ -43,7 +43,8 @@
     "oxlint-tsgolint": "^7.0.2001",
     "puppeteer-core": "^25.5.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "zod-compiler": "^1.27.0"
   },
   "lint-staged": {
     "!(*.d).{ts,tsx,mts,cts,js,jsx,mjs,cjs}": [
