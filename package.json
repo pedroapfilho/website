@@ -37,6 +37,7 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
+    "babel-plugin-react-compiler": "^1.0.0",
     "fallow": "^3.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
