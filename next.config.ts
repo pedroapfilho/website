@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["website.localhost", "*.website.localhost"],
   cacheComponents: true,
   experimental: {
     exposeTestingApiInProductionBuild: process.env.EXPOSE_TESTING_API === "1",

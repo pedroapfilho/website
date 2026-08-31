@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "next start",
-    "dev": "next dev",
+    "dev": "portless run --name website next dev",
     "lint": "oxlint .",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
