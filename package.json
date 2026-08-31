@@ -26,29 +26,29 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "next": "^16.3.0",
+    "next": "^16.3.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@next/playwright": "^16.3.1",
+    "@next/playwright": "^16.3.3",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
-    "fallow": "^3.14.0",
+    "fallow": "^3.19.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
-    "oxfmt": "^0.62.0",
-    "oxlint": "^1.79.0",
+    "oxfmt": "^0.65.0",
+    "oxlint": "^1.80.0",
     "oxlint-config-awesomeness": "^4.4.0",
     "oxlint-plugin-react-doctor": "^0.9.12",
     "oxlint-tsgolint": "^7.0.2001",
-    "puppeteer-core": "^25.5.0",
+    "puppeteer-core": "^25.9.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
-    "zod-compiler": "^1.27.0"
+    "zod-compiler": "^1.28.0"
   },
   "lint-staged": {
     "!(*.d).{ts,tsx,mts,cts,js,jsx,mjs,cjs}": [
