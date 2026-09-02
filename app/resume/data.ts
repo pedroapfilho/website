@@ -84,7 +84,7 @@ const resume: Resume = {
   },
   experience: [
     {
-      company: "[stealth launchpad]",
+      company: "Vertigo (acquired by Zora)",
       description:
         "Partnered directly with founders on problem definition, product scope, and go-to-market for a new token launchpad. Designed and led the end-to-end architecture from ground zero to production, including backend services, database schema, API layer, and React/Next.js frontend, plus smart contract integrations with on-chain events. Set up CI/CD, observability, and security best practices.",
       location: "Remote",
