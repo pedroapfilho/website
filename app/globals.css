@@ -29,30 +29,19 @@
   }
 }
 
-/* Poster caption: the third and smallest size in the type scale. */
-@utility text-caption {
-  font-size: 0.6875rem;
-  line-height: 1.5rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* The site's one authored interaction: an underline that draws in from the
-   left on hover or focus, on the link itself or when its `.group` row is
-   hovered. `--draw` sets the rule weight. */
 @utility link-draw {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
-  background-size: 0% var(--draw, 1px);
-  padding-bottom: 0.06em;
-  transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-size: 0% max(1px, 0.05em);
+  padding-bottom: 0.05em;
+  transition: background-size var(--default-transition-duration) var(--ease-out);
 
   &:hover,
   &:focus-visible,
   .group:hover &,
   .group:focus-visible & {
-    background-size: 100% var(--draw, 1px);
+    background-size: 100% max(1px, 0.05em);
   }
 
   @media (prefers-reduced-motion: reduce) {

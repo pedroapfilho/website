@@ -20,7 +20,7 @@ const Home = () => (
 
     <Image
       alt="Pedro Filho"
-      className="col-span-full mt-8 grayscale lg:col-start-11 lg:col-end-13 lg:mt-[4.3125rem] lg:justify-self-end"
+      className="col-span-full mt-8 grayscale lg:col-start-11 lg:col-end-13 lg:mt-17 lg:justify-self-end"
       fetchPriority="high"
       height={120}
       placeholder="blur"

@@ -23,7 +23,7 @@ const LinkList = ({ items }: { items: Array<SideEntry> }) => (
             <span className="link-draw font-bold">{item.name}</span>
           </span>
           <span className="text-pretty lg:col-span-6">{item.description}</span>
-          <span className="text-caption lg:col-span-3">
+          <span className="text-xs leading-6 tracking-widest uppercase lg:col-span-3">
             {hostOf(item.href)}
             <span className="sr-only"> (opens in new tab)</span>
           </span>
@@ -38,13 +38,13 @@ const SidePage = () => (
     <h1 className="col-span-full mt-16 text-7xl leading-none tracking-tight sm:mt-24 sm:text-8xl lg:text-9xl">
       Side
     </h1>
-    <p className="col-span-full mt-10 max-w-[48ch] text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
+    <p className="col-span-full mt-10 max-w-md text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
       Products I am building, and the open-source libraries and templates behind them.
     </p>
 
     {sideSections.map((section) => (
       <section className="col-span-full mt-16 sm:mt-20" key={section.title}>
-        <h2 className="text-caption mb-4">{section.title}</h2>
+        <h2 className="mb-4 text-xs leading-6 tracking-widest uppercase">{section.title}</h2>
         <LinkList items={section.entries} />
       </section>
     ))}

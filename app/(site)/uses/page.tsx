@@ -16,13 +16,13 @@ const UsesPage = () => (
     <h1 className="col-span-full mt-16 text-7xl leading-none tracking-tight sm:mt-24 sm:text-8xl lg:text-9xl">
       /uses
     </h1>
-    <p className="col-span-full mt-10 max-w-[48ch] text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
+    <p className="col-span-full mt-10 max-w-md text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
       Hardware connected to my computer and development software I use locally.
     </p>
 
     {useGroups.map((group) => (
       <section className="col-span-full mt-16 sm:mt-20" key={group.title}>
-        <h2 className="text-caption mb-4">{group.title}</h2>
+        <h2 className="mb-4 text-xs leading-6 tracking-widest uppercase">{group.title}</h2>
         <dl className="flex flex-col gap-y-5 lg:gap-y-0">
           {group.sections.map((section) => (
             <div
@@ -41,7 +41,7 @@ const UsesPage = () => (
                         <span className="min-w-0 break-words lg:col-span-6">
                           <span className="link-draw">{item.name}</span>
                         </span>
-                        <span className="text-caption lg:col-span-3">
+                        <span className="text-xs leading-6 tracking-widest uppercase lg:col-span-3">
                           {hostOf(item.href)}
                           <span className="sr-only"> (opens in new tab)</span>
                         </span>

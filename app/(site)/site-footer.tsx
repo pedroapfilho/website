@@ -22,14 +22,14 @@ const SiteFooter = () => {
       <a
         className={`link-draw w-fit ${FOCUS_CLASS} ${
           isHome
-            ? "col-span-full text-3xl leading-none tracking-tight [--draw:2px] lg:col-end-9 lg:text-5xl"
-            : "text-caption col-span-full normal-case lg:col-span-4"
+            ? "col-span-full text-3xl leading-none tracking-tight lg:col-end-9 lg:text-5xl"
+            : "col-span-full text-xs leading-6 tracking-widest lg:col-span-4"
         }`}
         href={`mailto:${EMAIL}`}
       >
         {EMAIL}
       </a>
-      <div className="text-caption col-span-full flex flex-col lg:col-start-9 lg:col-end-13 lg:items-end">
+      <div className="col-span-full flex flex-col text-xs leading-6 tracking-widest uppercase lg:col-start-9 lg:col-end-13 lg:items-end">
         <span>usually on chain</span>
         <ul className="flex gap-5">
           {ELSEWHERE.map((item) => (

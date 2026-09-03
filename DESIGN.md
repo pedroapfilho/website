@@ -31,10 +31,10 @@ typography:
     letterSpacing: "normal"
   label:
     fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "0.6875rem"
+    fontSize: "0.75rem"
     fontWeight: 400
     lineHeight: "1.5rem"
-    letterSpacing: "0.08em"
+    letterSpacing: "0.1em"
 rounded:
   none: "0px"
 spacing:
@@ -140,10 +140,10 @@ Two inks and nothing else: the palette is the paper and the print.
 ### Hierarchy
 
 - **Display** (400, Tailwind `text-7xl` / `sm:text-8xl` / `lg:text-9xl`, so 4.5rem, 6rem, 8rem by breakpoint; `leading-none`; `tracking-tight`): the page title on every Poster surface ("gm, I'm Pedro.", "Side", "/uses"). Flush-left, spans the full grid, `text-wrap: balance` on the home greeting. The word "gm" is the only bold display text (700).
-- **Contact** (400, `text-3xl` / `lg:text-5xl`, so 1.875rem and 3rem; `leading-none`; `tracking-tight`): the email address on the home footer only, where it must be the second-largest thing on the sheet. Its draw-in underline is 2px here rather than 1px. Not a general-purpose headline size.
-- **Body** (400, 0.875rem / 1.5rem): index items, bio copy, list-page intros (max 48ch), row descriptions, and item names. Paragraphs in a stack sit 12px apart.
+- **Contact** (400, `text-3xl` / `lg:text-5xl`, so 1.875rem and 3rem; `leading-none`; `tracking-tight`): the email address on the home footer only, where it must be the second-largest thing on the sheet. Its draw-in underline scales with the type, so it reads heavier here. Not a general-purpose headline size.
+- **Body** (400, 0.875rem / 1.5rem): index items, bio copy, list-page intros (`max-w-md`), row descriptions, and item names. Paragraphs in a stack sit 12px apart.
 - **Body Strong** (700, 0.875rem / 1.5rem): the current index item, project and library names on /side, and the category terms (`<dt>`) on /uses.
-- **Label** (400, 0.6875rem / 1.5rem, tracking 0.08em, uppercase): section headings ("Projects", "Libraries", hardware/software groups), link hosts ("localveil.com"), and the footer's elsewhere links. This is the `text-caption` utility in `app/globals.css`. On the inner pages the footer email uses this size but stays in normal case so the address remains a readable address.
+- **Label** (400, 0.75rem / 1.5rem, tracking 0.1em, uppercase): section headings ("Projects", "Libraries", hardware/software groups), link hosts ("localveil.com"), and the footer's elsewhere links. This is the `text-xs leading-6 tracking-widest uppercase` utility in `app/globals.css`. On the inner pages the footer email uses this size but stays in normal case so the address remains a readable address.
 
 ### Named Rules
 
@@ -160,7 +160,7 @@ The sheet is the viewport. The `(site)` shell paints paper edge to edge and pads
 Placement at `lg` is asymmetric and fixed:
 
 - Page title: full span, flush-left, 96px below the index (64px on phones).
-- Intro copy and bio: columns 5 to 8, 64px below the title (40px on phones), max 48ch on the list pages.
+- Intro copy and bio: columns 5 to 8, 64px below the title (40px on phones), `max-w-md` (28rem) on the list pages.
 - Portrait (home): columns 11 to 12, right-aligned, top nudged 69px so it sits level with the bio.
 - List rows (/side): name in columns 1 to 3, description in 4 to 9, host in 10 to 12. On /uses the term takes columns 1 to 3 and each item splits the remaining nine as six for the name and three for the host.
 - Footer: 64px above it; email in columns 1 to 8 on home (1 to 4 on inner pages), the "elsewhere" block right-aligned in columns 9 to 12.
@@ -199,8 +199,8 @@ Everything is square. There is no radius anywhere in the world (`0px`): the port
 ### Draw-In Link
 
 - **Character:** the site's one authored interaction (`link-draw` utility).
-- **Style:** an ink-colored underline rendered as a background gradient at 0% width, anchored bottom-left, growing to 100% on `:hover` and `:focus-visible`, or when a parent `.group` row is hovered or focused. Weight defaults to 1px and is set per element with `--draw` (2px on the home email).
-- **Motion:** `background-size 480ms cubic-bezier(0.16, 1, 0.3, 1)`; disabled under `prefers-reduced-motion: reduce`.
+- **Style:** an ink-colored underline rendered as a background gradient at 0% width, anchored bottom-left, growing to 100% on `:hover` and `:focus-visible`, or when a parent `.group` row is hovered or focused. Weight defaults to 1px and is set per element with `(removed)` (2px on the home email).
+- **Motion:** `background-size 150ms (Tailwind's default transition duration) the theme's `--ease-out` curve`; disabled under `prefers-reduced-motion: reduce`.
 - **Focus:** paired with a 2px ink outline offset 4px on every focusable link.
 
 ### List Row (/side, /uses)
@@ -218,7 +218,7 @@ Everything is square. There is no radius anywhere in the world (`0px`): the port
 ### Contact Line (footer)
 
 - **Character:** the email is the destination of the page.
-- **Home:** `mailto:` link in Contact size (`text-3xl lg:text-5xl`, `tracking-tight`), columns 1 to 8, 2px draw-in underline.
+- **Home:** `mailto:` link in Contact size (`text-3xl lg:text-5xl`, `tracking-tight`), columns 1 to 8, draw-in underline that scales with the text.
 - **Inner pages:** the same link in Label size but normal case, columns 1 to 4.
 - **Elsewhere block:** right-aligned in columns 9 to 12, Label size: the line "usually on chain" above a 20px-gapped row of GitHub, X, YouTube, each an `ExternalLink` with the draw-in underline and an `sr-only` "(opens in new tab)".
 
@@ -236,7 +236,7 @@ Everything is square. There is no radius anywhere in the world (`0px`): the port
 
 - **Do** set every Poster surface in Host Grotesk on paper white with #000000 ink; the `(site)` shell applies `font-sans`, `bg-paper`, `text-ink`.
 - **Do** place a new page's title full-span at Display size and its intro in columns 5 to 8 at `lg`, 40/64px below.
-- **Do** use `text-caption` (11px, 0.08em, uppercase) for section labels, link hosts, and footer meta.
+- **Do** use `text-xs leading-6 tracking-widest uppercase` (11px, 0.1em, uppercase) for section labels, link hosts, and footer meta.
 - **Do** make a whole list row the link, mark it `.group`, and put `link-draw` on the name only.
 - **Do** pair `link-draw` with `outline-ink focus-visible:outline-2 focus-visible:outline-offset-4` on every focusable element.
 - **Do** route every off-site link through `ExternalLink` and add `<span class="sr-only"> (opens in new tab)</span>`.
