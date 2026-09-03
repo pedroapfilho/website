@@ -31,7 +31,7 @@ const IndexNav = () => {
               </span>
               <Link
                 aria-current={current ? "page" : undefined}
-                className="link-draw outline-ink focus-visible:outline-2 focus-visible:outline-offset-4"
+                className="link-draw outline-ring focus-visible:outline-2 focus-visible:outline-offset-4"
                 href={item.href}
               >
                 {item.label}

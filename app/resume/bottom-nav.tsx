@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ExternalLink } from "../external-link";
 
 const NAV_LINK_CLASS =
-  "hover:bg-primary-foreground hover:text-primary rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2";
+  "hover:bg-background hover:text-foreground rounded-lg px-2 py-2 font-normal text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2";
 
 type NavItem = {
   external: boolean;
@@ -23,7 +23,7 @@ const NAV_ITEMS: Array<NavItem> = [
 ];
 
 const BottomNav = () => (
-  <nav aria-label="Primary" className="bg-primary w-full py-4 print:hidden">
+  <nav aria-label="Primary" className="bg-background w-full py-4 print:hidden">
     <ul className="mx-auto flex w-full max-w-3xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 text-base sm:px-12 sm:text-sm">
       {NAV_ITEMS.map((item) => (
         <li key={item.href}>

@@ -2,8 +2,8 @@
 name: pedroapfilho.com
 description: One typographic poster in Host Grotesk, black on white; hierarchy comes from scale and grid position alone.
 colors:
-  paper: "#ffffff"
-  ink: "#000000"
+  background: "oklch(1 0 0)"
+  foreground: "oklch(0 0 0)"
 typography:
   display:
     fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
@@ -51,39 +51,39 @@ spacing:
   "24": "96px"
 components:
   page-shell:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body}"
     padding: "24px 20px 32px"
   page-shell-sm:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body}"
     padding: "40px 48px 40px"
   index-link:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body}"
   index-link-current:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body-strong}"
   section-label:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.label}"
   list-row:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body}"
     padding: "6px 0"
   list-row-name:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.body-strong}"
   list-row-host:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.label}"
   contact-home:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.contact}"
   contact-inline:
-    textColor: "{colors.ink}"
+    textColor: "{colors.foreground}"
     typography: "{typography.label}"
   portrait:
     rounded: "{rounded.none}"
@@ -113,19 +113,23 @@ Scope note: the world covers the `(site)` route group (home, /side, /uses). The 
 
 ## Colors
 
-Two inks and nothing else: the palette is the paper and the print.
+Two inks and nothing else, expressed through shadcn's semantic theme. `app/globals.css` declares the tokens as CSS variables in oklch on `:root` (with a `.dark` block that nothing toggles yet), maps them into Tailwind through `@theme inline`, and applies `border-border`, `outline-ring/50`, `bg-background`, and `text-foreground` in the base layer. Components use only the semantic classes; raw hex, `ink`, and `paper` no longer exist.
 
 ### Primary
 
-- **Ink** (#000000): all text, the focus outline, and the underline that draws in on hover. There is no lighter tint of ink; secondary information is demoted by size and tracking (the 11px caption), never by opacity.
+- **foreground** (`oklch(0 0 0)`): all text, the focus outline (`ring`), and the underline that draws in on hover. `primary` is the same black, `primary-foreground` the same white, so an inverted control (the resume nav's hover) is `bg-primary text-primary-foreground`.
 
 ### Neutral
 
-- **Paper** (#ffffff): the ground of every Poster surface. Nothing sits on top of the paper except ink and the one grayscale photograph; there are no surface containers, panels, or fills.
+- **background** (`oklch(1 0 0)`): the ground of every surface. No containers, panels, or fills sit on it.
+- **muted-foreground** (`oklch(0.5 0 0)`): the only gray, used by the resume document for labels, dates, and bullets. Poster surfaces demote secondary text by size and tracking, never by color.
+- **border** (`oklch(0 0 0 / 10%)`): the resume's hairline section rules. Poster surfaces draw no rules.
 
 ### Named Rules
 
-**The Two-Ink Rule.** Every Poster surface is #000000 on #ffffff. No accent, no gray, no opacity ramp. If something needs to read as secondary, set it in the caption size, not in a lighter color.
+**The Two-Ink Rule.** Every Poster surface is `foreground` on `background`. No accent, no gray, no opacity ramp. If something needs to read as secondary, set it in the caption size, not in a lighter color.
+
+**The Semantic Token Rule.** Colors are referenced only through the shadcn names (`background`, `foreground`, `primary`, `muted-foreground`, `border`, `ring`). Opacity modifiers on those names are allowed (`text-foreground/80`, `outline-ring/50`); new raw values are not.
 
 **The Grayscale Portrait Rule.** Photography is desaturated (`filter: grayscale(100%)`) so an image never introduces a third color to the sheet.
 

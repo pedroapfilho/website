@@ -16,7 +16,7 @@ const LinkList = ({ items }: { items: Array<SideEntry> }) => (
     {items.map((item) => (
       <li key={item.name}>
         <ExternalLink
-          className="group outline-ink grid grid-cols-1 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-12 lg:gap-x-6 lg:py-1.5"
+          className="group outline-ring grid grid-cols-1 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-12 lg:gap-x-6 lg:py-1.5"
           href={item.href}
         >
           <span className="min-w-0 break-words lg:col-span-3">

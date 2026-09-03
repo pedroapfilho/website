@@ -35,7 +35,7 @@ const UsesPage = () => (
                   {section.items.map((item) => (
                     <li key={item.href}>
                       <ExternalLink
-                        className="group outline-ink grid grid-cols-1 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-9 lg:gap-x-6"
+                        className="group outline-ring grid grid-cols-1 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-9 lg:gap-x-6"
                         href={item.href}
                       >
                         <span className="min-w-0 break-words lg:col-span-6">

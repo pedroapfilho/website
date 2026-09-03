@@ -12,7 +12,7 @@ const ELSEWHERE = [
   { href: "https://youtube.com/c/ohmyfunction", label: "YouTube" },
 ];
 
-const FOCUS_CLASS = "outline-ink focus-visible:outline-2 focus-visible:outline-offset-4";
+const FOCUS_CLASS = "outline-ring focus-visible:outline-2 focus-visible:outline-offset-4";
 
 const SiteFooter = () => {
   const isHome = usePathname() === "/";
