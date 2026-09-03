@@ -9,27 +9,23 @@ const metadata: Metadata = {
   title: "Side",
 };
 
+const hostOf = (href: string) => new URL(href).hostname.replace(/^www\./v, "");
+
 const LinkList = ({ items }: { items: Array<SideEntry> }) => (
-  <ul className="border-primary-foreground/10 border-t">
+  <ul className="flex flex-col gap-y-5 lg:gap-y-0">
     {items.map((item) => (
-      <li className="border-primary-foreground/10 border-b" key={item.name}>
+      <li key={item.name}>
         <ExternalLink
-          className="group flex items-start justify-between gap-4 py-4 no-underline focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="group outline-ink grid grid-cols-1 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-12 lg:gap-x-6 lg:py-1.5"
           href={item.href}
         >
-          <div className="flex min-w-0 flex-col gap-1">
-            <div className="decoration-primary-foreground/30 group-hover:decoration-primary-foreground font-normal underline underline-offset-4">
-              {item.name}
-            </div>
-            <p className="text-primary-foreground/70 text-base text-pretty sm:text-sm">
-              {item.description}
-            </p>
-          </div>
-          <span
-            aria-hidden="true"
-            className="text-primary-foreground/50 group-hover:text-primary-foreground shrink-0"
-          >
-            ↗
+          <span className="min-w-0 break-words lg:col-span-3">
+            <span className="link-draw font-bold">{item.name}</span>
+          </span>
+          <span className="text-pretty lg:col-span-6">{item.description}</span>
+          <span className="text-caption lg:col-span-3">
+            {hostOf(item.href)}
+            <span className="sr-only"> (opens in new tab)</span>
           </span>
         </ExternalLink>
       </li>
@@ -38,21 +34,21 @@ const LinkList = ({ items }: { items: Array<SideEntry> }) => (
 );
 
 const SidePage = () => (
-  <div className="flex flex-1 flex-col gap-10 pt-14 pb-12 sm:pt-16">
-    <header className="flex flex-col gap-3">
-      <h1 className="text-3xl font-medium tracking-tight text-balance">Side</h1>
-      <p className="max-w-[64ch] text-base text-pretty sm:text-sm">
-        Products I am building, and the open-source libraries and templates behind them.
-      </p>
-    </header>
+  <>
+    <h1 className="col-span-full mt-16 text-[clamp(4.5rem,10.2vw,9.375rem)] leading-[0.92] tracking-[-0.035em] sm:mt-24">
+      Side
+    </h1>
+    <p className="col-span-full mt-10 max-w-[48ch] text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
+      Products I am building, and the open-source libraries and templates behind them.
+    </p>
 
     {sideSections.map((section) => (
-      <section className="flex flex-col gap-4" key={section.title}>
-        <h2 className="text-lg font-medium tracking-tight">{section.title}</h2>
+      <section className="col-span-full mt-16 sm:mt-20" key={section.title}>
+        <h2 className="text-caption mb-4">{section.title}</h2>
         <LinkList items={section.entries} />
       </section>
     ))}
-  </div>
+  </>
 );
 
 export const instant = true;

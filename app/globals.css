@@ -3,9 +3,12 @@
 @theme inline {
   --color-primary: #ffffff;
   --color-primary-foreground: #1a1a1a;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
   --font-mono:
     var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
+  --font-sans: var(--font-host), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer base {
@@ -23,5 +26,36 @@
 
   ::selection {
     @apply bg-primary-foreground text-primary;
+  }
+}
+
+/* Poster caption: the third and smallest size in the type scale. */
+@utility text-caption {
+  font-size: 0.6875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The site's one authored interaction: an underline that draws in from the
+   left on hover or focus, on the link itself or when its `.group` row is
+   hovered. `--draw` sets the rule weight. */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% var(--draw, 1px);
+  padding-bottom: 0.06em;
+  transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover,
+  &:focus-visible,
+  .group:hover &,
+  .group:focus-visible & {
+    background-size: 100% var(--draw, 1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }

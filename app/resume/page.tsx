@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { BottomNav } from "./bottom-nav";
 import { type IsoMonth, type Job, resume } from "./data";
 
 const metadata: Metadata = {
@@ -150,53 +151,56 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
 );
 
 const ResumePage = () => (
-  <article className="mx-auto max-w-3xl px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
-    <nav className="text-primary-foreground/60 mb-10 flex items-center justify-between text-sm print:hidden">
-      <Link className="hover:text-primary-foreground" href="/">
-        ← back
-      </Link>
-      {/* oxlint-disable-next-line react-doctor/nextjs-no-a-element -- /resume.pdf is a static asset, not a route: Link would try to client-navigate to it. */}
-      <a
-        className="hover:text-primary-foreground"
-        href="/resume.pdf"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        download as PDF →
-      </a>
-    </nav>
+  <>
+    <article className="mx-auto max-w-3xl px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
+      <nav className="text-primary-foreground/60 mb-10 flex items-center justify-between text-sm print:hidden">
+        <Link className="hover:text-primary-foreground" href="/">
+          ← back
+        </Link>
+        {/* oxlint-disable-next-line react-doctor/nextjs-no-a-element -- /resume.pdf is a static asset, not a route: Link would try to client-navigate to it. */}
+        <a
+          className="hover:text-primary-foreground"
+          href="/resume.pdf"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          download as PDF →
+        </a>
+      </nav>
 
-    <Header />
+      <Header />
 
-    <Section title="About">
-      <p className="text-pretty">{resume.summary}</p>
-    </Section>
+      <Section title="About">
+        <p className="text-pretty">{resume.summary}</p>
+      </Section>
 
-    <Section title="Skills">
-      <Skills />
-    </Section>
+      <Section title="Skills">
+        <Skills />
+      </Section>
 
-    <Section title="Experience">
-      <ol className="flex flex-col gap-6">
-        {resume.experience.map((job, index) => (
-          <li key={`${job.company}-${job.start}`}>
-            <JobEntry end={resume.experience[index - 1]?.start ?? null} job={job} />
-          </li>
-        ))}
-      </ol>
-    </Section>
+      <Section title="Experience">
+        <ol className="flex flex-col gap-6">
+          {resume.experience.map((job, index) => (
+            <li key={`${job.company}-${job.start}`}>
+              <JobEntry end={resume.experience[index - 1]?.start ?? null} job={job} />
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-    <Section title="Education">
-      <p>
-        <span className="font-medium">{resume.education.degree}</span>
-        <span className="text-primary-foreground/60"> · {resume.education.school}</span>
-      </p>
-    </Section>
+      <Section title="Education">
+        <p>
+          <span className="font-medium">{resume.education.degree}</span>
+          <span className="text-primary-foreground/60"> · {resume.education.school}</span>
+        </p>
+      </Section>
 
-    <Section title="Languages">
-      <Languages />
-    </Section>
-  </article>
+      <Section title="Languages">
+        <Languages />
+      </Section>
+    </article>
+    <BottomNav />
+  </>
 );
 
 export const instant = true;

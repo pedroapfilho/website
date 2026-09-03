@@ -27,3 +27,10 @@ yarn-error.log*
 
 .idea
 .vscode
+
+# Impeccable working files (screenshots, mocks, transient state); design records stay tracked
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/live/
+.impeccable/questions/

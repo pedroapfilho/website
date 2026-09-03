@@ -9,47 +9,53 @@ const metadata: Metadata = {
   title: "/uses",
 };
 
-const UsesPage = () => (
-  <div className="flex flex-1 flex-col gap-10 pt-14 pb-12 sm:pt-16">
-    <header className="flex flex-col gap-3">
-      <h1 className="text-3xl font-medium tracking-tight text-balance">/uses</h1>
-      <p className="max-w-[64ch] text-base text-pretty sm:text-sm">
-        Hardware connected to my computer and development software I use locally.
-      </p>
-    </header>
+const hostOf = (href: string) => new URL(href).hostname.replace(/^www\./v, "");
 
-    <div className="flex flex-col gap-10">
-      {useGroups.map((group) => (
-        <section className="flex flex-col gap-4" key={group.title}>
-          <h2 className="text-base font-medium">{group.title}</h2>
-          <dl className="border-primary-foreground/10 border-t">
-            {group.sections.map((section) => (
-              <div
-                className="border-primary-foreground/10 grid gap-2 border-b py-5 sm:grid-cols-[10rem_1fr] sm:gap-6"
-                key={section.title}
-              >
-                <dt className="font-medium">{section.title}</dt>
-                <dd>
-                  <ul className="flex flex-col gap-1">
-                    {section.items.map((item) => (
-                      <li className="text-base sm:text-sm" key={item.href}>
-                        <ExternalLink
-                          className="decoration-primary-foreground/30 hover:decoration-primary-foreground underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
-                          href={item.href}
-                        >
-                          {item.name}
-                        </ExternalLink>
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      ))}
-    </div>
-  </div>
+const UsesPage = () => (
+  <>
+    <h1 className="col-span-full mt-16 text-[clamp(4.5rem,10.2vw,9.375rem)] leading-[0.92] tracking-[-0.035em] sm:mt-24">
+      /uses
+    </h1>
+    <p className="col-span-full mt-10 max-w-[48ch] text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
+      Hardware connected to my computer and development software I use locally.
+    </p>
+
+    {useGroups.map((group) => (
+      <section className="col-span-full mt-16 sm:mt-20" key={group.title}>
+        <h2 className="text-caption mb-4">{group.title}</h2>
+        <dl className="flex flex-col gap-y-5 lg:gap-y-0">
+          {group.sections.map((section) => (
+            <div
+              className="grid grid-cols-1 text-sm leading-6 lg:grid-cols-12 lg:gap-x-6 lg:py-1.5"
+              key={section.title}
+            >
+              <dt className="font-bold lg:col-span-3">{section.title}</dt>
+              <dd className="lg:col-span-9">
+                <ul className="flex flex-col gap-y-2 lg:gap-y-0">
+                  {section.items.map((item) => (
+                    <li key={item.href}>
+                      <ExternalLink
+                        className="group outline-ink grid grid-cols-1 focus-visible:outline-2 focus-visible:outline-offset-4 lg:grid-cols-9 lg:gap-x-6"
+                        href={item.href}
+                      >
+                        <span className="min-w-0 break-words lg:col-span-6">
+                          <span className="link-draw">{item.name}</span>
+                        </span>
+                        <span className="text-caption lg:col-span-3">
+                          {hostOf(item.href)}
+                          <span className="sr-only"> (opens in new tab)</span>
+                        </span>
+                      </ExternalLink>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+  </>
 );
 
 export const instant = true;

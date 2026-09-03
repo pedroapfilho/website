@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-03T00:00:00Z",
+  "title": "Design System: pedroapfilho.com",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "#000000",
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#a6a6a6",
+          "#bfbfbf"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#a6a6a6",
+          "#bfbfbf",
+          "#ffffff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (monumental)",
+        "purpose": "The page title on every Poster surface; flush-left, full span. Only the word \"gm\" is bold."
+      },
+      "contact": {
+        "displayName": "Contact",
+        "purpose": "The home-footer email only; the second-largest thing on the sheet. Not a general headline size."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Index items, bio copy, list intros (max 48ch), row descriptions, item names."
+      },
+      "body-strong": {
+        "displayName": "Body Strong",
+        "purpose": "Current index item, /side project and library names, /uses category terms."
+      },
+      "label": {
+        "displayName": "Label (caption)",
+        "purpose": "Section headings, link hosts, footer meta; uppercase with 0.08em tracking (the text-caption utility)."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "link-draw",
+        "value": "background-size 480ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The draw-in underline on hover/focus; disabled under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Index Nav",
+      "kind": "nav",
+      "refersTo": "index-link",
+      "description": "Numbered table of contents, top-left on every page; current item bold with aria-current.",
+      "html": "<nav aria-label=\"Primary\"><ol class=\"ds-index\"><li class=\"ds-index-item ds-index-item--current\"><span aria-hidden=\"true\" class=\"ds-index-num\">1</span><a class=\"ds-index-link ds-link-draw\" href=\"#\" aria-current=\"page\">Pedro</a></li><li class=\"ds-index-item\"><span aria-hidden=\"true\" class=\"ds-index-num\">2</span><a class=\"ds-index-link ds-link-draw\" href=\"#\">Side</a></li><li class=\"ds-index-item\"><span aria-hidden=\"true\" class=\"ds-index-num\">3</span><a class=\"ds-index-link ds-link-draw\" href=\"#\">/uses</a></li><li class=\"ds-index-item\"><span aria-hidden=\"true\" class=\"ds-index-num\">4</span><a class=\"ds-index-link ds-link-draw\" href=\"#\">Resume</a></li></ol></nav>",
+      "css": ".ds-index { list-style: none; margin: 0; padding: 0; font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 0.875rem; line-height: 1.5rem; color: #000; background: #fff; } .ds-index-item { display: flex; gap: 0.5rem; font-weight: 400; } .ds-index-item--current { font-weight: 700; } .ds-index-num { width: 0.75rem; font-variant-numeric: tabular-nums; } .ds-index-link { color: inherit; text-decoration: none; } .ds-index-link:focus-visible { outline: 2px solid #000; outline-offset: 4px; } .ds-link-draw { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% var(--draw, 1px); padding-bottom: 0.06em; transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link-draw:hover, .ds-link-draw:focus-visible { background-size: 100% var(--draw, 1px); } @media (prefers-reduced-motion: reduce) { .ds-link-draw { transition: none; } }"
+    },
+    {
+      "name": "Draw-In Link",
+      "kind": "custom",
+      "refersTo": "index-link",
+      "description": "The site's one interaction: an ink underline that draws in from the left on hover or focus.",
+      "html": "<a class=\"ds-link ds-link-draw\" href=\"#\">pedro@filho.me</a>",
+      "css": ".ds-link { font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 0.875rem; line-height: 1.5rem; color: #000; text-decoration: none; } .ds-link:focus-visible { outline: 2px solid #000; outline-offset: 4px; } .ds-link-draw { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% var(--draw, 1px); padding-bottom: 0.06em; transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link-draw:hover, .ds-link-draw:focus-visible { background-size: 100% var(--draw, 1px); } @media (prefers-reduced-motion: reduce) { .ds-link-draw { transition: none; } }"
+    },
+    {
+      "name": "List Row",
+      "kind": "custom",
+      "refersTo": "list-row",
+      "description": "A /side row: the whole row is the external link; name bold, description plain, host in tracked caps; hovering the row draws the underline under the name.",
+      "html": "<a class=\"ds-row\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\"><span class=\"ds-row-name\"><span class=\"ds-link-draw\">localveil</span></span><span class=\"ds-row-desc\">Redacts personal data from text, PDFs, and images entirely on your own machine.</span><span class=\"ds-row-host\">localveil.com<span class=\"ds-sr-only\"> (opens in new tab)</span></span></a>",
+      "css": ".ds-row { display: grid; grid-template-columns: 3fr 6fr 3fr; column-gap: 1.5rem; padding: 6px 0; font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 0.875rem; line-height: 1.5rem; color: #000; text-decoration: none; background: #fff; } .ds-row:focus-visible { outline: 2px solid #000; outline-offset: 4px; } .ds-row-name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; } .ds-row-host { font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; } .ds-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; } .ds-link-draw { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% 1px; padding-bottom: 0.06em; transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row:hover .ds-link-draw, .ds-row:focus-visible .ds-link-draw { background-size: 100% 1px; } @media (prefers-reduced-motion: reduce) { .ds-link-draw { transition: none; } }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": "section-label",
+      "description": "An h2 in the caption size: 11px, 0.08em tracking, uppercase, 16px below.",
+      "html": "<h2 class=\"ds-section-label\">Projects</h2>",
+      "css": ".ds-section-label { margin: 0 0 1rem; font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 0.6875rem; line-height: 1.5rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: #000; }"
+    },
+    {
+      "name": "Contact Line (home)",
+      "kind": "custom",
+      "refersTo": "contact-home",
+      "description": "The home-footer email at Contact size with a 2px draw-in underline; the second-largest thing on the sheet.",
+      "html": "<a class=\"ds-contact ds-link-draw\" href=\"mailto:pedro@filho.me\">pedro@filho.me</a>",
+      "css": ".ds-contact { --draw: 2px; display: inline-block; width: fit-content; font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: clamp(1.625rem, 3.2vw, 3rem); line-height: 1; letter-spacing: -0.02em; font-weight: 400; color: #000; text-decoration: none; } .ds-contact:focus-visible { outline: 2px solid #000; outline-offset: 4px; } .ds-link-draw { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% var(--draw, 1px); padding-bottom: 0.06em; transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link-draw:hover, .ds-link-draw:focus-visible { background-size: 100% var(--draw, 1px); } @media (prefers-reduced-motion: reduce) { .ds-link-draw { transition: none; } }"
+    },
+    {
+      "name": "Elsewhere Block",
+      "kind": "nav",
+      "refersTo": "contact-inline",
+      "description": "Footer meta in the caption size: a location line above a 20px-gapped row of external links.",
+      "html": "<div class=\"ds-elsewhere\"><span>usually on chain</span><ul class=\"ds-elsewhere-list\"><li><a class=\"ds-elsewhere-link ds-link-draw\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">GitHub<span class=\"ds-sr-only\"> (opens in new tab)</span></a></li><li><a class=\"ds-elsewhere-link ds-link-draw\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">X<span class=\"ds-sr-only\"> (opens in new tab)</span></a></li><li><a class=\"ds-elsewhere-link ds-link-draw\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">YouTube<span class=\"ds-sr-only\"> (opens in new tab)</span></a></li></ul></div>",
+      "css": ".ds-elsewhere { display: flex; flex-direction: column; align-items: flex-end; font-family: var(--font-host, 'Host Grotesk'), 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 0.6875rem; line-height: 1.5rem; letter-spacing: 0.08em; text-transform: uppercase; color: #000; } .ds-elsewhere-list { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; } .ds-elsewhere-link { display: inline-block; color: inherit; text-decoration: none; } .ds-elsewhere-link:focus-visible { outline: 2px solid #000; outline-offset: 4px; } .ds-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; } .ds-link-draw { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0% 1px; padding-bottom: 0.06em; transition: background-size 480ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link-draw:hover, .ds-link-draw:focus-visible { background-size: 100% 1px; } @media (prefers-reduced-motion: reduce) { .ds-link-draw { transition: none; } }"
+    },
+    {
+      "name": "Portrait",
+      "kind": "custom",
+      "refersTo": "portrait",
+      "description": "The profile photo at 120px square, grayscale, square corners.",
+      "html": "<img class=\"ds-portrait\" alt=\"Pedro Filho\" width=\"120\" height=\"120\" src=\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><rect width='120' height='120' fill='%23808080'/></svg>\">",
+      "css": ".ds-portrait { display: block; width: 120px; height: 120px; border-radius: 0; filter: grayscale(100%); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Poster",
+    "overview": "The whole site is one sheet of paper in the Swiss International Typographic Style. There is no chrome, no card, no rule, no accent: a single grotesk set in three sizes on a white ground, and a 12-column grid that decides where each thing lands. Hierarchy is carried by scale and position only. The greeting (\"gm, I'm Pedro.\") is set at monumental size against a near-empty sheet, and the scale jump from that line to the 14px bio is the memorable moment; everything else on the page is deliberately quiet so that jump reads.\n\nDensity is low and asymmetric. The index sits top-left, the headline runs flush-left across the sheet, the intro copy is pushed to columns 5 through 8, the portrait is small and grayscale in the last two columns, and the email is the second-largest thing on the home page, anchored bottom-left. On the list pages (/side, /uses) the same grid becomes a ruler: rows are separated by column alignment and six pixels of padding, never by a line. The world refuses the terminal/README dev-site default and the centered-avatar hero.\n\nScope note: the world covers the (site) route group (home, /side, /uses). The /resume route is a scoped legacy surface that deliberately keeps the incumbent monospace theme (IBM Plex Mono, #1a1a1a on white, hairline section rules, opacity-ramped grays, a rounded bottom nav) because it is the print source for public/resume.pdf. Do not extend that treatment to new surfaces, and do not restyle the resume without a decision about the PDF pipeline.",
+    "keyCharacteristics": [
+      "Paper white and one black; no accent, no gray ramp; even the photograph is grayscale.",
+      "One typeface (Host Grotesk) in three sizes: monumental, 14px text, 11px tracked uppercase.",
+      "Bold in exactly three places: the greeting \"gm\", the current index item, and list row names.",
+      "Asymmetric 12-column grid at 1024px and up; six columns below; 48px page margins on the sheet, 20px on phones.",
+      "No hairlines, borders, shadows, radii, icons, or glyphs anywhere in the world.",
+      "One interaction: an underline that draws in from the left on hover or focus."
+    ],
+    "rules": [
+      {
+        "name": "The Two-Ink Rule",
+        "body": "Every Poster surface is #000000 on #ffffff. No accent, no gray, no opacity ramp. If something needs to read as secondary, set it in the caption size, not in a lighter color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Grayscale Portrait Rule",
+        "body": "Photography is desaturated (filter: grayscale(100%)) so an image never introduces a third color to the sheet.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Sizes Rule",
+        "body": "Monumental, text, caption. Every new element must be one of these three; the home-footer contact size is the single sanctioned exception, and it belongs only to the email.",
+        "section": "typography"
+      },
+      {
+        "name": "The Three Bolds Rule",
+        "body": "Weight 700 appears only on \"gm\", the current index item, and list row names. Nothing else is bold; emphasis inside prose is italic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Caption Is the Signifier Rule",
+        "body": "An external link is signified by its host name set in tracked caps in the row's last columns. No arrow glyph, no icon, no \"opens in new tab\" in the visible text; that phrase lives in sr-only for screen readers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Grid Is the Ruler Rule",
+        "body": "Rows and sections are separated by column alignment and whitespace only. If two things need dividing, give them grid position or a spacing step, never a line.",
+        "section": "layout"
+      },
+      {
+        "name": "The Column 5 Rule",
+        "body": "Running copy at lg starts in column 5. The empty first four columns to the left of the intro are the composition; do not fill them.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Plane Rule",
+        "body": "No box-shadow, no backdrop-filter, no background fills behind text. A new surface that needs containment gets a grid position, not a card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set every Poster surface in Host Grotesk on paper white with #000000 ink; the (site) shell applies font-sans, bg-paper, text-ink.",
+      "Do place a new page's title full-span at Display size and its intro in columns 5 to 8 at lg, 40/64px below.",
+      "Do use text-caption (11px, 0.08em, uppercase) for section labels, link hosts, and footer meta.",
+      "Do make a whole list row the link, mark it .group, and put link-draw on the name only.",
+      "Do pair link-draw with outline-ink focus-visible:outline-2 focus-visible:outline-offset-4 on every focusable element.",
+      "Do route every off-site link through ExternalLink and add <span class=\"sr-only\"> (opens in new tab)</span>.",
+      "Do keep the numbered index top-left on every page with the current item bold and aria-current=\"page\".",
+      "Do desaturate any photograph to grayscale before it touches the sheet."
+    ],
+    "donts": [
+      "Don't add a hairline, border, divider, <hr>, or ruled row; the grid and whitespace are the only separators.",
+      "Don't introduce an accent color, a gray text tint, or an opacity ramp; demote with the caption size instead.",
+      "Don't use bold outside \"gm\", the current index item, and list row names; emphasize prose with italic.",
+      "Don't add a fourth type size. The home-email Contact size belongs to the email alone.",
+      "Don't use shadows, radii, background fills, cards, chips, or pills.",
+      "Don't add arrow glyphs (↗), icons, or illustrations; the host name in tracked caps is the external signifier.",
+      "Don't add a second hover or focus treatment; the draw-in underline plus the ink outline is the whole interaction vocabulary.",
+      "Don't carry the /resume monospace theme (IBM Plex Mono, #1a1a1a, hairlines, opacity grays, rounded nav) into any Poster surface."
+    ]
+  }
+}

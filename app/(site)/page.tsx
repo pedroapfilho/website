@@ -3,36 +3,32 @@ import Image from "next/image";
 import profileImage from "./profile.jpg";
 
 const Home = () => (
-  <div className="flex flex-1 flex-col items-center justify-center gap-8 py-8">
-    <div className="m-4 overflow-hidden rounded-lg">
-      <Image
-        alt="Profile Image"
-        fetchPriority="high"
-        height={128}
-        placeholder="blur"
-        priority
-        src={profileImage}
-        width={128}
-      />
-    </div>
+  <>
+    <h1 className="col-span-full mt-16 text-[clamp(4.5rem,10.2vw,9.375rem)] leading-[0.92] tracking-[-0.035em] text-balance sm:mt-24">
+      <b className="font-bold">gm</b>, I&apos;m Pedro.
+    </h1>
 
-    <div className="flex flex-col gap-2 text-center">
-      <h1 className="text-2xl tracking-tight text-balance">
-        <span className="font-semibold">gm</span>, I&apos;m Pedro.
-      </h1>
-
-      <h2 className="text-base">
+    <div className="col-span-full mt-10 flex flex-col gap-3 text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
+      <p>
         I like to write code <i>sometimes</i>.
-      </h2>
-    </div>
-
-    <div className="text-center">
-      <p className="text-base text-pretty sm:text-sm">
+      </p>
+      <p>
         Usually I work on the crypto space, as a product engineer, but you can find me working on
         other projects as well, <i>just for fun</i>.
       </p>
     </div>
-  </div>
+
+    <Image
+      alt="Pedro Filho"
+      className="col-span-full mt-8 grayscale lg:col-start-11 lg:col-end-13 lg:mt-[4.3125rem] lg:justify-self-end"
+      fetchPriority="high"
+      height={120}
+      placeholder="blur"
+      priority
+      src={profileImage}
+      width={120}
+    />
+  </>
 );
 
 export const instant = true;
