@@ -20,7 +20,7 @@ const IndexNav = () => {
 
   return (
     <nav aria-label="Primary">
-      <ol className="text-sm leading-6">
+      <ol className="flex flex-col gap-2 text-sm leading-6">
         {INDEX_ITEMS.map((item, index) => {
           const current = pathname === item.href;
 
