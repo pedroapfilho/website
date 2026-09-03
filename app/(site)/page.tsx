@@ -4,7 +4,7 @@ import profileImage from "./profile.jpg";
 
 const Home = () => (
   <>
-    <h1 className="col-span-full mt-16 text-[clamp(4.5rem,10.2vw,9.375rem)] leading-[0.92] tracking-[-0.035em] text-balance sm:mt-24">
+    <h1 className="col-span-full mt-16 text-7xl leading-none tracking-tight text-balance sm:mt-24 sm:text-8xl lg:text-9xl">
       <b className="font-bold">gm</b>, I&apos;m Pedro.
     </h1>
 

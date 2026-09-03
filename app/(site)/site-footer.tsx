@@ -22,7 +22,7 @@ const SiteFooter = () => {
       <a
         className={`link-draw w-fit ${FOCUS_CLASS} ${
           isHome
-            ? "col-span-full text-[clamp(1.625rem,3.2vw,3rem)] leading-none tracking-[-0.02em] [--draw:2px] lg:col-end-9"
+            ? "col-span-full text-3xl leading-none tracking-tight [--draw:2px] lg:col-end-9 lg:text-5xl"
             : "text-caption col-span-full normal-case lg:col-span-4"
         }`}
         href={`mailto:${EMAIL}`}

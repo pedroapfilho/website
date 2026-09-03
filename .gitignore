@@ -27,6 +27,3 @@ yarn-error.log*
 
 .idea
 .vscode
-
-# Impeccable working files
-.impeccable/

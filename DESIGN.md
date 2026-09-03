@@ -7,16 +7,16 @@ colors:
 typography:
   display:
     fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(4.5rem, 10.2vw, 9.375rem)"
-    fontWeight: 400
-    lineHeight: 0.92
-    letterSpacing: "-0.035em"
-  contact:
-    fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(1.625rem, 3.2vw, 3rem)"
+    fontSize: "8rem"
     fontWeight: 400
     lineHeight: 1
-    letterSpacing: "-0.02em"
+    letterSpacing: "-0.025em"
+  contact:
+    fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "3rem"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "-0.025em"
   body:
     fontFamily: "Host Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "0.875rem"
@@ -139,8 +139,8 @@ Two inks and nothing else: the palette is the paper and the print.
 
 ### Hierarchy
 
-- **Display** (400, `clamp(4.5rem, 10.2vw, 9.375rem)`, line-height 0.92, tracking -0.035em): the page title on every Poster surface ("gm, I'm Pedro.", "Side", "/uses"). Flush-left, spans the full grid, `text-wrap: balance` on the home greeting. The word "gm" is the only bold display text (700).
-- **Contact** (400, `clamp(1.625rem, 3.2vw, 3rem)`, line-height 1, tracking -0.02em): the email address on the home footer only, where it must be the second-largest thing on the sheet. Its draw-in underline is 2px here rather than 1px. Not a general-purpose headline size.
+- **Display** (400, Tailwind `text-7xl` / `sm:text-8xl` / `lg:text-9xl`, so 4.5rem, 6rem, 8rem by breakpoint; `leading-none`; `tracking-tight`): the page title on every Poster surface ("gm, I'm Pedro.", "Side", "/uses"). Flush-left, spans the full grid, `text-wrap: balance` on the home greeting. The word "gm" is the only bold display text (700).
+- **Contact** (400, `text-3xl` / `lg:text-5xl`, so 1.875rem and 3rem; `leading-none`; `tracking-tight`): the email address on the home footer only, where it must be the second-largest thing on the sheet. Its draw-in underline is 2px here rather than 1px. Not a general-purpose headline size.
 - **Body** (400, 0.875rem / 1.5rem): index items, bio copy, list-page intros (max 48ch), row descriptions, and item names. Paragraphs in a stack sit 12px apart.
 - **Body Strong** (700, 0.875rem / 1.5rem): the current index item, project and library names on /side, and the category terms (`<dt>`) on /uses.
 - **Label** (400, 0.6875rem / 1.5rem, tracking 0.08em, uppercase): section headings ("Projects", "Libraries", hardware/software groups), link hosts ("localveil.com"), and the footer's elsewhere links. This is the `text-caption` utility in `app/globals.css`. On the inner pages the footer email uses this size but stays in normal case so the address remains a readable address.
@@ -218,7 +218,7 @@ Everything is square. There is no radius anywhere in the world (`0px`): the port
 ### Contact Line (footer)
 
 - **Character:** the email is the destination of the page.
-- **Home:** `mailto:` link in Contact size (`clamp(1.625rem, 3.2vw, 3rem)`, tracking -0.02em), columns 1 to 8, 2px draw-in underline.
+- **Home:** `mailto:` link in Contact size (`text-3xl lg:text-5xl`, `tracking-tight`), columns 1 to 8, 2px draw-in underline.
 - **Inner pages:** the same link in Label size but normal case, columns 1 to 4.
 - **Elsewhere block:** right-aligned in columns 9 to 12, Label size: the line "usually on chain" above a 20px-gapped row of GitHub, X, YouTube, each an `ExternalLink` with the draw-in underline and an `sr-only` "(opens in new tab)".
 

@@ -13,7 +13,7 @@ const hostOf = (href: string) => new URL(href).hostname.replace(/^www\./v, "");
 
 const UsesPage = () => (
   <>
-    <h1 className="col-span-full mt-16 text-[clamp(4.5rem,10.2vw,9.375rem)] leading-[0.92] tracking-[-0.035em] sm:mt-24">
+    <h1 className="col-span-full mt-16 text-7xl leading-none tracking-tight sm:mt-24 sm:text-8xl lg:text-9xl">
       /uses
     </h1>
     <p className="col-span-full mt-10 max-w-[48ch] text-sm leading-6 text-pretty lg:col-start-5 lg:col-end-9 lg:mt-16">
