@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
-import { ExternalLink } from "../external-link";
+import { ExternalLink } from "@/app/external-link";
+import { cn } from "@/lib/utils";
 
 const EMAIL = "pedro@filho.me";
 
@@ -12,19 +13,19 @@ const ELSEWHERE = [
   { href: "https://youtube.com/c/ohmyfunction", label: "YouTube" },
 ];
 
-const FOCUS_CLASS = "outline-ring focus-visible:outline-2 focus-visible:outline-offset-4";
-
 const SiteFooter = () => {
   const isHome = usePathname() === "/";
 
   return (
     <footer className="mt-16 grid grid-cols-6 items-end gap-x-4 gap-y-6 lg:grid-cols-12 lg:gap-x-6">
       <a
-        className={`link-draw w-fit ${FOCUS_CLASS} ${
+        className={cn(
+          "link-draw outline-ring col-span-full w-fit focus-visible:outline-2 focus-visible:outline-offset-4",
           isHome
-            ? "col-span-full text-3xl leading-none tracking-tight lg:col-end-9 lg:text-5xl"
-            : "col-span-full text-xs leading-6 tracking-widest lg:col-span-4"
-        }`}
+            ? "text-3xl leading-none tracking-tight lg:col-end-9"
+            : "text-xs leading-6 tracking-widest lg:col-span-4",
+          isHome && "lg:text-5xl",
+        )}
         href={`mailto:${EMAIL}`}
       >
         {EMAIL}
@@ -34,7 +35,10 @@ const SiteFooter = () => {
         <ul className="flex gap-5">
           {ELSEWHERE.map((item) => (
             <li key={item.href}>
-              <ExternalLink className={`link-draw inline-block ${FOCUS_CLASS}`} href={item.href}>
+              <ExternalLink
+                className="link-draw outline-ring inline-block focus-visible:outline-2 focus-visible:outline-offset-4"
+                href={item.href}
+              >
                 {item.label}
                 <span className="sr-only"> (opens in new tab)</span>
               </ExternalLink>

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { cn } from "@/lib/utils";
+
 type IndexItem = {
   href: string;
   label: string;
@@ -25,7 +27,7 @@ const IndexNav = () => {
           const current = pathname === item.href;
 
           return (
-            <li className={`flex gap-2 ${current ? "font-bold" : "font-normal"}`} key={item.href}>
+            <li className={cn("flex gap-2", current ? "font-bold" : "font-normal")} key={item.href}>
               <span aria-hidden="true" className="w-3 tabular-nums">
                 {index + 1}
               </span>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { cn } from "@/lib/utils";
+
 import { BottomNav } from "./bottom-nav";
 import { type IsoMonth, type Job, resume } from "./data";
 
@@ -58,7 +60,7 @@ const DefinitionGrid = ({
   listClassName,
   rows,
   termClassName,
-  valueClassName = "",
+  valueClassName,
 }: {
   listClassName: string;
   rows: Array<DefinitionRow>;
@@ -69,7 +71,7 @@ const DefinitionGrid = ({
     {rows.map((row) => (
       <div className="contents" key={row.term}>
         <dt className={termClassName}>{row.term}</dt>
-        <dd className={valueClassName}>{row.value}</dd>
+        <dd className={cn(valueClassName)}>{row.value}</dd>
       </div>
     ))}
   </dl>
