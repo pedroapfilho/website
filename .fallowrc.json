@@ -1,5 +1,7 @@
 {
   "$schema": "./node_modules/fallow/schema.json",
+  "typeAware": { "enabled": true, "require": "best-effort" },
+  "rules": { "private-type-leaks": "off" },
   "ignoreDependencies": ["zod-compiler"],
   "ignoreExports": [
     {
