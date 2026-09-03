@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      cn:
+        specifier: ^0.2.4
+        version: 0.2.4
       next:
         specifier: ^16.3.3
         version: 16.3.3(@playwright/test@1.62.1)(@types/node@26.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -1162,6 +1165,11 @@ packages:
   cliui@9.0.1:
     resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
     engines: {node: '>=20'}
+
+  cn@0.2.4:
+    resolution: {integrity: sha512-SzQvoh5FwizWtQg9+JueKdjWhlfCZMdu5DqNHm9q1wUlRVmKb9WXlepR9bTTbPwzEOyX1ujJ6lcCppmn3bNUCg==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -2605,6 +2613,8 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.2.0
       wrap-ansi: 9.0.2
+
+  cn@0.2.4: {}
 
   cross-spawn@7.0.6:
     dependencies:
