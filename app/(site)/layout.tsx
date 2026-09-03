@@ -1,7 +1,6 @@
 // Visual direction: "The Poster" (Swiss grid, Host Grotesk, black on white, no
-// hairlines). The full contract, including the finish conditions, is in
-// .impeccable/surfaces/app-site-page-tsx.md; this shell scopes it to (site) so
-// /resume keeps rendering on the root body defaults.
+// hairlines). The recorded system lives in DESIGN.md; this shell scopes it to
+// (site) so /resume keeps rendering on the root body defaults.
 
 import { IndexNav } from "./index-nav";
 import { SiteFooter } from "./site-footer";
