@@ -35,7 +35,7 @@ Fleet-wide rules live in the orchestrator's `standards.md`. Repo-specific notes:
 - Build allowlist is `allowBuilds:` in `pnpm-workspace.yaml`, not `pnpm.onlyBuiltDependencies` in `package.json`; pnpm 11 only reads the former, and it works here even though this is not a workspace. That file lists `packages: ["."]` because Vercel installs with pnpm 9, which fails on a workspace file with an empty `packages`.
 - Resume dates are typed `IsoMonth` in `app/resume/data.ts`. Only `start` is stored: `experience` is newest-first and contiguous, so each job's end date is read off the previous entry's `start` and the newest entry renders as "present". A career gap or two concurrent roles cannot be expressed without reintroducing an explicit `end`. The `MM/YYYY` label and the word "present" are both produced at render time, so `<time dateTime>` always gets a machine-readable value.
 - Every off-site link goes through `ExternalLink` (`app/external-link.tsx`), which owns the `rel="noopener noreferrer" target="_blank"` pairing so a new link cannot ship without it.
-- Fonts are imported aliased (`IBM_Plex_Mono as ibmPlexMonoFont`) so the loader call does not trip `new-cap`.
+- Fonts are imported aliased (`Host_Grotesk as hostGroteskFont`) so the loader call does not trip `new-cap`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

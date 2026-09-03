@@ -1,22 +1,12 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import {
-  Host_Grotesk as hostGroteskFont,
-  IBM_Plex_Mono as ibmPlexMonoFont,
-} from "next/font/google";
+import { Host_Grotesk as hostGroteskFont } from "next/font/google";
 
 const hostGrotesk = hostGroteskFont({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-host",
-});
-
-const ibmPlexMono = ibmPlexMonoFont({
-  display: "swap",
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500", "600", "700"],
 });
 
 const SOCIAL_DESCRIPTION =
@@ -46,11 +36,7 @@ const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html
-    className={`${hostGrotesk.variable} ${ibmPlexMono.variable}`}
-    lang="en"
-    suppressHydrationWarning
-  >
+  <html className={hostGrotesk.variable} lang="en" suppressHydrationWarning>
     <body className="box-border flex min-h-dvh flex-col overscroll-none antialiased">
       <main className="isolate flex flex-1 flex-col">{children}</main>
     </body>

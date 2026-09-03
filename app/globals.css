@@ -2,12 +2,9 @@
 
 @theme inline {
   --color-primary: #ffffff;
-  --color-primary-foreground: #1a1a1a;
+  --color-primary-foreground: #000000;
   --color-ink: #000000;
   --color-paper: #ffffff;
-  --font-mono:
-    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
   --font-sans: var(--font-host), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -21,7 +18,7 @@
   }
 
   body {
-    @apply bg-primary text-primary-foreground font-mono;
+    @apply bg-primary text-primary-foreground font-sans;
   }
 
   ::selection {

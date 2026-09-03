@@ -100,7 +100,7 @@ The whole site is one sheet of paper in the Swiss International Typographic Styl
 
 Density is low and asymmetric. The index sits top-left, the headline runs flush-left across the sheet, the intro copy is pushed to columns 5 through 8, the portrait is small and grayscale in the last two columns, and the email is the second-largest thing on the home page, anchored bottom-left. On the list pages (/side, /uses) the same grid becomes a ruler: rows are separated by column alignment and six pixels of padding, never by a line. The world refuses the terminal/README dev-site default and the centered-avatar hero.
 
-Scope note: the world covers the `(site)` route group (home, /side, /uses). The /resume route is a scoped legacy surface that deliberately keeps the incumbent monospace theme (IBM Plex Mono, #1a1a1a on white, hairline section rules, opacity-ramped grays, a rounded bottom nav) because it is the print source for `public/resume.pdf`. Do not extend that treatment to new surfaces, and do not restyle the resume without a decision about the PDF pipeline.
+Scope note: the world covers the `(site)` route group (home, /side, /uses). The /resume route shares the Poster's font and ink (Host Grotesk, black on white) but keeps its own document layout (hairline section rules, opacity-ramped grays, a rounded bottom nav) because it is the print source for `public/resume.pdf`. Do not extend that document treatment to new surfaces, and remember that any change to its sources regenerates the PDF.
 
 **Key Characteristics:**
 
@@ -133,7 +133,7 @@ Two inks and nothing else: the palette is the paper and the print.
 
 **Display Font:** Host Grotesk (variable, loaded via next/font/google as `--font-host`; falls back to Helvetica Neue, Helvetica, Arial, sans-serif)
 **Body Font:** Host Grotesk (same family, same fallback)
-**Label/Mono Font:** none in the Poster world. IBM Plex Mono is loaded as `--font-mono` for the root body default and the legacy /resume route only.
+**Label/Mono Font:** none. Host Grotesk is the only font loaded; the root body default is `font-sans` on `#000000`.
 
 **Character:** A single neutral grotesk carrying the whole voice. The monumental size is tight and dense (negative tracking, line-height under 1); the text size is plain and unremarkable on purpose; the caption size is small, wide-tracked, and uppercase so it reads as metadata rather than prose. Emphasis inside body copy is italic (`<i>`), never bold.
 
@@ -252,4 +252,4 @@ Everything is square. There is no radius anywhere in the world (`0px`): the port
 - **Don't** use shadows, radii, background fills, cards, chips, or pills.
 - **Don't** add arrow glyphs (↗), icons, or illustrations; the host name in tracked caps is the external signifier.
 - **Don't** add a second hover or focus treatment; the draw-in underline plus the ink outline is the whole interaction vocabulary.
-- **Don't** carry the /resume monospace theme (IBM Plex Mono, #1a1a1a, hairlines, opacity grays, rounded nav) into any Poster surface.
+- **Don't** carry the /resume document treatment (hairlines, opacity grays, rounded nav) into any Poster surface.
