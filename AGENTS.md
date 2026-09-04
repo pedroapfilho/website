@@ -4,7 +4,7 @@ Guidance for AI coding agents working in `website`. `CLAUDE.md` is a symlink to 
 
 ## What this repo is
 
-Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so the orchestrator holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped verifier.
+Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so the orchestrator holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped check. `orchestrator verify --repo website` lists the applicable set.
 
 ## Layout
 
