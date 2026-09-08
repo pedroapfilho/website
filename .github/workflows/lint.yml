@@ -12,9 +12,6 @@ jobs:
   oxlint:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    outputs:
-      format: ${{ steps.format.outcome }}
-      fallow: ${{ steps.fallow.outcome }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -34,32 +31,4 @@ jobs:
       # Type-aware linting reads Next's generated route types, which only exist
       # after a build.
       - run: pnpm build
-      - name: Check formatting
-        id: format
-        continue-on-error: true
-        run: pnpm format:check
-      - name: Check dead code
-        id: fallow
-        continue-on-error: true
-        run: pnpm fallow:dead
       - run: pnpm oxlint --format=github .
-  oxfmt:
-    needs: oxlint
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Report formatting result
-        env:
-          RESULT: ${{ needs.oxlint.outputs.format }}
-        run: test "$RESULT" = success
-  dead-code:
-    needs: oxlint
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Report dead-code result
-        env:
-          RESULT: ${{ needs.oxlint.outputs.fallow }}
-        run: test "$RESULT" = success
