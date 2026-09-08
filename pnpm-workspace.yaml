@@ -12,7 +12,24 @@ packages:
 allowBuilds:
   sharp: true
 
+minimumReleaseAge: 10080
+trustPolicy: no-downgrade
+
 minimumReleaseAgeExclude:
+  # Grandfather already-shipped lockfile versions without exempting future releases.
+  - "@fallow-cli/darwin-arm64@3.22.0"
+  - "@fallow-cli/darwin-x64@3.22.0"
+  - "@fallow-cli/linux-arm64-gnu@3.22.0"
+  - "@fallow-cli/linux-arm64-musl@3.22.0"
+  - "@fallow-cli/linux-x64-gnu@3.22.0"
+  - "@fallow-cli/linux-x64-musl@3.22.0"
+  - "@fallow-cli/win32-arm64-msvc@3.22.0"
+  - "@fallow-cli/win32-x64-msvc@3.22.0"
+  - "@types/node@26.4.1"
+  - cn@0.2.4
+  - fallow@3.22.0
+  - fallow-type-aware@3.22.0
+  - oxlint-plugin-react-doctor@0.9.13
   - "@dashfoo/*"
   - "@easeia/*"
   - "@usebutr/*"
