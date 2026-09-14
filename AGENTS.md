@@ -46,3 +46,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Design-system linting
+
+Run `pnpm lint` after changes and fix every error. `oxlint.config.ts` registers `@shadcn/lint` and enforces component contracts, known Tailwind classes, and readable component class names. Use component variants for appearance and layout classes at call sites. The config lists the primitive directories that own their internal styles; unknown-class checking stays enabled there. Keep theme discovery local to each app. Exact class-merging fixture allowances apply only to the named test files.
