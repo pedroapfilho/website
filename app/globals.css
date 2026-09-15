@@ -107,3 +107,19 @@
     transition: none;
   }
 }
+
+@utility grid-cols-resume {
+  grid-template-columns: 5rem 1fr;
+}
+
+@utility grid-cols-intrinsic-label {
+  grid-template-columns: max-content 1fr;
+}
+
+@utility content-bullet {
+  @apply content-['•'];
+}
+
+@theme {
+  --text-body: 0.9375rem;
+}
