@@ -21,7 +21,7 @@ const Header = () => (
 
     <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-1.5 text-sm sm:grid-cols-2">
       {resume.contacts.map((c) => (
-        <div className="grid grid-cols-[5rem_1fr] items-baseline" key={c.href}>
+        <div className="grid-cols-resume grid items-baseline" key={c.href}>
           <dt className="text-muted-foreground text-xs tracking-wide uppercase">{c.label}</dt>
           {/* min-w-0 lets the 1fr track shrink below the value's min-content width:
               wrap-break-word alone does not reduce it, so a long handle would
@@ -79,7 +79,7 @@ const DefinitionGrid = ({
 
 const Skills = () => (
   <DefinitionGrid
-    listClassName="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-[max-content_1fr]"
+    listClassName="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-intrinsic-label"
     rows={resume.skills.map((s) => ({ term: s.label, value: s.items.join(" · ") }))}
     termClassName="text-muted-foreground sm:whitespace-nowrap"
     valueClassName="text-pretty"
@@ -88,7 +88,7 @@ const Skills = () => (
 
 const Languages = () => (
   <DefinitionGrid
-    listClassName="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-1"
+    listClassName="grid grid-cols-intrinsic-label gap-x-6 gap-y-1"
     rows={resume.languages.map((l) => ({ term: l.language, value: l.level }))}
     termClassName="text-muted-foreground"
   />
@@ -139,7 +139,7 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
       <ul className="mt-2 flex flex-col gap-1">
         {job.metrics.map((m) => (
           <li
-            className="before:text-muted-foreground relative pl-4 text-pretty before:absolute before:left-0 before:content-['•']"
+            className="before:text-muted-foreground before:content-bullet relative pl-4 text-pretty before:absolute before:left-0"
             key={m}
           >
             {m}
@@ -152,7 +152,7 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
 
 const ResumePage = () => (
   <>
-    <article className="mx-auto max-w-3xl px-6 py-10 text-[0.9375rem] leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
+    <article className="mx-auto max-w-3xl px-6 py-10 text-(length:--text-body) leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
       <nav className="text-muted-foreground mb-10 flex items-center justify-between text-sm print:hidden">
         <Link className="hover:text-foreground" href="/">
           ← back

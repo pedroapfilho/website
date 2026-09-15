@@ -16,6 +16,8 @@ minimumReleaseAge: 10080
 trustPolicy: no-downgrade
 
 minimumReleaseAgeExclude:
+  - "@shadcn/lint@0.1.0"
+  - cn@0.2.6
   # Grandfather already-shipped lockfile versions without exempting future releases.
   - "@fallow-cli/darwin-arm64@3.24.1"
   - "@fallow-cli/darwin-x64@3.24.1"
