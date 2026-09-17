@@ -33,6 +33,7 @@
     "coverage/**",
     ".output/**",
     ".superpowers/**",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    ".github/ci/*.mjs"
   ]
 }

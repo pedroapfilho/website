@@ -27,3 +27,6 @@ yarn-error.log*
 
 .idea
 .vscode
+
+# CI selection and execution reports
+.ci-results/
