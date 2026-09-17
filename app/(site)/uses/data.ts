@@ -41,7 +41,7 @@ const useGroups: Array<UseGroup> = [
       {
         items: [
           {
-            href: "https://www.apple.com/shop/product/hrjk2zm/a/caldigit-thunderbolt-4-pro-dock",
+            href: "https://www.caldigit.com/thunderbolt-station-4/",
             name: "CalDigit Thunderbolt 4 Pro Dock",
           },
           {

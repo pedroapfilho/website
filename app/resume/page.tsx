@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SiteFooter } from "@/app/site-footer";
 import { cn } from "@/lib/utils";
 
-import { BottomNav } from "./bottom-nav";
 import { type IsoMonth, type Job, resume } from "./data";
 
 const metadata: Metadata = {
@@ -152,7 +152,7 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
 
 const ResumePage = () => (
   <>
-    <article className="mx-auto max-w-3xl px-6 py-10 text-(length:--text-body) leading-6 sm:px-12 sm:py-14 print:max-w-none print:p-0">
+    <article className="mx-auto max-w-3xl px-6 pt-10 text-(length:--text-body) leading-6 sm:px-12 sm:pt-14 print:max-w-none print:p-0">
       <nav className="text-muted-foreground mb-10 flex items-center justify-between text-sm print:hidden">
         <Link className="hover:text-foreground" href="/">
           ← back
@@ -199,7 +199,9 @@ const ResumePage = () => (
         <Languages />
       </Section>
     </article>
-    <BottomNav />
+    <div className="mx-auto w-full max-w-3xl px-6 pb-8 sm:px-12 sm:pb-10 print:hidden">
+      <SiteFooter />
+    </div>
   </>
 );
 

@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Host_Grotesk as hostGroteskFont } from "next/font/google";
 
+import { SITE_ORIGIN } from "@/lib/site";
+
 const hostGrotesk = hostGroteskFont({
   display: "swap",
   subsets: ["latin"],
@@ -16,11 +18,11 @@ const metadata: Metadata = {
   description: "Likes to write code sometimes",
   openGraph: {
     description: SOCIAL_DESCRIPTION,
-    images: ["https://pedroapfilho.com/profile.jpg"],
+    images: [`${SITE_ORIGIN}/profile.jpg`],
     siteName: "Pedro Filho - Product Engineer",
     title: "Pedro Filho - Product Engineer",
     type: "website",
-    url: "https://pedroapfilho.com",
+    url: SITE_ORIGIN,
   },
   title: {
     default: "Pedro Filho - Product Engineer",
@@ -30,7 +32,7 @@ const metadata: Metadata = {
     card: "summary",
     creator: "@pedroapfilho",
     description: SOCIAL_DESCRIPTION,
-    images: ["https://pedroapfilho.com/profile.jpg"],
+    images: [`${SITE_ORIGIN}/profile.jpg`],
     title: "Pedro Filho - Product Engineer",
   },
 };
