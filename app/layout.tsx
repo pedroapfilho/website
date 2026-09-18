@@ -26,7 +26,7 @@ const metadata: Metadata = {
   },
   title: {
     default: "Pedro Filho - Product Engineer",
-    template: "%s - Pedro Filho",
+    template: "%s · Pedro Filho",
   },
   twitter: {
     card: "summary",
