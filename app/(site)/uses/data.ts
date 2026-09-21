@@ -184,8 +184,8 @@ const useGroups: Array<UseGroup> = [
       {
         items: [
           {
-            href: "https://conductor.build/",
-            name: "Conductor",
+            href: "https://www.onorca.dev/",
+            name: "Orca",
           },
         ],
         title: "Agent Orchestration",
