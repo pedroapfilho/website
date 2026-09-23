@@ -18,7 +18,7 @@
     "generate:resume": "node scripts/generate-resume.ts",
     "test": "node --test scripts/*.test.ts",
     "test:e2e": "playwright test",
-    "fallow": "^3.24.1",
+    "fallow": "fallow",
     "fallow:dead": "fallow dead-code",
     "fallow:dupes": "fallow dupes",
     "fallow:health": "fallow health --score",
@@ -28,8 +28,8 @@
   "dependencies": {
     "cn": "^0.2.6",
     "next": "^16.3.4",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "zod": "^4.5.4"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
     "@shadcn/lint": "0.1.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.4.1",
-    "@types/react": "^19.2.18",
+    "@types/react": "^19.3.0",
     "fallow": "^3.24.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.5.0",
