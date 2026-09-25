@@ -16,9 +16,9 @@ const SOCIAL_DESCRIPTION =
 
 const metadata: Metadata = {
   description: "Likes to write code sometimes",
+  metadataBase: new URL(SITE_ORIGIN),
   openGraph: {
     description: SOCIAL_DESCRIPTION,
-    images: [`${SITE_ORIGIN}/profile.jpg`],
     siteName: "Pedro Filho - Product Engineer",
     title: "Pedro Filho - Product Engineer",
     type: "website",
@@ -32,7 +32,6 @@ const metadata: Metadata = {
     card: "summary",
     creator: "@pedroapfilho",
     description: SOCIAL_DESCRIPTION,
-    images: [`${SITE_ORIGIN}/profile.jpg`],
     title: "Pedro Filho - Product Engineer",
   },
 };
