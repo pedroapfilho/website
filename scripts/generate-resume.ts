@@ -197,10 +197,10 @@ try {
   mkdirSync(path.dirname(recordPath), { recursive: true });
   writeFileSync(recordPath, JSON.stringify({ pgid, port } satisfies ServerRecord));
 
-  server.stdout?.on("data", (chunk: Buffer) => {
+  server.stdout.on("data", (chunk: Buffer) => {
     process.stdout.write(`[next] ${chunk.toString()}`);
   });
-  server.stderr?.on("data", (chunk: Buffer) => {
+  server.stderr.on("data", (chunk: Buffer) => {
     process.stderr.write(`[next] ${chunk.toString()}`);
   });
 

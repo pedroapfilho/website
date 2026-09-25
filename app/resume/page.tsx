@@ -157,7 +157,6 @@ const ResumePage = () => (
         <Link className="hover:text-foreground" href="/">
           ← back
         </Link>
-        {/* oxlint-disable-next-line react-doctor/nextjs-no-a-element -- /resume.pdf is a static asset, not a route: Link would try to client-navigate to it. */}
         <a
           className="hover:text-foreground"
           href="/resume.pdf"
