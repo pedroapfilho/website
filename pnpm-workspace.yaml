@@ -32,6 +32,7 @@ minimumReleaseAgeExclude:
   - fallow@3.24.1
   - fallow-type-aware@3.24.1
   - oxlint-plugin-react-doctor@0.9.13
+  - "@oxlint/plugins@1.85.0"
   - "@dashfoo/*"
   - "@easeia/*"
   - "@usebutr/*"
