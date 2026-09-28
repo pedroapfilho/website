@@ -7,7 +7,7 @@
   "rules": {
     "private-type-leaks": "off"
   },
-  "ignoreDependencies": ["zod-compiler"],
+  "ignoreDependencies": ["@shadcn/lint", "zod-compiler"],
   "ignoreExports": [
     {
       "file": "app/**/page.tsx",
