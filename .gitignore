@@ -3,6 +3,7 @@ node_modules
 .pnp.js
 
 coverage
+test-results/
 
 .next/
 out/

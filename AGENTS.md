@@ -20,7 +20,7 @@ scripts/
 
 ## Dev workflow
 
-`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`, `pnpm test`. Pre-commit runs husky → lint-staged (oxlint + oxfmt), then regenerates `public/resume.pdf` when the commit touches the resume sources. CI runs build, test, lint, format, typecheck, fallow, and the resume-PDF freshness check.
+`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`, `pnpm test`. Pre-commit runs husky → lint-staged (oxlint + oxfmt), then regenerates `public/resume.pdf` when the commit touches the resume sources. CI runs build, test, lint, format, typecheck, fallow, the Playwright suite (`tests/e2e`, `pnpm test:e2e`), and the resume-PDF freshness check.
 
 Type-aware linting reads Next's generated route types, so `lint.yml` and `typecheck.yml` both run `pnpm build` first. Running `pnpm lint` locally against a stale `.next` gives false positives; build once after pulling.
 
