@@ -1,8 +1,3 @@
-overrides:
-  # Security: force patched transitive releases to clear pnpm audit advisories.
-  # Each pin is the lowest release that carries the fix.
-  brace-expansion: "^5.0.12"
-
 # Not a workspace: this file exists because pnpm 11 reads the build allowlist
 # from here and nowhere else. `packages` has to be non-empty because Vercel
 # still installs with pnpm 9, which rejects a workspace file without it.
@@ -35,6 +30,7 @@ minimumReleaseAgeExclude:
   - fallow-type-aware@3.28.0
   - fallow@3.28.0
   - oxlint-tsgolint@7.0.2003
+  - source-map-js@1.2.2
   - "@dashfoo/*"
   - "@easeia/*"
   - "@usebutr/*"
