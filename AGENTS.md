@@ -2,6 +2,14 @@
 
 Guidance for AI coding agents working in `website`. `CLAUDE.md` is a symlink to this file.
 
+## Friction Log
+
+- Log papercuts and friction (tooling, docs, APIs, tests, conventions) as you hit them with `npx frog log`.
+- Do not add global, system, or internal friction.
+- Run `npx frog list` first to see what is already known.
+
+Entries live in `.agents/friction-log/`, one directory each. A GitHub Action reports them as issues and deletes the entry once the issue closes, so anything still in that directory is still outstanding.
+
 ## What this repo is
 
 Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so the orchestrator holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped check. `orchestrator verify --repo website` lists the applicable set.
