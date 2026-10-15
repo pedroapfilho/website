@@ -12,7 +12,7 @@ Entries live in `.agents/friction-log/`, one directory each. A GitHub Action rep
 
 ## What this repo is
 
-Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so the orchestrator holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped check. `orchestrator verify --repo website` lists the applicable set.
+Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so keel holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped check. `keel verify --repo website` lists the applicable set.
 
 ## Layout
 
@@ -38,7 +38,7 @@ Type-aware linting reads Next's generated route types, so `lint.yml` and `typech
 
 ## Conventions
 
-Fleet-wide rules live in the orchestrator's `standards.md`. Repo-specific notes:
+Fleet-wide rules live in keel's `standards.md`. Repo-specific notes:
 
 - Build allowlist is `allowBuilds:` in `pnpm-workspace.yaml`, not `pnpm.onlyBuiltDependencies` in `package.json`; pnpm 11 only reads the former, and it works here even though this is not a workspace. That file lists `packages: ["."]` because Vercel installs with pnpm 9, which fails on a workspace file with an empty `packages`.
 - Resume dates are typed `IsoMonth` in `app/resume/data.ts`. Only `start` is stored: `experience` is newest-first and contiguous, so each job's end date is read off the previous entry's `start` and the newest entry renders as "present". A career gap or two concurrent roles cannot be expressed without reintroducing an explicit `end`. The `MM/YYYY` label and the word "present" are both produced at render time, so `<time dateTime>` always gets a machine-readable value.
