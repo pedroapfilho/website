@@ -10,6 +10,14 @@ Guidance for AI coding agents working in `website`. `CLAUDE.md` is a symlink to 
 
 Entries live in `.agents/friction-log/`, one directory each. A GitHub Action reports them as issues and deletes the entry once the issue closes, so anything still in that directory is still outstanding.
 
+## Standards
+
+This repo follows the fleet's shared standards, checked by `keel` (`~/dev/keel`).
+
+- Before editing, run `keel standards --for <paths>` for the rules that apply to the files you will touch.
+- Before finishing, run `keel check --changed --fix-hints` and fix what fails. It only sees tracked files, so run `git add -N` on new files first.
+- When a failure is unclear, `keel explain <check>` prints what the check asserts and how to fix it.
+
 ## What this repo is
 
 Pedro's personal site at [pedroapfilho.com](https://pedroapfilho.com): a single Next.js app, no monorepo, no database, no auth. It is the only repo on the fleet's `site` profile, so keel holds it to the universal standards (versions, lint, ci, root-scripts, gitignore, naming, import-extensions) and skips every monorepo-shaped check. `keel verify --repo website` lists the applicable set.
