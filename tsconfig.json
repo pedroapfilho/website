@@ -9,6 +9,8 @@
     "strict": true,
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",

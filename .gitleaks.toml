@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Vendored package manager releases"
+paths = ['''^\.yarn/releases/''']
