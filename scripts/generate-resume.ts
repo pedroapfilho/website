@@ -1,13 +1,12 @@
 import { execFileSync, spawn } from "node:child_process";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import path from "node:path";
 
 import { type Browser, launch } from "puppeteer-core";
 
-import { devServerCommand, reapRecordedServer, stopProcessGroup } from "#scripts/process-lifecycle";
-import type { ProcessGroup, RecordStore, ServerRecord } from "#scripts/process-lifecycle";
+import { acquireServerLifecycle, devServerCommand } from "#scripts/process-lifecycle";
+import type { ProcessGroup, ServerLifecycle } from "#scripts/process-lifecycle";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const outPath = path.join(projectRoot, "public", "resume.pdf");
@@ -16,7 +15,7 @@ const recordPath = path.join(projectRoot, "node_modules", ".cache", "resume-dev-
 const SHUTDOWN_GRACE_MS = 5000;
 const GROUP_POLL_MS = 100;
 
-let serverGroup: number | undefined;
+let serverLifecycle: ServerLifecycle | undefined;
 let browser: Browser | undefined;
 let teardown: Promise<void> | undefined;
 
@@ -69,19 +68,6 @@ const waitForGroupExit = async (pgid: number, timeoutMs: number): Promise<boolea
   return groupCommands(pgid).length === 0;
 };
 
-const recordStore: RecordStore = {
-  read: () => {
-    try {
-      return readFileSync(recordPath, "utf8");
-    } catch {
-      return undefined;
-    }
-  },
-  remove: () => {
-    rmSync(recordPath, { force: true });
-  },
-};
-
 const processGroup: ProcessGroup = {
   commands: groupCommands,
   signal: killGroup,
@@ -99,15 +85,11 @@ const closeBrowser = async (): Promise<void> => {
 const runCleanup = async (): Promise<void> => {
   const closingBrowser = closeBrowser();
 
-  const group = serverGroup;
-  if (group !== undefined) {
-    try {
-      await stopProcessGroup(group, processGroup, SHUTDOWN_GRACE_MS);
-      serverGroup = undefined;
-      recordStore.remove();
-    } catch (error) {
-      console.error("Could not stop the dev server:", error);
-    }
+  try {
+    await serverLifecycle?.close();
+  } catch (error) {
+    console.error("Could not stop the dev server:", error);
+    process.exitCode = 1;
   }
 
   await closingBrowser;
@@ -129,16 +111,6 @@ for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"] as const) {
     void shutdown();
   });
 }
-process.on("exit", () => {
-  try {
-    if (serverGroup !== undefined) {
-      killGroup(serverGroup, "SIGKILL");
-    }
-    rmSync(recordPath, { force: true });
-  } catch {
-    // Nothing to fall back on this late; the process is already leaving.
-  }
-});
 
 const getFreePort = (): Promise<number> =>
   new Promise((resolve, reject) => {
@@ -174,11 +146,11 @@ const waitForReady = async (url: string, timeoutMs = 60_000): Promise<void> => {
 };
 
 try {
-  await reapRecordedServer({
+  serverLifecycle = await acquireServerLifecycle({
     graceMs: SHUTDOWN_GRACE_MS,
     log: console.log,
     processGroup,
-    store: recordStore,
+    recordPath,
     warn: console.warn,
   });
 
@@ -193,9 +165,7 @@ try {
   if (pgid === undefined) {
     throw new Error("The dev server failed to spawn");
   }
-  serverGroup = pgid;
-  mkdirSync(path.dirname(recordPath), { recursive: true });
-  writeFileSync(recordPath, JSON.stringify({ pgid, port } satisfies ServerRecord));
+  serverLifecycle.record({ pgid, port });
 
   server.stdout.on("data", (chunk: Buffer) => {
     process.stdout.write(`[next] ${chunk.toString()}`);

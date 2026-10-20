@@ -1,3 +1,8 @@
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import path from "node:path";
+
+import { Lockfile } from "next/dist/build/lockfile.js";
+import { loadBindings } from "next/dist/build/swc/index.js";
 import { z } from "zod";
 
 const serverRecordSchema = z.object({
@@ -73,26 +78,111 @@ const reapRecordedServer = async ({
   warn,
 }: ReapOptions): Promise<void> => {
   const record = parseServerRecord(store.read());
+  if (record !== undefined) {
+    const commands = processGroup.commands(record.pgid);
+    const { marker } = devServerCommand(record.port);
+    if (commands.some((command) => command.includes(marker))) {
+      log(`Reaping an orphaned dev server on port ${record.port} (process group ${record.pgid}).`);
+      await stopProcessGroup(record.pgid, processGroup, graceMs);
+    } else if (commands.length > 0) {
+      warn(
+        `Leaving process group ${record.pgid} alone: nothing in it runs \`${marker}\`, so that id belongs to something else now.`,
+      );
+    }
+  }
   store.remove();
-  if (record === undefined) {
-    return;
-  }
-
-  const commands = processGroup.commands(record.pgid);
-  if (commands.length === 0) {
-    return;
-  }
-  const { marker } = devServerCommand(record.port);
-  if (!commands.some((command) => command.includes(marker))) {
-    warn(
-      `Leaving process group ${record.pgid} alone: nothing in it runs \`${marker}\`, so that id belongs to something else now.`,
-    );
-    return;
-  }
-
-  log(`Reaping an orphaned dev server on port ${record.port} (process group ${record.pgid}).`);
-  await stopProcessGroup(record.pgid, processGroup, graceMs);
 };
 
-export { devServerCommand, parseServerRecord, reapRecordedServer, stopProcessGroup };
-export type { DevServerCommand, ProcessGroup, RecordStore, ServerRecord };
+const acquireServerLifecycle = async ({
+  graceMs,
+  log,
+  processGroup,
+  recordPath,
+  warn,
+}: Omit<ReapOptions, "store"> & { recordPath: string }) => {
+  const bindings = await loadBindings();
+  if (bindings.isWasm) {
+    throw new Error(
+      "Resume generation requires native Next.js bindings for exclusive server ownership.",
+    );
+  }
+  mkdirSync(path.dirname(recordPath), { recursive: true });
+  const lock = Lockfile.tryAcquire(`${recordPath}.lock`, false);
+  if (lock === undefined) {
+    throw new Error(
+      "Another resume generation is active in this project; wait for it to finish and retry.",
+    );
+  }
+
+  const store: RecordStore = {
+    read: () => {
+      try {
+        return readFileSync(recordPath, "utf8");
+      } catch (error) {
+        if (error instanceof Error && "code" in error && error.code === "ENOENT") {
+          return undefined;
+        }
+        throw error;
+      }
+    },
+    remove: () => {
+      rmSync(recordPath, { force: true });
+    },
+  };
+  let server: ServerRecord | undefined;
+  let closing: Promise<void> | undefined;
+
+  const onExit = (): void => {
+    try {
+      if (server !== undefined) {
+        processGroup.signal(server.pgid, "SIGKILL");
+      }
+    } finally {
+      lock.unlockSync();
+    }
+  };
+  process.once("exit", onExit);
+
+  const release = async (): Promise<void> => {
+    try {
+      if (server !== undefined) {
+        await stopProcessGroup(server.pgid, processGroup, graceMs);
+        server = undefined;
+        store.remove();
+      }
+    } finally {
+      process.off("exit", onExit);
+      lock.unlockSync();
+    }
+  };
+  const close = (): Promise<void> => (closing ??= release());
+
+  try {
+    await reapRecordedServer({ graceMs, log, processGroup, store, warn });
+  } catch (error) {
+    await close();
+    throw error;
+  }
+
+  return {
+    close,
+    record: (record: ServerRecord): void => {
+      if (closing !== undefined) {
+        throw new Error("Resume server ownership has already been released.");
+      }
+      server = record;
+      writeFileSync(recordPath, JSON.stringify(record));
+    },
+  };
+};
+
+type ServerLifecycle = Awaited<ReturnType<typeof acquireServerLifecycle>>;
+
+export {
+  acquireServerLifecycle,
+  devServerCommand,
+  parseServerRecord,
+  reapRecordedServer,
+  stopProcessGroup,
+};
+export type { ProcessGroup, RecordStore, ServerLifecycle };
