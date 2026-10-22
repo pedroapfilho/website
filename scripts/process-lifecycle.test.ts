@@ -18,17 +18,20 @@ import type { ProcessGroup, RecordStore } from "#scripts/process-lifecycle";
 const createProcessGroup = (waitResults: Array<boolean>) => {
   const signal = mock.fn<(pgid: number, signal: NodeJS.Signals) => void>();
   const waitForExit = mock.fn(() => Promise.resolve(waitResults.shift() ?? true));
+
   const processGroup: ProcessGroup = {
     commands: () => [`node ${devServerCommand(3000).marker}`],
     signal,
     waitForExit,
   };
+
   return { processGroup, signal, waitForExit };
 };
 
 const createStore = (value: string | undefined) => {
   const remove = mock.fn<() => void>();
   const store: RecordStore = { read: () => value, remove };
+
   return { remove, store };
 };
 
@@ -119,8 +122,10 @@ void describe("process lifecycle", () => {
     const { remove, store } = createStore('{"pgid":42,"port":3000}');
     processGroup.waitForExit = () => {
       assert.equal(remove.mock.callCount(), 0);
+
       return Promise.resolve(true);
     };
+
     await reapRecordedServer({
       graceMs: 10,
       log: mock.fn(),
@@ -137,11 +142,13 @@ const temporaryRecord = (t: TestContext): string => {
   t.after(() => {
     rmSync(directory, { force: true, recursive: true });
   });
+
   return path.join(directory, "server.json");
 };
 
 const lifecycleOptions = (recordPath: string, waitResults: Array<boolean> = []) => {
   const { processGroup, signal } = createProcessGroup(waitResults);
+
   return {
     graceMs: 10,
     log: mock.fn(),
@@ -186,6 +193,7 @@ const spawnOwner = (t: TestContext, recordPath: string) => {
     ],
     { stdio: ["ignore", "pipe", "pipe", "ipc"] },
   );
+
   t.after(async () => {
     if (child.exitCode === null && child.signalCode === null) {
       const exited = once(child, "exit");
@@ -193,6 +201,7 @@ const spawnOwner = (t: TestContext, recordPath: string) => {
       await exited;
     }
   });
+
   return { child, result: once(child, "message") };
 };
 
@@ -304,6 +313,7 @@ void describe("exclusive resume server ownership", () => {
     const owner = await acquireServerLifecycle(options);
     owner.record({ pgid: 42, port: 3000 });
     const closing = owner.close();
+
     try {
       await assert.rejects(acquireServerLifecycle(options), /Another resume generation is active/);
       assert.equal(existsSync(recordPath), true);
@@ -311,6 +321,7 @@ void describe("exclusive resume server ownership", () => {
       exited.resolve(true);
       await closing;
     }
+
     const next = await acquireServerLifecycle(lifecycleOptions(recordPath));
     await next.close();
   });

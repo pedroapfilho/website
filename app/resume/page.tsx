@@ -205,6 +205,7 @@ const ResumePage = () => (
 );
 
 export const instant = true;
+
 export { metadata };
 
 export default ResumePage;

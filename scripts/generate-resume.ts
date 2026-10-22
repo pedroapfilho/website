@@ -43,9 +43,11 @@ const runLines = (command: string, args: Array<string>): Array<string> => {
 
 const groupCommands = (pgid: number): Array<string> => {
   const pids = runLines("pgrep", ["-g", String(pgid)]);
+
   if (pids.length === 0) {
     return [];
   }
+
   return runLines("ps", ["-o", "command=", "-p", pids.join(",")]);
 };
 
@@ -59,12 +61,15 @@ const killGroup = (pgid: number, signal: NodeJS.Signals): void => {
 
 const waitForGroupExit = async (pgid: number, timeoutMs: number): Promise<boolean> => {
   const deadline = Date.now() + timeoutMs;
+
   while (Date.now() < deadline) {
     if (groupCommands(pgid).length === 0) {
       return true;
     }
+
     await sleep(GROUP_POLL_MS);
   }
+
   return groupCommands(pgid).length === 0;
 };
 
@@ -103,6 +108,7 @@ const shutdown = async (): Promise<never> => {
   } catch (error) {
     console.error("Cleanup failed during shutdown:", error);
   }
+
   process.exit(1);
 };
 
@@ -119,10 +125,13 @@ const getFreePort = (): Promise<number> =>
     s.on("error", reject);
     s.listen(0, () => {
       const address = s.address();
+
       if (address === null || typeof address === "string") {
         reject(new Error("Could not resolve a free port"));
+
         return;
       }
+
       s.close(() => {
         resolve(address.port);
       });
@@ -131,17 +140,21 @@ const getFreePort = (): Promise<number> =>
 
 const waitForReady = async (url: string, timeoutMs = 60_000): Promise<void> => {
   const deadline = Date.now() + timeoutMs;
+
   while (Date.now() < deadline) {
     try {
       const response = await fetch(url, { cache: "no-store" });
+
       if (response.ok) {
         return;
       }
     } catch {
       // Connection refused just means the dev server has not bound yet.
     }
+
     await sleep(250);
   }
+
   throw new Error(`Timed out waiting for ${url}`);
 };
 
@@ -155,16 +168,20 @@ try {
   });
 
   const port = await getFreePort();
+
   const server = spawn("pnpm", ["exec", ...devServerCommand(port).argv], {
     cwd: projectRoot,
     detached: true,
     env: { ...process.env, PORT: String(port) },
     stdio: ["ignore", "pipe", "pipe"],
   });
+
   const pgid = server.pid;
+
   if (pgid === undefined) {
     throw new Error("The dev server failed to spawn");
   }
+
   serverLifecycle.record({ pgid, port });
 
   server.stdout.on("data", (chunk: Buffer) => {
