@@ -59,6 +59,7 @@ const UsesPage = () => (
 );
 
 export const instant = true;
+
 export { metadata };
 
 export default UsesPage;

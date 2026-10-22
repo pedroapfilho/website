@@ -226,4 +226,5 @@ const resume: Resume = {
 };
 
 export { resume };
+
 export type { Resume, Job, Contact, IsoMonth, SkillGroup };
