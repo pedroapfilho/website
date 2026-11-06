@@ -20,7 +20,7 @@ Pedro Filho's personal website at pedroapfilho.com: introduce Pedro (home), show
 
 ## Operating Context
 
-Single Next.js app (App Router, Tailwind v4 CSS-first). The /resume screen is the single source for `public/resume.pdf` via a puppeteer print pipeline — resume changes trigger PDF regeneration and are out of scope for visual redesign work unless explicitly requested. Every off-site link must go through `app/external-link.tsx`.
+Single Next.js app (App Router, Tailwind v4 CSS-first). The /resume screen is the single source for `public/resume.pdf` via a puppeteer print pipeline — resume changes trigger PDF regeneration and are out of scope for visual redesign work unless explicitly requested. Every link that opens a new tab must go through `app/external-link.tsx`.
 
 ## Capabilities and Constraints
 
@@ -34,7 +34,7 @@ Single Next.js app (App Router, Tailwind v4 CSS-first). The /resume screen is th
 
 ## Evidence on Hand
 
-- Real profile photo: `app/(site)/profile.jpg` (used on home at 128×128).
+- Real profile photo: `app/(site)/profile.jpg` (used on home at 120×120).
 - Real project/library list with URLs: `app/(site)/side/data.ts`.
 - Real gear/tooling list with URLs: `app/(site)/uses/data.ts`.
 - Real resume data: `app/resume/data.ts` (7 jobs, education, languages, contacts).

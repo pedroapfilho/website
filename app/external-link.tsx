@@ -9,6 +9,7 @@ const ExternalLink = ({
 }) => (
   <a className={className} href={href} rel="noopener noreferrer" target="_blank">
     {children}
+    <span className="sr-only"> (opens in new tab)</span>
   </a>
 );
 

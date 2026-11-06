@@ -1,220 +1,50 @@
-import { execFileSync, spawn } from "node:child_process";
-import { mkdir, rename, writeFile } from "node:fs/promises";
-import { createServer } from "node:net";
+import { createServer } from "node:http";
 import path from "node:path";
 
-import { type Browser, launch } from "puppeteer-core";
-
-import { acquireServerLifecycle, devServerCommand } from "#scripts/process-lifecycle";
-import type { ProcessGroup, ServerLifecycle } from "#scripts/process-lifecycle";
+import next from "next";
+import { launch } from "puppeteer-core";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const outPath = path.join(projectRoot, "public", "resume.pdf");
-const recordPath = path.join(projectRoot, "node_modules", ".cache", "resume-dev-server.json");
 
-const SHUTDOWN_GRACE_MS = 5000;
-const GROUP_POLL_MS = 100;
-
-let serverLifecycle: ServerLifecycle | undefined;
-let browser: Browser | undefined;
-let teardown: Promise<void> | undefined;
-
-const writeAtomically = async (target: string, data: Uint8Array): Promise<void> => {
-  const temporaryPath = `${target}.${process.pid}.tmp`;
-  await writeFile(temporaryPath, data);
-  await rename(temporaryPath, target);
-};
-
-const sleep = (ms: number): Promise<void> =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-
-const runLines = (command: string, args: Array<string>): Array<string> => {
-  try {
-    return execFileSync(command, args, { encoding: "utf8" })
-      .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => line.length > 0);
-  } catch {
-    return [];
-  }
-};
-
-const groupCommands = (pgid: number): Array<string> => {
-  const pids = runLines("pgrep", ["-g", String(pgid)]);
-
-  if (pids.length === 0) {
-    return [];
-  }
-
-  return runLines("ps", ["-o", "command=", "-p", pids.join(",")]);
-};
-
-const killGroup = (pgid: number, signal: NodeJS.Signals): void => {
-  try {
-    process.kill(-pgid, signal);
-  } catch {
-    // ESRCH means the group is already empty, which is the state we were aiming for.
-  }
-};
-
-const waitForGroupExit = async (pgid: number, timeoutMs: number): Promise<boolean> => {
-  const deadline = Date.now() + timeoutMs;
-
-  while (Date.now() < deadline) {
-    if (groupCommands(pgid).length === 0) {
-      return true;
-    }
-
-    await sleep(GROUP_POLL_MS);
-  }
-
-  return groupCommands(pgid).length === 0;
-};
-
-const processGroup: ProcessGroup = {
-  commands: groupCommands,
-  signal: killGroup,
-  waitForExit: waitForGroupExit,
-};
-
-const closeBrowser = async (): Promise<void> => {
-  try {
-    await browser?.close();
-  } catch {
-    // A browser that already died is the state we wanted anyway.
-  }
-};
-
-const runCleanup = async (): Promise<void> => {
-  const closingBrowser = closeBrowser();
-
-  try {
-    await serverLifecycle?.close();
-  } catch (error) {
-    console.error("Could not stop the dev server:", error);
-    process.exitCode = 1;
-  }
-
-  await closingBrowser;
-};
-
-const cleanup = (): Promise<void> => (teardown ??= runCleanup());
-
-const shutdown = async (): Promise<never> => {
-  try {
-    await cleanup();
-  } catch (error) {
-    console.error("Cleanup failed during shutdown:", error);
-  }
-
-  process.exit(1);
-};
-
-for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"] as const) {
-  process.on(sig, () => {
-    void shutdown();
+for (const signal of ["SIGHUP", "SIGTERM"] as const) {
+  process.once(signal, () => {
+    process.exit(1);
   });
 }
 
-const getFreePort = (): Promise<number> =>
-  new Promise((resolve, reject) => {
-    const s = createServer();
-    s.unref();
-    s.on("error", reject);
-    s.listen(0, () => {
-      const address = s.address();
+const app = next({ dev: true, dir: projectRoot });
 
-      if (address === null || typeof address === "string") {
-        reject(new Error("Could not resolve a free port"));
+await app.prepare();
 
-        return;
-      }
+const handle = app.getRequestHandler();
 
-      s.close(() => {
-        resolve(address.port);
-      });
-    });
-  });
+const server = createServer((request, response) => {
+  void handle(request, response);
+});
 
-const waitForReady = async (url: string, timeoutMs = 60_000): Promise<void> => {
-  const deadline = Date.now() + timeoutMs;
+await new Promise<void>((resolve) => {
+  server.listen(0, resolve);
+});
 
-  while (Date.now() < deadline) {
-    try {
-      const response = await fetch(url, { cache: "no-store" });
+const address = server.address();
 
-      if (response.ok) {
-        return;
-      }
-    } catch {
-      // Connection refused just means the dev server has not bound yet.
-    }
-
-    await sleep(250);
-  }
-
-  throw new Error(`Timed out waiting for ${url}`);
-};
-
-try {
-  serverLifecycle = await acquireServerLifecycle({
-    graceMs: SHUTDOWN_GRACE_MS,
-    log: console.log,
-    processGroup,
-    recordPath,
-    warn: console.warn,
-  });
-
-  const port = await getFreePort();
-
-  const server = spawn("pnpm", ["exec", ...devServerCommand(port).argv], {
-    cwd: projectRoot,
-    detached: true,
-    env: { ...process.env, PORT: String(port) },
-    stdio: ["ignore", "pipe", "pipe"],
-  });
-
-  const pgid = server.pid;
-
-  if (pgid === undefined) {
-    throw new Error("The dev server failed to spawn");
-  }
-
-  serverLifecycle.record({ pgid, port });
-
-  server.stdout.on("data", (chunk: Buffer) => {
-    process.stdout.write(`[next] ${chunk.toString()}`);
-  });
-  server.stderr.on("data", (chunk: Buffer) => {
-    process.stderr.write(`[next] ${chunk.toString()}`);
-  });
-
-  const base = `http://localhost:${port}`;
-  await waitForReady(`${base}/resume`);
-
-  browser = await launch({ channel: "chrome", headless: true });
-  const page = await browser.newPage();
-  await page.emulateMediaType("print");
-  await page.goto(`${base}/resume`, {
-    timeout: 30_000,
-    waitUntil: "networkidle0",
-  });
-
-  const pdf = await page.pdf({
-    format: "A4",
-    margin: { bottom: "16mm", left: "16mm", right: "16mm", top: "16mm" },
-    preferCSSPageSize: false,
-    printBackground: true,
-  });
-
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeAtomically(outPath, pdf);
-  console.log(`Wrote ${outPath} (${pdf.byteLength} bytes)`);
-} catch (error) {
-  console.error("Resume generation failed:", error);
-  process.exitCode = 1;
-} finally {
-  await cleanup();
+if (address === null || typeof address === "string") {
+  throw new Error("The resume server has no TCP port");
 }
+
+const browser = await launch({ channel: "chrome", headless: true });
+const page = await browser.newPage();
+
+await page.goto(`http://localhost:${address.port}/resume`, { waitUntil: "networkidle0" });
+
+const pdf = await page.pdf({
+  format: "A4",
+  margin: { bottom: "16mm", left: "16mm", right: "16mm", top: "16mm" },
+  path: outPath,
+  printBackground: true,
+});
+
+console.log(`Wrote ${outPath} (${pdf.byteLength} bytes)`);
+
+process.exit();
