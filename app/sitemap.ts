@@ -1,10 +1,8 @@
 import type { MetadataRoute } from "next";
 
-import { SITE_ORIGIN } from "@/lib/site";
-
-const ROUTES = ["/", "/resume", "/side", "/uses"];
+import { PAGES, SITE_ORIGIN } from "@/lib/site";
 
 const sitemap = (): MetadataRoute.Sitemap =>
-  ROUTES.map((route) => ({ url: `${SITE_ORIGIN}${route}` }));
+  PAGES.map((page) => ({ url: `${SITE_ORIGIN}${page.href}` }));
 
 export default sitemap;

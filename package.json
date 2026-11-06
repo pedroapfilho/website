@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "imports": {
-    "#scripts/*": "./scripts/*.ts"
-  },
   "scripts": {
     "start": "next start",
     "dev": "portless run --name website next dev",
@@ -16,7 +13,6 @@
     "build": "next build",
     "clean": "rm -rf .next out node_modules",
     "generate:resume": "node scripts/generate-resume.ts",
-    "test": "node --test scripts/*.test.ts",
     "test:e2e": "playwright test",
     "fallow": "fallow",
     "fallow:dead": "fallow dead-code",
@@ -26,11 +22,9 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "cn": "^0.3.2",
     "next": "^16.3.8",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "zod": "^4.6.5"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@next/playwright": "^16.3.5",
@@ -49,8 +43,7 @@
     "oxlint-tsgolint": "^7.0.2003",
     "puppeteer-core": "^25.11.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2",
-    "zod-compiler": "^1.28.0"
+    "typescript": "^7.0.2"
   },
   "lint-staged": {
     "!(*.d).{ts,tsx,mts,cts,js,jsx,mjs,cjs}": [

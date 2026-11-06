@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { ExternalLink } from "@/app/external-link";
 import { SiteFooter } from "@/app/site-footer";
-import { cn } from "@/lib/utils";
 
 import { type IsoMonth, type Job, resume } from "./data";
 
@@ -44,54 +44,33 @@ const Section = ({ children, title }: { children: React.ReactNode; title: string
   <section className="mt-9 text-sm">
     <div className="break-inside-avoid">
       <h2 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{title}</h2>
-      <hr className="border-border mt-2 mb-4 border-t" />
+      <hr className="mt-2 mb-4" />
     </div>
 
     {children}
   </section>
 );
 
-type DefinitionRow = {
-  term: string;
-  value: string;
-};
-
-const DefinitionGrid = ({
-  listClassName,
-  rows,
-  termClassName,
-  valueClassName,
-}: {
-  listClassName: string;
-  rows: Array<DefinitionRow>;
-  termClassName: string;
-  valueClassName?: string;
-}) => (
-  <dl className={listClassName}>
-    {rows.map((row) => (
-      <div className="contents" key={row.term}>
-        <dt className={termClassName}>{row.term}</dt>
-        <dd className={cn(valueClassName)}>{row.value}</dd>
+const Skills = () => (
+  <dl className="sm:grid-cols-intrinsic-label grid grid-cols-1 gap-x-8 gap-y-2">
+    {resume.skills.map((skill) => (
+      <div className="contents" key={skill.label}>
+        <dt className="text-muted-foreground sm:whitespace-nowrap">{skill.label}</dt>
+        <dd className="text-pretty">{skill.items.join(" · ")}</dd>
       </div>
     ))}
   </dl>
 );
 
-const Skills = () => (
-  <DefinitionGrid
-    listClassName="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-intrinsic-label"
-    rows={resume.skills.map((s) => ({ term: s.label, value: s.items.join(" · ") }))}
-    termClassName="text-muted-foreground sm:whitespace-nowrap"
-    valueClassName="text-pretty"
-  />
-);
-
 const Languages = () => (
-  <DefinitionGrid
-    listClassName="grid grid-cols-intrinsic-label gap-x-6 gap-y-1"
-    rows={resume.languages.map((l) => ({ term: l.language, value: l.level }))}
-    termClassName="text-muted-foreground"
-  />
+  <dl className="grid-cols-intrinsic-label grid gap-x-6 gap-y-1">
+    {resume.languages.map((entry) => (
+      <div className="contents" key={entry.language}>
+        <dt className="text-muted-foreground">{entry.language}</dt>
+        <dd>{entry.level}</dd>
+      </div>
+    ))}
+  </dl>
 );
 
 const DATE_SEPARATOR = " \u2013 ";
@@ -114,19 +93,14 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
       </header>
 
       <p className="text-muted-foreground">
-        {job.role}
-        <span className="text-muted-foreground"> · </span>
-        {job.location}
+        {job.role} · {job.location}
       </p>
 
       <p className="text-foreground/80 mt-1 italic">{job.product}</p>
 
       <ul className="mt-2 flex flex-wrap gap-x-1.5 gap-y-1">
         {job.stack.map((t) => (
-          <li
-            className="border-border text-foreground/80 rounded border px-1.5 py-0.5 text-xs"
-            key={t}
-          >
+          <li className="text-foreground/80 rounded border px-1.5 py-0.5 text-xs" key={t}>
             {t}
           </li>
         ))}
@@ -152,19 +126,14 @@ const JobEntry = ({ end, job }: { end: IsoMonth | null; job: Job }) => (
 
 const ResumePage = () => (
   <>
-    <article className="mx-auto max-w-3xl px-6 pt-10 text-(length:--text-body) leading-6 sm:px-12 sm:pt-14 print:max-w-none print:p-0">
+    <main className="text-resume mx-auto max-w-3xl px-6 pt-10 leading-6 sm:px-12 sm:pt-14 print:max-w-none print:p-0">
       <nav className="text-muted-foreground mb-10 flex items-center justify-between text-sm print:hidden">
         <Link className="hover:text-foreground" href="/">
           ← back
         </Link>
-        <a
-          className="hover:text-foreground"
-          href="/resume.pdf"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <ExternalLink className="hover:text-foreground" href="/resume.pdf">
           download as PDF →
-        </a>
+        </ExternalLink>
       </nav>
 
       <Header />
@@ -197,7 +166,7 @@ const ResumePage = () => (
       <Section title="Languages">
         <Languages />
       </Section>
-    </article>
+    </main>
     <div className="mx-auto w-full max-w-3xl px-6 pb-8 sm:px-12 sm:pb-10 print:hidden">
       <SiteFooter />
     </div>
