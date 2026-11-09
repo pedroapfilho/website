@@ -10,6 +10,11 @@ allowBuilds:
 minimumReleaseAge: 10080
 trustPolicy: no-downgrade
 
+auditConfig:
+  ignoreGhsas:
+    # shortcut: zod 3 under puppeteer-core's chromium-bidi only loads over WebDriver BiDi, and generate-resume uses CDP; remove when a puppeteer-core whose chromium-bidi passes trustPolicy is out.
+    - GHSA-mrhx-c7xc-m3w5
+
 minimumReleaseAgeExclude:
   # Exempt exact pinned versions without exempting future releases.
   - "@fallow-cli/darwin-arm64@3.28.0"
