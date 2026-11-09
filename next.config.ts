@@ -20,16 +20,6 @@ const nextConfig: NextConfig = {
     ]),
   partialPrefetching: true,
   reactStrictMode: true,
-  turbopack: {
-    rules: {
-      "*.{ts,tsx}": {
-        condition: {
-          all: [{ not: "foreign" }, { content: /[Zz]od/ }],
-        },
-        loaders: ["zod-compiler/turbopack"],
-      },
-    },
-  },
 };
 
 export default nextConfig;

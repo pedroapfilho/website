@@ -3,13 +3,11 @@
 import { usePathname } from "next/navigation";
 
 import { ExternalLink } from "@/app/external-link";
-import { cn } from "@/lib/utils";
-
-const EMAIL = "pedro@filho.me";
+import { EMAIL, GITHUB_URL, X_URL } from "@/lib/contact";
 
 const ELSEWHERE = [
-  { href: "https://github.com/pedroapfilho", label: "GitHub" },
-  { href: "https://x.com/pedroapfilho", label: "X" },
+  { href: GITHUB_URL, label: "GitHub" },
+  { href: X_URL, label: "X" },
   { href: "https://youtube.com/c/ohmyfunction", label: "YouTube" },
 ];
 
@@ -17,15 +15,13 @@ const SiteFooter = () => {
   const isHome = usePathname() === "/";
 
   return (
-    <footer className="mt-16 grid grid-cols-6 items-end gap-x-4 gap-y-6 lg:grid-cols-12 lg:gap-x-6">
+    <footer className="gap-x-gutter mt-16 grid grid-cols-6 items-end gap-y-6 lg:grid-cols-12">
       <a
-        className={cn(
-          "link-draw outline-ring col-span-full w-fit focus-visible:outline-2 focus-visible:outline-offset-4",
+        className={
           isHome
-            ? "text-3xl leading-none tracking-tight lg:col-end-9"
-            : "text-xs leading-6 tracking-widest lg:col-span-4",
-          isHome && "lg:text-5xl",
-        )}
+            ? "link-draw col-span-full w-fit text-3xl leading-none tracking-tight lg:col-end-9 lg:text-5xl"
+            : "link-draw col-span-full w-fit text-xs leading-6 tracking-widest lg:col-span-4"
+        }
         href={`mailto:${EMAIL}`}
       >
         {EMAIL}
@@ -35,12 +31,8 @@ const SiteFooter = () => {
         <ul className="flex gap-5">
           {ELSEWHERE.map((item) => (
             <li key={item.href}>
-              <ExternalLink
-                className="link-draw outline-ring inline-block focus-visible:outline-2 focus-visible:outline-offset-4"
-                href={item.href}
-              >
+              <ExternalLink className="link-draw inline-block" href={item.href}>
                 {item.label}
-                <span className="sr-only"> (opens in new tab)</span>
               </ExternalLink>
             </li>
           ))}

@@ -1,3 +1,5 @@
+import { EMAIL, GITHUB_URL, X_URL, X_USERNAME } from "@/lib/contact";
+
 type Contact = {
   display: string;
   href: string;
@@ -48,8 +50,8 @@ type Resume = {
 const resume: Resume = {
   contacts: [
     {
-      display: "pedro@filho.me",
-      href: "mailto:pedro@filho.me",
+      display: EMAIL,
+      href: `mailto:${EMAIL}`,
       label: "Email",
     },
     {
@@ -63,13 +65,13 @@ const resume: Resume = {
       label: "Website",
     },
     {
-      display: "@pedroapfilho",
-      href: "https://twitter.com/pedroapfilho",
+      display: `@${X_USERNAME}`,
+      href: X_URL,
       label: "Twitter",
     },
     {
       display: "github.com/pedroapfilho",
-      href: "https://github.com/pedroapfilho",
+      href: GITHUB_URL,
       label: "Github",
     },
     {
@@ -227,4 +229,4 @@ const resume: Resume = {
 
 export { resume };
 
-export type { Resume, Job, Contact, IsoMonth, SkillGroup };
+export type { IsoMonth, Job };

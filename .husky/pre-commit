@@ -10,7 +10,7 @@ if echo "$staged" | grep -qE "$resume_sources_pattern" &&
   ! echo "$staged" | grep -qx 'public/resume\.pdf'; then
   echo "Resume sources changed, regenerating public/resume.pdf…"
   pnpm generate:resume || {
-    echo "Resume generation failed. It needs a local Google Chrome." >&2
+    echo "Resume generation failed. It needs a local Google Chrome and no next dev server running in this checkout." >&2
     exit 1
   }
   git add public/resume.pdf

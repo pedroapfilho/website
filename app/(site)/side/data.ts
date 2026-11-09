@@ -78,5 +78,3 @@ const sideSections: Array<SideSection> = [
 ];
 
 export { sideSections };
-
-export type { SideEntry, SideSection };
