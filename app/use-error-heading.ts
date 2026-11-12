@@ -9,6 +9,7 @@ const useErrorHeading = (error: Error) => {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    reportError(error);
     headingRef.current?.focus();
   }, [error]);
 
