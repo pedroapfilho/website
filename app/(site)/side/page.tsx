@@ -27,7 +27,7 @@ const SidePage = () => (
                 className="group gap-x-gutter grid grid-cols-1 text-sm leading-6 lg:grid-cols-12 lg:py-1.5"
                 href={entry.href}
               >
-                <span className="min-w-0 break-words lg:col-span-3">
+                <span className="min-w-0 wrap-break-word lg:col-span-3">
                   <span className="link-draw font-bold">{entry.name}</span>
                 </span>
                 <span className="text-pretty lg:col-span-6">{entry.description}</span>
