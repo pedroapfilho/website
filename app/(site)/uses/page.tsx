@@ -35,7 +35,7 @@ const UsesPage = () => (
                         className="group gap-x-gutter grid grid-cols-1 lg:grid-cols-9"
                         href={item.href}
                       >
-                        <span className="min-w-0 break-words lg:col-span-6">
+                        <span className="min-w-0 wrap-break-word lg:col-span-6">
                           <span className="link-draw">{item.name}</span>
                         </span>
                         <HostCaption href={item.href} />
