@@ -1,4 +1,5 @@
 import { EMAIL, GITHUB_URL, X_URL, X_USERNAME } from "@/lib/contact";
+import { SITE_ORIGIN } from "@/lib/site";
 
 type Contact = {
   display: string;
@@ -61,7 +62,7 @@ const resume: Resume = {
     },
     {
       display: "pedroapfilho.com",
-      href: "https://pedroapfilho.com",
+      href: SITE_ORIGIN,
       label: "Website",
     },
     {
