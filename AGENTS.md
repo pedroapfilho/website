@@ -43,7 +43,7 @@ Type-aware linting and `tsc` read the types Next generates (`next-env.d.ts` and 
 
 `public/resume.pdf` is committed, and nothing regenerates it for you: after a change to what the resume renders, run `pnpm generate:resume` and commit the PDF with it. `resume-pdf.yml` fails a PR that edits a path in its `resume_sources_pattern` without a rebuilt PDF, and that pattern is the one definition of which paths change what the PDF renders.
 
-`pnpm generate:resume` builds the site and prints `/resume` from that production build, so the PDF is what production renders, and it runs while `pnpm dev` is up. It drives the local Google Chrome (`channel: "chrome"`), so it never runs in CI: Playwright's bundled Chromium sets three headings 0.1pt lower. The page size is A4 in millimetres because Playwright's `A4` preset is 11.7in tall, a quarter of a millimetre more than the committed PDF. Next's server logs an unhandled rejection and leaves the exit code at 0, so the script sets a failing exit code itself.
+`pnpm generate:resume` builds the site and prints `/resume` from that production build, so the PDF is what production renders, and it runs while `pnpm dev` is up. It drives the local Google Chrome (`channel: "chrome"`), so it never runs in CI: Playwright's bundled Chromium sets three headings 0.1pt lower. The page size is A4 in millimetres because Playwright's `A4` preset is 11.7in tall, which prints a page a third of a millimetre taller than the committed PDF. Next's server logs an unhandled rejection and leaves the exit code at 0, so the script sets a failing exit code itself.
 
 ## Conventions
 
