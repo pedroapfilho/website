@@ -37,13 +37,13 @@ scripts/
 
 ## Dev workflow
 
-`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → lint-staged (oxlint + oxfmt), then regenerates `public/resume.pdf` when the commit touches the resume sources. CI runs build, lint, format, typecheck, fallow, the Playwright suite (`tests/e2e`, `pnpm test:e2e`), and the resume-PDF freshness check.
+`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → lint-staged (oxlint + oxfmt). CI runs build, lint, format, typecheck, fallow, the Playwright suite (`tests/e2e`, `pnpm test:e2e`), and the resume-PDF freshness check.
 
 Type-aware linting reads Next's generated route types, so `lint.yml` and `typecheck.yml` both run `pnpm build` first. Running `pnpm lint` locally against a stale `.next` gives false positives; build once after pulling.
 
-`pnpm generate:resume` needs a local Chrome (`channel: "chrome"`), so it never runs in CI. It starts a Next dev server inside its own process, so the server dies with it, and Next's `.next/dev/lock` allows one dev server per checkout: it fails at once with "Another next dev server is already running" while `pnpm dev` or another generation is up. The pre-commit hook calls it when a resume source is staged and `public/resume.pdf` is not, then stages the PDF into the same commit. Staging the PDF yourself skips it. It prints the resume from the working tree, not the index, so unstaged edits to those files land in the PDF.
+`public/resume.pdf` is committed, and nothing regenerates it for you: after a change to what the resume renders, run `pnpm generate:resume` and commit the PDF with it. `resume-pdf.yml` fails a PR that edits a path in its `resume_sources_pattern` without a rebuilt PDF, and that pattern is the one definition of which paths change what the PDF renders.
 
-`scripts/resume-sources.sh` owns the one definition of which paths change what the PDF renders. Both the pre-commit hook and `resume-pdf.yml` source it, the latter to fail a PR that edits those sources without committing a rebuilt PDF (which is what catches a `--no-verify` commit or a machine with no Chrome).
+`pnpm generate:resume` needs a local Chrome (`channel: "chrome"`), so it never runs in CI. It starts a Next dev server inside its own process, so the server dies with it, and Next's `.next/dev/lock` allows one dev server per checkout: it fails at once with "Another next dev server is already running" while `pnpm dev` or another generation is up.
 
 ## Conventions
 
