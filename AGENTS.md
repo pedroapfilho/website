@@ -37,9 +37,9 @@ scripts/
 
 ## Dev workflow
 
-`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → lint-staged (oxlint + oxfmt). CI runs build, lint, format, typecheck, fallow, the Playwright suite (`tests/e2e`, `pnpm test:e2e`), and the resume-PDF freshness check.
+`pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format`. Pre-commit runs husky → `pnpm typegen`, then lint-staged (oxlint + oxfmt). CI runs build, lint, format, typecheck, fallow, the Playwright suite (`tests/e2e`, `pnpm test:e2e`), and the resume-PDF freshness check.
 
-Type-aware linting reads Next's generated route types, so `lint.yml` and `typecheck.yml` both run `pnpm build` first. Running `pnpm lint` locally against a stale `.next` gives false positives; build once after pulling.
+Type-aware linting and `tsc` read the types Next generates (`next-env.d.ts` and `.next/types`). `pnpm typegen` writes them in about a second, and `pnpm lint`, `pnpm typecheck` and the pre-commit hook all run it first, so none of them depends on a build having happened. `lint.yml` and `typecheck.yml` still run `pnpm build` first, as the fleet's workflows do.
 
 `public/resume.pdf` is committed, and nothing regenerates it for you: after a change to what the resume renders, run `pnpm generate:resume` and commit the PDF with it. `resume-pdf.yml` fails a PR that edits a path in its `resume_sources_pattern` without a rebuilt PDF, and that pattern is the one definition of which paths change what the PDF renders.
 
@@ -59,7 +59,7 @@ Fleet-wide rules live in standy's `standards.md`. Repo-specific notes:
 
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
