@@ -1,6 +1,7 @@
 ---
 title: 'resume-pdf freshness check demands a rebuilt PDF for edits that cannot change the print'
 severity: 'minor'
+issue: 'pedroapfilho/website#111'
 ---
 
 ### Expected Behavior
