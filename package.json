@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "build": "next build",
     "clean": "rm -rf .next out node_modules",
-    "generate:resume": "node scripts/generate-resume.ts",
+    "generate:resume": "next build && node scripts/generate-resume.ts",
     "test:e2e": "playwright test",
     "fallow": "fallow",
     "fallow:dead": "fallow dead-code",
@@ -41,7 +41,6 @@
     "oxlint-config-awesomeness": "^4.9.0",
     "oxlint-plugin-react-doctor": "^0.9.14",
     "oxlint-tsgolint": "^7.0.2003",
-    "puppeteer-core": "^25.11.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   },
