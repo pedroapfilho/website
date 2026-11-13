@@ -20,7 +20,7 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          . ./scripts/resume-sources.sh
+          resume_sources_pattern='^(app/resume/|app/layout\.tsx|app/globals\.css|lib/contact\.ts|scripts/generate-resume\.ts)'
           changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
           sources=$(echo "$changed" | grep -E "$resume_sources_pattern" || true)
           if [ -z "$sources" ]; then
