@@ -1,7 +1,3 @@
-// Visual direction: "The Poster" (Swiss grid, Host Grotesk, black on white, no
-// hairlines). The recorded system lives in DESIGN.md; this shell scopes it to
-// (site); /resume shares the font and ink but keeps its own document layout.
-
 import { SiteFooter } from "../site-footer";
 
 import { IndexNav } from "./index-nav";
