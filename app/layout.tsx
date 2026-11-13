@@ -40,7 +40,7 @@ const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html className={hostGrotesk.variable} lang="en" suppressHydrationWarning>
+  <html className={hostGrotesk.variable} lang="en">
     <body className="flex min-h-dvh flex-col overscroll-none antialiased">{children}</body>
   </html>
 );
